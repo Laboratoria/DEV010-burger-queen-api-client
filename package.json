@@ -7,6 +7,7 @@
     "start": "vite",
     "dev": "vite",
     "build": "tsc && vite build",
+    "deploy": "vercel --prod",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "jest --coverage"
