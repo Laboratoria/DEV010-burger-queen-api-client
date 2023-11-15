@@ -1,7 +1,7 @@
 
 
 const NewOrder = () => {
-return <p>Hola</p>
+return <p>Acá nueva orden</p>
 }
 
 export default NewOrder;

@@ -1,7 +1,8 @@
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './components/Login/Login'
-import NewOrder from './components/NewOrder/NewOrder';
+import NewOrder from './components/Waiter/NewOrder';
+import Orders from './components/Chef/Orders';
 
 function App() {
   //const [count, setCount] = useState(0)
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Login />}/>
         <Route path='/waiter/newOrder' element={<NewOrder />}/>
+        <Route path='/chef/orders' element={<Orders />}/>
       </Routes>
     </Router>
   )

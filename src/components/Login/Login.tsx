@@ -8,7 +8,10 @@ import { useNavigate } from 'react-router-dom';
 const Login = () => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
+    const [error, setError] = useState<boolean>(false);
+    const [errorMessage, setErrorMessage] = useState<string>('');
     const navigate = useNavigate();
+
 
 return (
     <section className='login-section'>
@@ -19,15 +22,34 @@ return (
                 <input type='email' placeholder='Email' onChange={(event) => setEmail(event.target.value)}
                 value={email}/>
                 <input type='password' placeholder='Contraseña' onChange={(event) => setPassword(event.target.value)}
-            value={password}/>
+                value={password}/>
+
+                
+                
                 <button className='login-button' onClick={async (e) => {
                     e.preventDefault();
                     const response: Token = await auth(email, password);
                     console.log('response:', response)
-                    if (response.accessToken) { // Si la respuesta es correcta me manda a home
+                    if (response.accessToken) {
                         localStorage.setItem("token", response.accessToken);
-                        navigate("/waiter/newOrder");
-                }}}>Ingresar</button>
+                        if( response.user.role === 'waiter') {
+                            navigate("/waiter/newOrder");
+                        } else if ( response.user.role === 'chef') {
+                            navigate("/chef/orders");
+                        }
+                    } else {
+                        console.log(response);
+                        setError(true);
+                        setErrorMessage(`${response}`);
+                        setEmail("") // Receteamos los inputs
+                        setPassword("")
+                    }
+
+                }}>Ingresar</button>
+
+                {error && <p>{errorMessage}</p>}
+
+                
             </form>
 
         </section>
