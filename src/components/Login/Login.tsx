@@ -41,7 +41,7 @@ return (
                         console.log(response);
                         setError(true);
                         setErrorMessage(`${response}`);
-                        setEmail("") // Receteamos los inputs
+                        setEmail("") 
                         setPassword("")
                     }
 
