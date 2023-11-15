@@ -1,14 +1,13 @@
 <1.0.0> - <2023-11-15>
 
-Sprint learnings
 
+## Sprint learnings
 Manejo de API Mock
 
 
-Added
-
+## Added
 BoilerPlate
 Vista de Login
 Estilos en Login
-Archivo para request de la API
+Archivo para request de la API.
 
