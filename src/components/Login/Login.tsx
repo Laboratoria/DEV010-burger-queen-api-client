@@ -26,7 +26,7 @@ return (
                     console.log('response:', response)
                     if (response.accessToken) { // Si la respuesta es correcta me manda a home
                         localStorage.setItem("token", response.accessToken);
-                        navigate("/");
+                        navigate("/waiter/newOrder");
                 }}}>Ingresar</button>
             </form>
 

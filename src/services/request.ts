@@ -2,7 +2,7 @@ import { Token } from "../types/Types";
 
 export const auth = async (email: string, password: string): Promise<Token> => {
     try {
-        const response = await fetch('http://localhost:8080/', {
+        const response = await fetch('http://localhost:8080/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
