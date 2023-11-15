@@ -47,6 +47,7 @@ form {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
     
 }
 
@@ -77,4 +78,7 @@ h1 {
     width: 100px;*/
     padding: 10px 25px;
     margin: 15px 0;
+}
+.errormsg {
+width: 194px;
 }

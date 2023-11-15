@@ -25,6 +25,7 @@ export const auth = async (email: string, password: string): Promise<Token> => {
         }*/
 
         // Procesar y devolver la respuesta en el formato adecuado
+        
         const data: Token = await response.json();
         return data;
     } catch (error) {

@@ -25,7 +25,7 @@ return (
                 value={password}/>
 
                 
-                
+{error && <p className='errormsg'>{errorMessage}</p>}
                 <button className='login-button' onClick={async (e) => {
                     e.preventDefault();
                     const response: Token = await auth(email, password);
@@ -38,16 +38,31 @@ return (
                             navigate("/chef/orders");
                         }
                     } else {
+                 
                         console.log(response);
                         setError(true);
-                        setErrorMessage(`${response}`);
+                        if (`${response}`=== "Email and password are required") {
+                          setErrorMessage("Ingrese email y contraseña");
+                      } else if (`${response}`=== "Incorrect password") {
+                        setErrorMessage("Contraseña incorrecta");
+                      }
+                      else if (`${response}`=== "Cannot find user") {
+                        setErrorMessage("Usuario no encontrado");
+                      }
+                      else if (`${response}`=== "Email format is invalid") {
+                        setErrorMessage("Formato de email incorrecto");
+                      }
+                      else {
+                          setErrorMessage("Error durante la autenticación. Por favor, inténtalo de nuevo.");
+                      }/* 
+                        setErrorMessage(`${response}`); */
                         setEmail("") 
                         setPassword("")
                     }
 
                 }}>Ingresar</button>
 
-                {error && <p>{errorMessage}</p>}
+                
 
                 
             </form>
