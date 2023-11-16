@@ -15,17 +15,7 @@ export const auth = async (email: string, password: string): Promise<Token> => {
         }),
     })
 
-    try {
-       // response;
-
-        /*if (!response.ok) {
-            // Si la respuesta no es exitosa, lanzar un nuevo error con información específica
-            // Mensaje explicito del error
-            throw new Error(`Error: ${response.status} - ${errorText}`);
-        }*/
-
-        // Procesar y devolver la respuesta en el formato adecuado
-        
+    try {     
         const data: Token = await response.json();
         return data;
     } catch (error) {
