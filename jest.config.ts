@@ -13,6 +13,10 @@ const config: Config = {
 
   coverageDirectory: "coverage",
 
+  globals:{
+    fetch: global.fetch,
+  },
+
   moduleFileExtensions: [
      "js",
      "mjs",
@@ -24,7 +28,7 @@ const config: Config = {
      "node"
    ],
 
-   moduleNameMapper: { '^@/(.*)$': '<rootDir>/src/__mocks__/file.mock.cjs'},
+   moduleNameMapper: { '\\.png$': '<rootDir>/src/__mocks__/file.mock.cjs'},
 
    preset: 'ts-jest',
 

@@ -8,6 +8,12 @@ jest.mock('react-router-dom', () => ({
   useNavigate: jest.fn()
 }));
 
+jest.mock("../../services/request", () => ({
+  auth: jest.fn(() => ({
+accessToken:" "
+  })) 
+}))
+
 describe('Login component', () => {
 it('should navigate to /waiter/newOrder when a waiter is logged in with a correct accessToken', () => {
   const email = 'waiter@systers.xyz';

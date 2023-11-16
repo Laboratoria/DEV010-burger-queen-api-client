@@ -16,7 +16,7 @@ export const auth = async (email: string, password: string): Promise<Token> => {
     })
 
     try {
-        response;
+       // response;
 
         /*if (!response.ok) {
             // Si la respuesta no es exitosa, lanzar un nuevo error con información específica
