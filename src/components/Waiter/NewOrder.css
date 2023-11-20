@@ -67,10 +67,11 @@
   flex-direction: column;
   background-color: var(--blanco);
   width: 300px;
-  height: 800px;
+  height: 800px; /* Mantén la altura fija */
   border: var(--marron) solid 1px;
   border-radius: 10px;
   padding: 10px;
+  overflow-y: auto; /* Permite el desplazamiento vertical */
 }
 .selectSection {
   display: flex;
