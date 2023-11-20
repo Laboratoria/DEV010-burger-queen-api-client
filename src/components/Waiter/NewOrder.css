@@ -2,7 +2,7 @@
   background-image: url('../../assets/background.png');
   background-size: cover;
   margin: 0;
-  height: 100vh;
+  height: 964px;
   width: auto;
   padding: 30px;
   /* display: flex;
@@ -67,11 +67,12 @@
   flex-direction: column;
   background-color: var(--blanco);
   width: 300px;
-  height: 800px; /* Mantén la altura fija */
+  height: 750px; /* Mantén la altura fija */
   border: var(--marron) solid 1px;
   border-radius: 10px;
   padding: 10px;
-  overflow-y: auto; /* Permite el desplazamiento vertical */
+/*   overflow-y: auto; /* Permite el desplazamiento vertical */
+
 }
 .selectSection {
   display: flex;
@@ -90,6 +91,10 @@
   border-image: none;
  border-style: solid;
  padding-left: 10px;
+ font-size: 18px
+}
+.name {
+  font-size: 15px
 }
 
 .buttonMenuSection {
@@ -152,4 +157,8 @@
 }
 .product-price {
   margin: 10px;
+}
+.foodSection {
+  overflow-y: auto; /* Permite el desplazamiento vertical */
+  height: 590px;
 }
