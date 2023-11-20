@@ -25,3 +25,15 @@ export const auth = async (email: string, password: string): Promise<Token> => {
       throw error;
   } */
 }; 
+
+
+export const getProducts = (token: string) => {
+  return fetch('http://localhost:8080/products', {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+          'Accept-Encoding': 'gzip, deflate, br',
+          'Authorization': `Bearer ${token}`
+      },
+  })
+}

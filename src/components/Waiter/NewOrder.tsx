@@ -1,6 +1,8 @@
 import Logo from '../../assets/burger-queen-logo.png';
 import LogOut from '../../assets/log-out.png';
 import Profile from '../../assets/profile.png';
+import ProductList from './ProductList';
+
 
 const NewOrder = () => {
   return (
@@ -36,17 +38,20 @@ const NewOrder = () => {
               <option value="mesa9">Mesa9</option>
               <option value="mesa10">Mesa10</option>
             </select>
+            <input type="
+            text" className='name' placeholder='Nombre del cliente' />
           </section>
           <section className='buttonMenuSection'>
             <button className='menuButton' id='breakfast'>
               Desayuno
             </button>
             <button className='menuButton' id='lunch'>
-              Almuerzo/cena
+              Almuerzo/ cena
             </button>
           </section>
           <section className='foodSection'>
             {/* aquí va la informacion del menú que se renderiza */}
+            <ProductList/>
           </section>
         </section>
         <section className='orderInfoSection'>

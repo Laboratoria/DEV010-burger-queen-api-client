@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1700229610388" clover="3.2.0">
-  <project timestamp="1700229610388" name="All files">
+<coverage generated="1700257406696" clover="3.2.0">
+  <project timestamp="1700257406697" name="All files">
     <metrics statements="36" coveredstatements="34" conditionals="15" coveredconditionals="13" methods="4" coveredmethods="4" elements="55" coveredelements="51" complexity="0" loc="36" ncloc="36" packages="1" files="1" classes="1"/>
-    <file name="Login.tsx" path="C:\Users\nicol\Desktop\trabajo\burger\DEV010-burger-queen-api-client\src\components\Login\Login.tsx">
+    <file name="Login.tsx" path="C:\Users\Viloria Pedraza\Desktop\LABORATORIA\PROYECTO-6\DEV010-burger-queen-api-client\src\components\Login\Login.tsx">
       <metrics statements="36" coveredstatements="34" conditionals="15" coveredconditionals="13" methods="4" coveredmethods="4"/>
       <line num="1" count="1" type="stmt"/>
       <line num="2" count="1" type="stmt"/>

@@ -6,6 +6,7 @@
     --blanco: #F5F5F5;
     --verde: #2BA60D;
     --negro: #1E1E1E;
+    --amarillo-suave: #FFD684;
 
 }
 
@@ -21,7 +22,7 @@ body {
     background-size: cover;
     margin: 0;
     height: 100vh;
-    width: 100%;
+    width: auto;
     display: flex;
     justify-content: center;
     align-items: center;

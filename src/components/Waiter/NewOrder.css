@@ -3,7 +3,7 @@
   background-size: cover;
   margin: 0;
   height: 100vh;
-  width: 100%;
+  width: auto;
   padding: 30px;
   /* display: flex;
   justify-content: center; */
@@ -75,4 +75,35 @@
 .selectSection {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tableSelect {
+  margin: 10px 5px 0;
+  height: 30px;
+  width: 180px;
+  border-radius: 10px;
+  border-color: var(--marron);
+  border-width: 1px;
+  border-image: none;
+ border-style: solid;
+ padding-left: 10px;
+}
+
+.buttonMenuSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menuButton {
+  background-color: var(--amarillo-suave);
+  border-radius: 10px;
+  border-style: none;
+  padding: 10px 10px;
+  font-size: 20px;
+  width: 140px;
+  height: 60px;
+  margin: 0 5px;
 }
