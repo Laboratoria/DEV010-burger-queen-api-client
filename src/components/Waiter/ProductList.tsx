@@ -1,12 +1,19 @@
 import { useEffect, useState } from 'react';
 import { Product } from '../../types/Types';
 import { getProducts } from '../../services/request';
+import './NewOrder.css';
 
 
 const ProductList = () => {
 
     const [products, setProducts] = useState<Product[]>([]);
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
+    const [menuSelection, setMenuSelection] = useState('Breakfast');
+
+    const handleMenuSelection = (menu: string) => {
+        setMenuSelection(menu);
+    }
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -14,7 +21,7 @@ const ProductList = () => {
                 if (token !== null) {
                     console.log(token);
                     const response = await getProducts(token);
-                    
+
                     if (response.ok) {
                         const data: Product[] = await response.json();
                         setProducts(data);
@@ -30,23 +37,53 @@ const ProductList = () => {
         fetchData();
     }, [token]);
 
-return (
-    <section className="cards">
-{products.map((product: Product) => (
-            <section className="product-box" key={product.id}>
-                  <img
-                  className="product-img"
-                  src={`https://image.tmdb.org/t/p/w154/${product.image}`}
-                />
-             
-              <section className="product-text">
-                <p className="product-name">{product.name}</p>
-                <p className="product-price">${product.price}</p>
-              </section>
+    return (
+        <section>
+            <section className='buttonMenuSection'>
+                <button
+                    className={
+                        menuSelection === 'Breakfast'
+                            ? 'menuButton selectedButton'
+                            : 'menuButton'
+                    }
+                    onClick={() => handleMenuSelection('Breakfast')}
+                >
+                    Desayuno
+                </button>
+                <button className={
+                    menuSelection === 'Lunch'
+                        ? 'menuButton selectedButton'
+                        : 'menuButton'
+                } onClick={() => handleMenuSelection('Lunch')}>
+                    Almuerzo/ cena
+                </button>
             </section>
-          ))}
-    </section>
-)
+            <section className='foodSection'>
+                <section className="cards">
+                    {products
+                        .filter((product) =>
+                            menuSelection === "Breakfast"
+                                ? product.type === "Breakfast"
+                                : product.type === "Lunch"
+                        )
+                        .map((product: Product) => (
+                            <section className="product-box" key={product.id}>
+                                <img
+                                    className="product-img"
+                                    src={`${product.image}`}
+                                />
+
+                                <section className="product-text">
+                                    <p className="product-name">{product.name}</p>
+                                    <p className="product-price">${product.price}</p>
+                                </section>
+                            </section>
+                        ))}
+                </section>
+            </section>
+        </section>
+
+    )
 }
 
 

@@ -107,3 +107,48 @@
   height: 60px;
   margin: 0 5px;
 }
+
+.selectedButton {
+  background-color: var(--amarillo);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  height: 100%;
+ 
+}
+
+.product-img {
+  height: 80px;
+  width: 80px;
+  
+}
+
+.product-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 150px;
+  height: 100%;
+}
+
+.product-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.product-name {
+  margin: 10px 0px 0px;
+  height: 40px;
+}
+.product-price {
+  margin: 10px;
+}
