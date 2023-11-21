@@ -7,79 +7,85 @@ import { useState } from 'react';
 import { createOrder } from '../../services/request';
 import { Product } from '../../types/Types';
 
-
-/* interface newOrderProps {
-  products: Product[]
-  setProducts: Product[]
-} */
-const NewOrder/* : React.FC<newOrderProps> */ = () => {
-
-  const [selectedProducts, setSelectedProducts] = useState([]); // Nuevo estado para los productos seleccionados
+const NewOrder = () => {
+  const [selectedProducts, setSelectedProducts] = useState<Product[]>([]); // Nuevo estado para los productos seleccionados
   const [clientName, setClientName] = useState('');
   const [table, setTable] = useState('');
-  const [products, setProducts] = useState<Product[]>([]);
 
   const navigate = useNavigate();
 
   const handleLoggedSession = () => {
-    localStorage.removeItem("token")
-    navigate('/')
-  }
+    localStorage.removeItem('token');
+    navigate('/');
+  };
 
-  const saveOrder = (e: { preventDefault: () => void; }) => {
+  const handleAddProduct = (product: Product) => {
+    setSelectedProducts((prevSelectedProducts) => {
+      // Check if the product is already in the array
+      const existingProduct = prevSelectedProducts.find((p) => p.id === product.id);
+  
+      if (existingProduct) {
+        // If the product exists, update the quantity and total price
+        return prevSelectedProducts.map((p) =>
+          p.id === existingProduct.id
+            ? { ...p, qty: p.qty + 1, pricetotal: p.qty * p.price }
+            : p
+        );
+      } else {
+        // If the product doesn't exist, add it to the array
+        return [
+          ...prevSelectedProducts,
+          {
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            qty: 1,
+            pricetotal: product.qty * product.price,
+            // Add the missing properties from the Product type
+            image: product.image,
+            type: product.type,
+            dateEntry: product.dateEntry,
+          },
+        ];
+      }
+    });
+  };
+
+  const saveOrder = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     const dataOrder = {
       client: clientName,
       table: table,
       products: selectedProducts,
-      /*     status: "pending",
-          dateEntry: Date.now() */
-    }
-
-    /*       if(dataOrder.client==''){
-            Swal.fire({ text:'Ingrese el nombre del cliente', icon:'warning'}) 
-            return
-        }
-        if(dataOrder.mesa==''){
-            Swal.fire({ text:'Seleccione una mesa', icon:'warning'}) 
-            return
-        }
-        if(dataOrder.products.length == 0){
-            Swal.fire({ text:'Asegurese de seleccionar al menos un producto', icon:'warning'}) 
-            return
-        } */
+    };
 
     createOrder(dataOrder).then(() => {
-      console.log({ text: 'Orden creada exitosamente', icon: 'success' })
-    })
-    console.log(dataOrder)
-
-  }
-
- 
-
+      console.log({ text: 'Orden creada exitosamente', icon: 'success' });
+    });
+    console.log(dataOrder);
+  };
 
   return (
-    <section className='newOrder-Section'>
-      <section className='headerSection'>
-        <img className='logo-img' id='logo-Header' src={Logo} />
-        <section className='buttonHeader'>
-          <button id='profile-button' className='headerButton'>
+    <section className="newOrder-Section">
+      <section className="headerSection">
+        <img className="logo-img" id="logo-Header" src={Logo} />
+        <section className="buttonHeader">
+          <button id="profile-button" className="headerButton">
             Role
-            <img className='button-img' id='profileImg' src={Profile} />
+            <img className="button-img" id="profileImg" src={Profile} />
           </button>
-          <button id='logOut-button' className='headerButton' onClick={handleLoggedSession}>
-            <img className='button-img' id='logOutimg' src={LogOut} />
+          <button id="logOut-button" className="headerButton" onClick={handleLoggedSession}>
+            <img className="button-img" id="logOutimg" src={LogOut} />
           </button>
         </section>
       </section>
-      <section className='orderSection'>
-        <button className='allOrdersButton'> Ver todos los pedidos </button>
+      <section className="orderSection">
+        <button className="allOrdersButton"> Ver todos los pedidos </button>
       </section>
-      <section className='dashboardSection'>
-        <section className='menuSection'>
-          <section className='selectSection'>
-            <select data-testid='table' className='tableSelect'>
+      <section className="dashboardSection">
+        <section className="menuSection">
+          <section className="selectSection">
+            <select data-testid="table" className="tableSelect" value= {table} onChange= {(e) => setTable(e.target.value)}>
               <option value="">Mesa</option>
               <option value="mesa1">Mesa1</option>
               <option value="mesa2">Mesa2</option>
@@ -92,12 +98,16 @@ const NewOrder/* : React.FC<newOrderProps> */ = () => {
               <option value="mesa9">Mesa9</option>
               <option value="mesa10">Mesa10</option>
             </select>
-            <input type="
-            text" className='name' placeholder='Nombre del cliente' />
+            <input
+              type="text"
+              className="name"
+              placeholder="Nombre del cliente"
+              onChange={(e) => setClientName(e.target.value)}
+            />
           </section>
-          <ProductList />
+          <ProductList onAddProduct={handleAddProduct} />
         </section>
-        <section className='orderInfoSection'>
+        <section className="orderInfoSection">
           <h3> Pedido </h3>
           <table>
             <thead>
@@ -108,27 +118,29 @@ const NewOrder/* : React.FC<newOrderProps> */ = () => {
               </tr>
             </thead>
             <tbody>
-
-              {
-                selectedProducts.map(product => (
-                  <tr key={product.id}>
-                    <td >{product.name} </td>
-                    <td > <button className="icon-button" type="button"></button>{product.cantidad} <button className="icon-button" type="button"></button></td>
-                    <td >$ {product.price} </td>
-                    <td >$ {product.pricetotal} </td>
-                    <td> <button className="icon-button" type="button"></button> </td>
-                  </tr>
-                ))
-              }
-
-    
+              {selectedProducts.map((product) => (
+                <tr key={product.id}>
+                  <td>{product.name} </td>
+                  <td>
+                    {' '}
+                    <button className="icon-button" type="button"></button>
+                    {product.qty}{' '}
+                    <button className="icon-button" type="button"></button>
+                  </td>
+                  <td>$ {product.pricetotal} </td>
+                  <td> <button className="icon-button" type="button"></button> </td>
+                </tr>
+              ))}
             </tbody>
           </table>
-          <button className='sendOrderButton' onClick={saveOrder}> Enviar pedido </button>
+          <button className="sendOrderButton" onClick={saveOrder}>
+            {' '}
+            Enviar pedido{' '}
+          </button>
         </section>
       </section>
     </section>
-  )
-}
+  );
+};
 
 export default NewOrder;
