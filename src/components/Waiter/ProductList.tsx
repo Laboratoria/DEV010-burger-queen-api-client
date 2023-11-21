@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { Product } from '../../types/Types';
 import { getProducts } from '../../services/request';
 import './NewOrder.css';
+import iconoMenos from '../../assets/icono-menos.png';
+import iconoAgregar from '../../assets/icono-mas.png';
 
 
 const ProductList = () => {
@@ -76,7 +78,14 @@ const ProductList = () => {
                                 <section className="product-text">
                                     <p className="product-name">{product.name}</p>
                                     <p className="product-price">${product.price}</p>
+                                    <section className='addProductButtons'>
+                                    <img className= 'icons' src={iconoMenos}/>
+                                    <p className = 'cant'>0</p>
+                                    <img className= 'icons' src={iconoAgregar}/>
                                 </section>
+                                </section>
+
+
                             </section>
                         ))}
                 </section>

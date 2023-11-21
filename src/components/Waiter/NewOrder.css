@@ -61,6 +61,7 @@
 .dashboardSection {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 .menuSection {
   display: flex;
@@ -92,6 +93,10 @@
  border-style: solid;
  padding-left: 10px;
  font-size: 18px
+}
+
+option {
+  font-size: 12px;
 }
 .name {
   font-size: 15px
@@ -149,6 +154,7 @@
   align-items: center;
   flex-direction: column;
   text-align: center;
+  margin-bottom: 20px;
 }
 
 .product-name {
@@ -161,4 +167,56 @@
 .foodSection {
   overflow-y: auto; /* Permite el desplazamiento vertical */
   height: 590px;
+}
+
+.orderInfoSection {
+  background-color: var(--amarillo);
+  width: 350px;
+  height: 750px; /* Mantén la altura fija */
+  border: var(--marron) solid 1px;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+h3 {
+  font-size: 25px;
+}
+
+table {
+   table-layout: auto;
+  width: 320px;
+  font-size: 20px;
+}
+
+.sendOrderButton {
+  background-color: var(--rojo);
+  font-size: 20px;
+  color: var(--blanco);
+  border-radius: 10px;
+  border-style: none;
+  /*height: 30px;
+  width: 100px;*/
+  padding: 10px 25px;
+  translate: 0px 580px;
+}
+
+.addProductButtons {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.icons {
+  height: 20px;
+  width: 20px;
+}
+
+.cant {
+  height: 20px;
+  width: 20px;
+  margin: 0 4px;
+  border: var(--marron) solid 1px;
 }

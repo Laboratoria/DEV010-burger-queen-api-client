@@ -61,7 +61,7 @@ const NewOrder = () => {
             <td> Valor </td>
             <tr></tr>
           </table>
-          <button> Enviar pedido </button>
+          <button className='sendOrderButton'> Enviar pedido </button>
         </section>
       </section>
     </section>
