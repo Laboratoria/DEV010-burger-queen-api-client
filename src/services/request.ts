@@ -15,17 +15,10 @@ export const auth = async (email: string, password: string): Promise<Token> => {
     }),
   })
 
-  /*     try {     */
   const data: Token = await response.json();
   return data;
-  /* } catch (error) {
-      const errorText = await response.text(); 
-      // Manejar cualquier error durante la solicitud
-      console.error('Error during authentication:', errorText);
-      throw error;
-  } */
+  
 }; 
-
 
 export const getProducts = (token: string) => {
   return fetch('http://localhost:8080/products', {
@@ -37,3 +30,21 @@ export const getProducts = (token: string) => {
       },
   })
 }
+
+export const createOrder = async (order: object) => {
+  console.log({ order })
+  const response = await fetch('http://localhost:8080/orders', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(order),
+  });
+
+  if (response.status === 201) {
+    return await response.json();
+  } else {
+    throw new Error('No se pudo crear el producto');
+  }
+};
