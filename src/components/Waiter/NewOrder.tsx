@@ -27,9 +27,10 @@ const NewOrder = () => {
       if (existingProduct) {
         // If the product exists, update the quantity and total price
         return prevSelectedProducts.map((p) =>
-          p.id === existingProduct.id
-            ? { ...p, qty: p.qty + 1, pricetotal: p.qty * p.price }
-            : p
+                  p.id === existingProduct.id
+            ? { ...p, qty: p.qty + 1, pricetotal: p.qty + 1 * p.price }
+            : p,
+            
         );
       } else {
         // If the product doesn't exist, add it to the array
