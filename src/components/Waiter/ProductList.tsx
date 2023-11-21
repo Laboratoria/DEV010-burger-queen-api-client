@@ -81,7 +81,7 @@ const ProductList = ({ onAddProduct }: { onAddProduct: (product: Product) => voi
                                     <section className='addProductButtons'>
                                     <img className= 'icons' src={iconoMenos}/>
                                     <p className = 'cant'>0</p>
-                                    <img className= 'icons' src={iconoAgregar} onClick={() => onAddProduct(product)}/>
+                                    <img className= 'icons' src={iconoAgregar} onClick={() => onAddProduct(product )}/>
                                 </section>
                                 </section>
 

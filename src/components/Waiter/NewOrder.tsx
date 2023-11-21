@@ -123,12 +123,11 @@ const NewOrder = () => {
                   <td>{product.name} </td>
                   <td>
                     {' '}
-                    <button className="icon-button" type="button"></button>
+                   
                     {product.qty}{' '}
-                    <button className="icon-button" type="button"></button>
+                 
                   </td>
                   <td>$ {product.pricetotal} </td>
-                  <td> <button className="icon-button" type="button"></button> </td>
                 </tr>
               ))}
             </tbody>
