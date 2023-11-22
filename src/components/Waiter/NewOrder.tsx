@@ -3,15 +3,16 @@ import Logo from '../../assets/burger-queen-logo.png';
 import LogOut from '../../assets/log-out.png';
 import Profile from '../../assets/profile.png';
 import ProductList from './ProductList';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { createOrder } from '../../services/request';
 import { Product } from '../../types/Types';
-import { Token } from '../../types/Types';
+//import { Token } from '../../types/Types';
 
 const NewOrder = () => {
   const [selectedProducts, setSelectedProducts] = useState<Product[]>([]); // Nuevo estado para los productos seleccionados
   const [clientName, setClientName] = useState('');
   const [table, setTable] = useState('');
+  const [userRole, setUserRole] = useState('');
 
   const navigate = useNavigate();
 
@@ -19,6 +20,14 @@ const NewOrder = () => {
     localStorage.removeItem('token');
     navigate('/');
   };
+
+  useEffect(() => {
+    // Lee el rol desde localStorage y actualiza el estado
+    const role = (localStorage.getItem("userRole"));
+    if (role) {
+      setUserRole(role);
+    }
+  }, []);
 
   const handleAddProduct = (product: Product) => {
     setSelectedProducts((prevSelectedProducts) => {
@@ -74,7 +83,7 @@ const NewOrder = () => {
         <img className="logo-img" id="logo-Header" src={Logo} />
         <section className="buttonHeader">
           <button id="profile-button" className="headerButton">
-            Role
+            {userRole}
             <img className="button-img" id="profileImg" src={Profile} />
           </button>
           <button id="logOut-button" className="headerButton" onClick={handleLoggedSession}>
@@ -123,12 +132,9 @@ const NewOrder = () => {
             <tbody>
               {selectedProducts.map((product) => (
                 <tr key={product.id}>
-                  <td>{product.name} </td>
-                  <td>
-                    {product.qty}
-
-                  </td>
-                  <td>$ {product.pricetotal} </td>
+                  <td>{product.name}</td>
+                  <td>{product.qty}</td>
+                  <td>$ {product.pricetotal}</td>
                 </tr>
               ))}
             </tbody>
