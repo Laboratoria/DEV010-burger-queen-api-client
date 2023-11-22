@@ -236,7 +236,7 @@ thead th:nth-child(1) {
 }
 
 thead th:nth-child(2) {
-  width: 30%;
+  width: 20%;
 }
 
 thead th:nth-child(3) {
@@ -247,4 +247,8 @@ td {
   font-size: 18px;
   border-bottom: 1px solid black;
   padding: 10px 0;
+}
+
+#total {
+  font-weight: 900;
 }
