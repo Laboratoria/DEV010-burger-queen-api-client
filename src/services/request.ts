@@ -17,17 +17,17 @@ export const auth = async (email: string, password: string): Promise<Token> => {
 
   const data: Token = await response.json();
   return data;
-  
-}; 
+
+};
 
 export const getProducts = (token: string) => {
   return fetch('http://localhost:8080/products', {
-      method: 'GET',
-      headers: {
-          'Content-Type': 'application/json',
-          'Accept-Encoding': 'gzip, deflate, br',
-          'Authorization': `Bearer ${token}`
-      },
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept-Encoding': 'gzip, deflate, br',
+      'Authorization': `Bearer ${token}`
+    },
   })
 }
 

@@ -183,6 +183,7 @@ option {
 
 h3 {
   font-size: 25px;
+  margin: 10px
 }
 
 table {
@@ -200,7 +201,8 @@ table {
   /*height: 30px;
   width: 100px;*/
   padding: 10px 25px;
-  translate: 0px 40px;
+  translate: 0px 680px;
+  position: fixed;
 }
 
 .addProductButtons {
@@ -219,4 +221,30 @@ table {
   width: 20px;
   margin: 0 4px;
   border: var(--marron) solid 1px;
+}
+.iconsButton {
+  border: none;
+  background-color: transparent
+}
+thead th{
+  border-bottom: 1px solid black;
+  padding: 10px 0 ;
+
+}
+thead th:nth-child(1) {
+  width: 50%;
+}
+
+thead th:nth-child(2) {
+  width: 30%;
+}
+
+thead th:nth-child(3) {
+  width: 35%;
+}
+td {
+  text-align: center;
+  font-size: 18px;
+  border-bottom: 1px solid black;
+  padding: 10px 0;
 }

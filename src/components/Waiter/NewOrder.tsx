@@ -6,6 +6,7 @@ import ProductList from './ProductList';
 import { useState } from 'react';
 import { createOrder } from '../../services/request';
 import { Product } from '../../types/Types';
+import { Token } from '../../types/Types';
 
 const NewOrder = () => {
   const [selectedProducts, setSelectedProducts] = useState<Product[]>([]); // Nuevo estado para los productos seleccionados
@@ -21,19 +22,21 @@ const NewOrder = () => {
 
   const handleAddProduct = (product: Product) => {
     setSelectedProducts((prevSelectedProducts) => {
-      // Check if the product is already in the array
-      const existingProduct = prevSelectedProducts.find((p) => p.id === product.id);
-  
-      if (existingProduct) {
-        // If the product exists, update the quantity and total price
-        return prevSelectedProducts.map((p) =>
-                  p.id === existingProduct.id
-            ? { ...p, qty: p.qty + 1, pricetotal: (p.qty + 1) * p.price }
-            : { ...p, qty: p.qty + 1, pricetotal: p.price }
-    
-        );
+      const existingProductIndex = prevSelectedProducts.findIndex((p) => p.id === product.id);
+
+      if (existingProductIndex !== -1) {
+        // Creamos una copia del array prevSelectedProducts con el operador de propagación.
+        const updatedProducts = [...prevSelectedProducts];
+        const existingProduct = updatedProducts[existingProductIndex];
+        // A la copia del array le pasamos el índice del producto existente, que sería igual a una copia de todas las propiedades del objeto para mantener las propiedades originales y solo modificar las que necesitamos cambiar
+        updatedProducts[existingProductIndex] = {
+          ...existingProduct,
+          qty: existingProduct.qty + 1,
+          pricetotal: (existingProduct.qty + 1) * existingProduct.price,
+        };
+
+        return updatedProducts;
       } else {
-        // If the product doesn't exist, add it to the array
         return [
           ...prevSelectedProducts,
           {
@@ -42,7 +45,6 @@ const NewOrder = () => {
             price: product.price,
             qty: 1,
             pricetotal: product.price,
-            // Add the missing properties from the Product type
             image: product.image,
             type: product.type,
             dateEntry: product.dateEntry,
@@ -86,7 +88,7 @@ const NewOrder = () => {
       <section className="dashboardSection">
         <section className="menuSection">
           <section className="selectSection">
-            <select data-testid="table" className="tableSelect" value= {table} onChange= {(e) => setTable(e.target.value)}>
+            <select data-testid="table" className="tableSelect" value={table} onChange={(e) => setTable(e.target.value)}>
               <option value="">Mesa</option>
               <option value="mesa1">Mesa1</option>
               <option value="mesa2">Mesa2</option>
@@ -114,7 +116,7 @@ const NewOrder = () => {
             <thead>
               <tr>
                 <th> Producto </th>
-                <th> Cantidad </th>
+                <th> Cant </th>
                 <th> Valor </th>
               </tr>
             </thead>
@@ -123,10 +125,8 @@ const NewOrder = () => {
                 <tr key={product.id}>
                   <td>{product.name} </td>
                   <td>
-                    {' '}
-                   
-                    {product.qty}{' '}
-                 
+                    {product.qty}
+
                   </td>
                   <td>$ {product.pricetotal} </td>
                 </tr>
@@ -134,8 +134,7 @@ const NewOrder = () => {
             </tbody>
           </table>
           <button className="sendOrderButton" onClick={saveOrder}>
-            {' '}
-            Enviar pedido{' '}
+            Enviar pedido
           </button>
         </section>
       </section>

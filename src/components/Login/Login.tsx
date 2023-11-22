@@ -6,69 +6,69 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
-    const [email, setEmail] = useState<string>("");
-    const [password, setPassword] = useState<string>("");
-    const [error, setError] = useState<boolean>(false);
-    const [errorMessage, setErrorMessage] = useState<string>('');
-    const navigate = useNavigate();
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>('');
+  const navigate = useNavigate();
 
 
-    async function userAuth(e: { preventDefault: () => void; }) {
-        e.preventDefault();
-        const response: Token = await auth(email, password);
-        console.log('response:', response)
-        if (response.accessToken) {
-            localStorage.setItem("token", response.accessToken);
-            if (response.user.role === 'waiter') {
-                navigate("/waiter/newOrder");
-            } else if (response.user.role === 'chef') {
-                navigate("/chef/orders");
-            }
-        } else {
+  async function userAuth(e: { preventDefault: () => void; }) {
+    e.preventDefault();
+    const response: Token = await auth(email, password);
+    console.log('response:', response)
+    if (response.accessToken) {
+      localStorage.setItem("token", response.accessToken);
+      if (response.user.role === 'waiter') {
+        navigate("/waiter/newOrder");
+      } else if (response.user.role === 'chef') {
+        navigate("/chef/orders");
+      }
+    } else {
 
-            console.log(response);
-            setError(true);
-            if (`${response}` === "Email and password are required") {
-                setErrorMessage("Ingrese email y contraseña");
-            } else if (`${response}` === "Incorrect password") {
-                setErrorMessage("Contraseña incorrecta");
-            }
-            else if (`${response}` === "Cannot find user") {
-                setErrorMessage("Usuario no encontrado");
-            }
-            else if (`${response}` === "Email format is invalid") {
-                setErrorMessage("Formato de email incorrecto");
-            }
-            else {
-                setErrorMessage("Error durante la autenticación. Por favor, inténtalo de nuevo.");
-            }
-            setEmail("")
-            setPassword("")
-        }
+      console.log(response);
+      setError(true);
+      if (`${response}` === "Email and password are required") {
+        setErrorMessage("Ingrese email y contraseña");
+      } else if (`${response}` === "Incorrect password") {
+        setErrorMessage("Contraseña incorrecta");
+      }
+      else if (`${response}` === "Cannot find user") {
+        setErrorMessage("Usuario no encontrado");
+      }
+      else if (`${response}` === "Email format is invalid") {
+        setErrorMessage("Formato de email incorrecto");
+      }
+      else {
+        setErrorMessage("Error durante la autenticación. Por favor, inténtalo de nuevo.");
+      }
+      setEmail("")
+      setPassword("")
     }
+  }
 
-    return (
-        <section className='login-section'>
-            <section className='login-container'>
-                <img className='logo-img' src={Logo} />
-                <h1>Bienvenido/a</h1>
-                <form>
-                    <input type='email' placeholder='Email' onChange={(event) => setEmail(event.target.value)}
-                        value={email} />
-                    <input type='password' placeholder='Contraseña' onChange={(event) => setPassword(event.target.value)}
-                        value={password} />
+  return (
+    <section className='login-section'>
+      <section className='login-container'>
+        <img className='logo-img' src={Logo} />
+        <h1>Bienvenido/a</h1>
+        <form>
+          <input type='email' placeholder='Email' onChange={(event) => setEmail(event.target.value)}
+            value={email} />
+          <input type='password' placeholder='Contraseña' onChange={(event) => setPassword(event.target.value)}
+            value={password} />
 
-                    {error && <p className='errormsg'>{errorMessage}</p>}
-                    <button className='login-button' onClick={userAuth}>Ingresar</button>
-
-
+          {error && <p className='errormsg'>{errorMessage}</p>}
+          <button className='login-button' onClick={userAuth}>Ingresar</button>
 
 
-                </form>
 
-            </section>
-        </section>
-    )
+
+        </form>
+
+      </section>
+    </section>
+  )
 
 }
 
