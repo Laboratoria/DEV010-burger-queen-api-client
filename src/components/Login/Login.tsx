@@ -19,9 +19,10 @@ const Login = () => {
     console.log('response:', response)
     if (response.accessToken) {
       localStorage.setItem("token", response.accessToken);
-      if (response.user.role === 'waiter') {
+      localStorage.setItem("userRole", response.user.role);
+      if (response.user.role === 'Mesero') {
         navigate("/waiter/newOrder");
-      } else if (response.user.role === 'chef') {
+      } else if (response.user.role === 'Chef') {
         navigate("/chef/orders");
       }
     } else {
