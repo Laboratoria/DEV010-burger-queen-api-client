@@ -1,3 +1,19 @@
+<1.0.1> - <2023-11-22>
+
+
+## Sprint learnings
+Manejo de API Mock para solicitar productos y crear ordenes
+Crear tablas 
+Operador de propagación
+
+
+## Added
+Vista de crear orden para mesero
+Estilos del pedido
+Peticiones a la api
+Funcionalidad para cerrar sesión 
+
+
 <1.0.0> - <2023-11-15>
 
 
