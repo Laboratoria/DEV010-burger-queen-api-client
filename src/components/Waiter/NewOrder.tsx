@@ -6,7 +6,6 @@ import ProductList from './ProductList';
 import { useState } from 'react';
 import { createOrder } from '../../services/request';
 import { Product } from '../../types/Types';
-import { Token } from '../../types/Types';
 
 const NewOrder = () => {
   const [selectedProducts, setSelectedProducts] = useState<Product[]>([]); // Nuevo estado para los productos seleccionados
