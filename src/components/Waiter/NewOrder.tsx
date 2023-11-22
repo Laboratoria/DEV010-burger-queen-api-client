@@ -6,6 +6,8 @@ import ProductList from './ProductList';
 import { useState } from 'react';
 import { createOrder } from '../../services/request';
 import { Product } from '../../types/Types';
+import Swal from 'sweetalert2'
+
 
 const NewOrder = () => {
   const [selectedProducts, setSelectedProducts] = useState<Product[]>([]); // Nuevo estado para los productos seleccionados
@@ -55,16 +57,34 @@ const NewOrder = () => {
 
   const saveOrder = (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    const date = Date.now()
     const dataOrder = {
       client: clientName,
       table: table,
       products: selectedProducts,
+      dateEntry: new Date(date)
+
     };
 
-    createOrder(dataOrder).then(() => {
-      console.log({ text: 'Orden creada exitosamente', icon: 'success' });
-    });
-    console.log(dataOrder);
+
+    if(dataOrder.client==''){
+      Swal.fire({ text:'Ingrese nombre de cliente', icon:'warning'}) 
+      return
+  }
+  if(dataOrder.table==''){
+      Swal.fire({ text:'Seleccione una mesa', icon:'warning'}) 
+      return
+  }
+  if(dataOrder.products.length == 0){
+      Swal.fire({ text:'Pedido vacío', icon:'warning'}) 
+      return
+  }
+
+  createOrder(dataOrder).then(()=> {
+      Swal.fire({text:'Orden creada exitosamente', icon: 'success'})
+  })
+  console.log(dataOrder)
+
   };
 
   return (
