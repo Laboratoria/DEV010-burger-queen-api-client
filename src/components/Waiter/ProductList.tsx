@@ -5,7 +5,6 @@ import './NewOrder.css';
 import iconoMenos from '../../assets/icono-menos.png';
 import iconoAgregar from '../../assets/icono-mas.png';
 
-// Cambiar icons por botones
 
 
 const ProductList = ({ onAddProduct }: { onAddProduct: (product: Product) => void }) => {
@@ -18,6 +17,7 @@ const ProductList = ({ onAddProduct }: { onAddProduct: (product: Product) => voi
     setMenuSelection(menu);
   }
 
+   
 
   useEffect(() => {
     const fetchData = async () => {
@@ -81,25 +81,21 @@ const ProductList = ({ onAddProduct }: { onAddProduct: (product: Product) => voi
                   <p className="product-name">{product.name}</p>
                   <p className="product-price">${product.price}</p>
                   <section className='addProductButtons'>
-                  <button className='iconsButton'>
+                  <button className='iconsButton' id= 'lessButton'>
                     <img className='icons' src={iconoMenos} />
                     </button>
                     <p className='cant'>0</p>
-                    <button className='iconsButton'>
-                    <img className='icons' src={iconoAgregar} onClick={() => onAddProduct(product)} />
+                    <button className='iconsButton' id= 'moreButton' onClick={() => onAddProduct(product)} >
+                    <img className='icons' src={iconoAgregar} />
                     </button>
                   </section>
                 </section>
-
-
               </section>
             ))}
         </section>
       </section>
     </section>
-
   )
 }
-
 
 export default ProductList;

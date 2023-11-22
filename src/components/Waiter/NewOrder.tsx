@@ -6,7 +6,8 @@ import ProductList from './ProductList';
 import { useState, useEffect } from 'react';
 import { createOrder } from '../../services/request';
 import { Product } from '../../types/Types';
-//import { Token } from '../../types/Types';
+import Swal from 'sweetalert2'
+
 
 const NewOrder = () => {
   const [selectedProducts, setSelectedProducts] = useState<Product[]>([]); // Nuevo estado para los productos seleccionados
@@ -62,19 +63,35 @@ const NewOrder = () => {
       }
     });
   };
+  const date = Date.now()
+  const dataOrder = {
+    client: clientName,
+    table: table,
+    products: selectedProducts,
+    dateEntry: new Date(date)
 
+  };
   const saveOrder = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    const dataOrder = {
-      client: clientName,
-      table: table,
-      products: selectedProducts,
-    };
+
+    if (dataOrder.client == '') {
+      Swal.fire({ text: 'Ingrese nombre de cliente', icon: 'warning' })
+      return
+    }
+    if (dataOrder.table == '') {
+      Swal.fire({ text: 'Seleccione una mesa', icon: 'warning' })
+      return
+    }
+    if (dataOrder.products.length == 0) {
+      Swal.fire({ text: 'Pedido vacío', icon: 'warning' })
+      return
+    }
 
     createOrder(dataOrder).then(() => {
-      console.log({ text: 'Orden creada exitosamente', icon: 'success' });
-    });
-    console.log(dataOrder);
+      Swal.fire({ text: 'Orden creada exitosamente', icon: 'success' })
+    })
+    console.log(dataOrder)
+
   };
 
   return (
@@ -137,6 +154,13 @@ const NewOrder = () => {
                   <td>$ {product.pricetotal}</td>
                 </tr>
               ))}
+              {dataOrder.products.length > 0 && (
+                <tr id='total'>
+                  <td>Total</td>
+                  <td> {selectedProducts.length === 0 ? '0' : selectedProducts.reduce((prev, next) => prev + next.qty, 0)} </td>
+                  <td>$ {clientName.length === 0 ? '0' : selectedProducts.reduce((prev, next) => prev + next.pricetotal, 0)} </td>
+                </tr>
+              )}
             </tbody>
           </table>
           <button className="sendOrderButton" onClick={saveOrder}>
