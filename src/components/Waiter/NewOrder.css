@@ -38,6 +38,7 @@
   align-items: center;
   color: var(--marron);
   font-size: 20px;
+  margin-right: 10px;
 }
 #profileImg {
   margin-left: 10px;

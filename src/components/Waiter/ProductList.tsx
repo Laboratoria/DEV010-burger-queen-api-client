@@ -84,7 +84,6 @@ const ProductList = ({ onAddProduct, onSubtractProduct}: { onAddProduct: (produc
                   <button className='iconsButton' id= 'lessButton'>
                     <img className='icons' src={iconoMenos}  onClick={() => onSubtractProduct(product, true)}/>
                     </button>
-                    <p className='cant'>0</p>
                     <button className='iconsButton' id= 'moreButton' onClick={() => onAddProduct(product)} >
                     <img className='icons' src={iconoAgregar} />
                     </button>
