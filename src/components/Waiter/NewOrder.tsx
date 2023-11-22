@@ -22,6 +22,31 @@ const NewOrder = () => {
     navigate('/');
   };
 
+  const handleSubtractProduct = (product: Product, remove?: boolean) => {
+    setSelectedProducts((prevSelectedProducts) => {
+      const existingProductIndex = prevSelectedProducts.findIndex((p) => p.id === product.id);
+      if (existingProductIndex !== -1) {
+        const updatedProducts = [...prevSelectedProducts];
+        const existingProduct = updatedProducts[existingProductIndex];
+        if (remove) {
+          if (existingProduct.qty <= 1) {
+            // Eliminar el producto si la cantidad es menor o igual a 1
+            updatedProducts.splice(existingProductIndex, 1);
+          } else {
+            updatedProducts[existingProductIndex] = {
+              ...existingProduct,
+              qty: existingProduct.qty - 1,
+              pricetotal: (existingProduct.qty - 1) * existingProduct.price,
+            };
+          }
+        }
+        // Devuelve el nuevo array actualizado
+        return updatedProducts;
+      }
+      // Devuelve el estado actual sin cambios
+      return prevSelectedProducts;
+    });
+  };
   useEffect(() => {
     // Lee el rol desde localStorage y actualiza el estado
     const role = (localStorage.getItem("userRole"));
@@ -29,22 +54,20 @@ const NewOrder = () => {
       setUserRole(role);
     }
   }, []);
-
+    
   const handleAddProduct = (product: Product) => {
     setSelectedProducts((prevSelectedProducts) => {
       const existingProductIndex = prevSelectedProducts.findIndex((p) => p.id === product.id);
 
       if (existingProductIndex !== -1) {
-        // Creamos una copia del array prevSelectedProducts con el operador de propagación.
         const updatedProducts = [...prevSelectedProducts];
         const existingProduct = updatedProducts[existingProductIndex];
-        // A la copia del array le pasamos el índice del producto existente, que sería igual a una copia de todas las propiedades del objeto para mantener las propiedades originales y solo modificar las que necesitamos cambiar
-        updatedProducts[existingProductIndex] = {
-          ...existingProduct,
-          qty: existingProduct.qty + 1,
-          pricetotal: (existingProduct.qty + 1) * existingProduct.price,
-        };
-
+          // Aumentar la cantidad
+          updatedProducts[existingProductIndex] = {
+            ...existingProduct,
+            qty: existingProduct.qty + 1,
+            pricetotal: (existingProduct.qty + 1) * existingProduct.price,
+        }
         return updatedProducts;
       } else {
         return [
@@ -134,7 +157,7 @@ const NewOrder = () => {
               onChange={(e) => setClientName(e.target.value)}
             />
           </section>
-          <ProductList onAddProduct={handleAddProduct} />
+          <ProductList onAddProduct={handleAddProduct} onSubtractProduct={handleSubtractProduct}/>
         </section>
         <section className="orderInfoSection">
           <h3> Pedido </h3>
@@ -158,8 +181,9 @@ const NewOrder = () => {
                 <tr id='total'>
                   <td>Total</td>
                   <td> {selectedProducts.length === 0 ? '0' : selectedProducts.reduce((prev, next) => prev + next.qty, 0)} </td>
-                  <td>$ {clientName.length === 0 ? '0' : selectedProducts.reduce((prev, next) => prev + next.pricetotal, 0)} </td>
-                </tr>
+                  <td>
+  $ {selectedProducts.length === 0 ? '0' : selectedProducts.reduce((prev, next) => prev + next.pricetotal, 0)}
+</td>                </tr>
               )}
             </tbody>
           </table>

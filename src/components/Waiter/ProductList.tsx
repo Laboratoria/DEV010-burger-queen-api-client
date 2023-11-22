@@ -7,7 +7,7 @@ import iconoAgregar from '../../assets/icono-mas.png';
 
 
 
-const ProductList = ({ onAddProduct }: { onAddProduct: (product: Product) => void }) => {
+const ProductList = ({ onAddProduct, onSubtractProduct}: { onAddProduct: (product: Product) => void, onSubtractProduct: (product: Product, remove?: boolean) => void}) => {
 
   const [products, setProducts] = useState<Product[]>([]);
   const token = localStorage.getItem('token');
@@ -82,7 +82,7 @@ const ProductList = ({ onAddProduct }: { onAddProduct: (product: Product) => voi
                   <p className="product-price">${product.price}</p>
                   <section className='addProductButtons'>
                   <button className='iconsButton' id= 'lessButton'>
-                    <img className='icons' src={iconoMenos} />
+                    <img className='icons' src={iconoMenos}  onClick={() => onSubtractProduct(product, true)}/>
                     </button>
                     <p className='cant'>0</p>
                     <button className='iconsButton' id= 'moreButton' onClick={() => onAddProduct(product)} >
