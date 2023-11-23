@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Product } from '../../types/Types';
 import { getProducts } from '../../services/request';
-import './NewOrder.css';
-import iconoMenos from '../../assets/icono-menos.png';
+/* import './NewOrder.css';
+ */import iconoMenos from '../../assets/icono-menos.png';
 import iconoAgregar from '../../assets/icono-mas.png';
 
 
 
-const ProductList = ({ onAddProduct, onSubtractProduct}: { onAddProduct: (product: Product) => void, onSubtractProduct: (product: Product, remove?: boolean) => void}) => {
+const ProductList = ({ onAddProduct, onSubtractProduct }: { onAddProduct: (product: Product) => void, onSubtractProduct: (product: Product, remove?: boolean) => void }) => {
 
   const [products, setProducts] = useState<Product[]>([]);
   const token = localStorage.getItem('token');
@@ -17,7 +17,7 @@ const ProductList = ({ onAddProduct, onSubtractProduct}: { onAddProduct: (produc
     setMenuSelection(menu);
   }
 
-   
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -81,11 +81,11 @@ const ProductList = ({ onAddProduct, onSubtractProduct}: { onAddProduct: (produc
                   <p className="product-name">{product.name}</p>
                   <p className="product-price">${product.price}</p>
                   <section className='addProductButtons'>
-                  <button className='iconsButton' id= 'lessButton'>
-                    <img className='icons' src={iconoMenos}  onClick={() => onSubtractProduct(product, true)}/>
+                    <button className='iconsButton' id='lessButton' onClick={() => onSubtractProduct(product, true)}>
+                      <img className='icons' src={iconoMenos} />
                     </button>
-                    <button className='iconsButton' id= 'moreButton' onClick={() => onAddProduct(product)} >
-                    <img className='icons' src={iconoAgregar} />
+                    <button className='iconsButton' id='moreButton' onClick={() => onAddProduct(product)} >
+                      <img className='icons' src={iconoAgregar} />
                     </button>
                   </section>
                 </section>

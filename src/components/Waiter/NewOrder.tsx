@@ -126,7 +126,7 @@ const NewOrder = () => {
             {userRole}
             <img className="button-img" id="profileImg" src={Profile} />
           </button>
-          <button id="logOut-button" className="headerButton" onClick={handleLoggedSession}>
+          <button data-testid="logOut-button" className="headerButton" onClick={handleLoggedSession}>
             <img className="button-img" id="logOutimg" src={LogOut} />
           </button>
         </section>
