@@ -4,7 +4,7 @@ import App from './App.tsx'
 import './index.css'
 import '../src/components/Login/login.css'
 import '../src/components/Waiter/NewOrder.css'
-import '../src/components/Chef/Orders.css'
+import '../src/components/Chef/ChefOrders.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

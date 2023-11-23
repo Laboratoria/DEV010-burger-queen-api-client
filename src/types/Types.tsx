@@ -21,7 +21,7 @@ export type Product = {
 export type Orders ={
   client: string;
   table:  string;
-  products: 
+  products: [
     {
       id: number;
       name:  string;
@@ -32,7 +32,7 @@ export type Orders ={
       type:  string;
       dateEntry:  string;
     }
-  
+  ]
   dateEntry:  string;
   id: number;
   status:  string;

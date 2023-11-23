@@ -86,14 +86,15 @@ const NewOrder = () => {
       }
     });
   };
-  const date = Date.now()
-  const dataOrder = {
-    client: clientName,
-    table: table,
-    products: selectedProducts,
-    dateEntry: new Date(date)
+  const date = new Date();
+const formattedTime = date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' });
 
-  };
+const dataOrder = {
+  client: clientName,
+  table: table,
+  products: selectedProducts,
+  dateEntry: formattedTime, // Utiliza la hora formateada
+};
   const saveOrder = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 

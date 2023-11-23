@@ -2,9 +2,10 @@
         background-image: url('../../assets/background.png');
         background-size: cover;
         margin: 0;
-        height: 964px;
+        height: 100%;
         width: auto;
         padding: 30px;
+        overflow: hidden;
         /* display: flex;
         justify-content: center; */
     
@@ -14,6 +15,7 @@
     display: grid;
     grid-template-columns: auto auto auto;
     margin-top: 30px;
+    overflow-y: auto;
 }
 .orderCard-section {
     display: flex;
@@ -22,9 +24,12 @@
        background-color: var(--amarillo);
     border: 1px solid var(--marron);
     border-radius: 10px;
-    width: 210px;
-    height: 400px;
+    width: 190px;
+    height: 380px;
     padding: 10px;
+    position: relative;
+    margin: 10px;
+   
 }
 
 .table {
@@ -53,6 +58,10 @@ width: 210px;
     /*height: 30px;
     width: 100px;*/
     padding: 10px 25px;
-    translate: 0px 350px;
-    position: fixed;
+    translate: 0px 330px;
+    position: absolute;
+}
+
+#product-name {
+    width: 70%
 }

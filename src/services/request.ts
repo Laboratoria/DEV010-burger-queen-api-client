@@ -49,20 +49,13 @@ export const createOrder = async (order: object) => {
   }
 };
 
-export const getOrder = async (order: object) => {
-  console.log({ order })
-  const response = await fetch('http://localhost:8080/orders', {
+export const getOrders = (token: string) => {
+  return fetch('http://localhost:8080/orders', {
     method: 'GET',
     headers: {
-      'Authorization': `Bearer ${localStorage.getItem('token')}`,
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
+      'Accept-Encoding': 'gzip, deflate, br',
+      'Authorization': `Bearer ${token}`
     },
-    body: JSON.stringify(order),
   });
-
-  if (response.status === 201) {
-    return await response.json();
-  } else {
-    throw new Error('No se pudo obtener la orden');
-  }
 };
