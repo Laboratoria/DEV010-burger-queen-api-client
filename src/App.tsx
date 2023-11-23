@@ -2,7 +2,7 @@ import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './components/Login/Login'
 import NewOrder from './components/Waiter/NewOrder';
-import Orders from './components/Chef/Orders';
+import Orders from './components/Chef/ChefOrders';
 
 function App() {
   //const [count, setCount] = useState(0)
