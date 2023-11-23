@@ -228,7 +228,7 @@ table {
   background-color: transparent
 }
 thead th{
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--marron);
   padding: 10px 0 ;
 
 }
@@ -246,7 +246,7 @@ thead th:nth-child(3) {
 td {
   text-align: center;
   font-size: 18px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--marron);
   padding: 10px 0;
 }
 

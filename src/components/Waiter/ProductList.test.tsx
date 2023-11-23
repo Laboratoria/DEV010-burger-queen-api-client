@@ -27,7 +27,11 @@ describe('ProductList component', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Almuerzo/ cena' }));
     fireEvent.click(screen.getByRole('button', { name: 'Desayuno' }));
 
+ 
+
   });
+  
+
   
 
 });
