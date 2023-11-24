@@ -182,6 +182,7 @@ option {
   flex-direction: column;
   overflow-y: auto; 
   justify-content: space-between;
+  text-align: center;
 }
 
 h3 {
@@ -196,16 +197,14 @@ table {
 }
 
 .sendOrderButton {
+  /* Puedes ajustar el valor según sea necesario */
   background-color: var(--rojo);
   font-size: 20px;
   color: var(--blanco);
   border-radius: 10px;
   border-style: none;
-  /*height: 30px;
-  width: 100px;*/
   padding: 10px 25px;
-  translate: 0px 680px;
-  position: fixed;
+ 
 }
 
 .addProductButtons {
@@ -257,13 +256,16 @@ td {
 }
 
 .orderButton-section {
- 
-    width: 100%;
-  
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ margin-bottom: 20px;
 
-    }
+}
 
+.orderInfo-section {
  
+  margin-bottom: 20px;/* Cambiado de height a min-height */
+  /* Otros estilos... */
+}
