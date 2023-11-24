@@ -180,6 +180,8 @@ option {
   display: flex;
   align-items: center;
   flex-direction: column;
+  overflow-y: auto; 
+  justify-content: space-between;
 }
 
 h3 {
@@ -253,3 +255,15 @@ td {
 #total {
   font-weight: 900;
 }
+
+.orderButton-section {
+ 
+    width: 100%;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    }
+
+ 

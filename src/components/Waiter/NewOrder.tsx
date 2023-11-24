@@ -161,6 +161,9 @@ const dataOrder = {
           <ProductList onAddProduct={handleAddProduct} onSubtractProduct={handleSubtractProduct}/>
         </section>
         <section className="orderInfoSection">
+          <section className='orderInfo-section'>
+
+          
           <h3> Pedido </h3>
           <table>
             <thead>
@@ -188,9 +191,12 @@ const dataOrder = {
               )}
             </tbody>
           </table>
+          </section>
+          <section className='orderButton-section'>
           <button className="sendOrderButton" onClick={saveOrder}>
             Enviar pedido
           </button>
+          </section>
         </section>
       </section>
     </section>
