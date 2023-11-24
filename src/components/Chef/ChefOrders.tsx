@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import { Orders, Product } from "../../types/Types";
-import { getOrders } from "../../services/request";
+import { getOrders, updateOrder } from "../../services/request";
 
 
 const ChefOrders = () => {
@@ -27,6 +27,24 @@ const ChefOrders = () => {
       console.error("No se encontró el token");
     }
   }
+const finalizeOrder =  (orderId: number) => {
+   // Llama a la función de actualización del estado
+   updateOrder(orderId, 'Por entregar')
+   .then(() => {
+
+       getAllOrders(token || "");
+  
+   })
+   .catch((error) => {
+     console.error("Error al actualizar el estado de la orden", error);
+   });
+};
+
+
+
+
+
+
 
   useEffect(() => {
     if (token) {
@@ -60,7 +78,7 @@ const ChefOrders = () => {
 
             </section>
             <section className="buttonChef-section">
-            <button className="finalice-order">Finalizar</button>
+            <button className="finalice-order" onClick ={ () => finalizeOrder(order.id)}>Finalizar</button>
             </section>
           </section>
         ))}

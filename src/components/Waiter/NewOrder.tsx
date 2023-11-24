@@ -114,11 +114,13 @@ const dataOrder = {
     createOrder(dataOrder).then(() => {
       Swal.fire({ text: 'Orden creada exitosamente', icon: 'success' })
     })
+    window.location.reload()
     console.log(dataOrder)
 
   };
 
   return (
+    
     <section className="newOrder-Section">
       <section className="headerSection">
         <img className="logo-img" id="logo-Header" src={Logo} />
