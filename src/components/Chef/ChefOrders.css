@@ -39,6 +39,7 @@
   .order-time {
   border-bottom:  1px solid var(--marron);
   font-size: 15px;
+  padding-bottom: 15px;
   }
   
   .order-table {
