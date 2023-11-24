@@ -140,16 +140,16 @@ const dataOrder = {
           <section className="selectSection">
             <select data-testid="table" className="tableSelect" value={table} onChange={(e) => setTable(e.target.value)}>
               <option value="">Mesa</option>
-              <option value="mesa1">Mesa1</option>
-              <option value="mesa2">Mesa2</option>
-              <option value="mesa3">Mesa3</option>
-              <option value="mesa4">Mesa4</option>
-              <option value="mesa5">Mesa5</option>
-              <option value="mesa6">Mesa6</option>
-              <option value="mesa7">Mesa7</option>
-              <option value="mesa8">Mesa8</option>
-              <option value="mesa9">Mesa9</option>
-              <option value="mesa10">Mesa10</option>
+              <option value="Mesa 1">Mesa 1</option>
+              <option value="Mesa 2">Mesa 2</option>
+              <option value="Mesa 3">Mesa 3</option>
+              <option value="Mesa 4">Mesa 4</option>
+              <option value="Mesa 5">Mesa 5</option>
+              <option value="Mesa 6">Mesa 6</option>
+              <option value="Mesa 7">Mesa 7</option>
+              <option value="Mesa 8">Mesa 8</option>
+              <option value="Mesa 9">Mesa 9</option>
+              <option value="Mesa 10">Mesa 10</option>
             </select>
             <input
               type="text"
