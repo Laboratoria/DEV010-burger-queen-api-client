@@ -7,6 +7,7 @@ import { getOrders, updateOrder } from "../../services/request";
 const ChefOrders = () => {
   const token = localStorage.getItem("token");
   const [orders, setOrders] = useState([]);
+  const [pendingOrders, setPendingOrders] = useState([]); // Estado para órdenes pendientes
 
   function getAllOrders(token: string | "") {
     if (typeof token === 'string') {
@@ -27,22 +28,18 @@ const ChefOrders = () => {
       console.error("No se encontró el token");
     }
   }
-const finalizeOrder =  (orderId: number) => {
-   // Llama a la función de actualización del estado
-   updateOrder(orderId, 'Por entregar')
-   .then(() => {
-
-       getAllOrders(token || "");
-  
-   })
-   .catch((error) => {
-     console.error("Error al actualizar el estado de la orden", error);
-   });
-};
-
-
-
-
+  const finalizeOrder = (orderId: number) => {
+    // Llama a la función de actualización del estado
+    updateOrder(orderId, 'Por entregar')
+    .then(() => {
+         console.log('Antes de setPendingOrders:', pendingOrders);
+         setPendingOrders(pendingOrders.filter((order: Orders) => order.id !== orderId));
+         console.log('Después de setPendingOrders:', pendingOrders);
+    })
+    .catch((error) => {
+      console.error("Error al actualizar el estado de la orden", error);
+    });
+ };
 
 
 
