@@ -40,28 +40,30 @@ const ChefOrders = () => {
     <section className="chef-section">
       <Header />
       <section className="orders-section">
-      {orders.map((order: Orders) => (
-        <section className="orderCard-section">
-          
-            <table className="table" key={order.id}>
-              <caption className="order-table">{order.table}</caption>
-              <caption className="order-time">{order.dateEntry}</caption>
-              <tbody>
+        {orders.map((order: Orders) => (
+          <section className="orderCard-section">
+            <section className="table-section">
+              <table className="table" key={order.id}>
+                <caption className="order-table">{order.table}</caption>
+                <caption className="order-time">{order.dateEntry}</caption>
+                <tbody>
 
-                {order.products.map((product: Product, productIndex: number) => (
-                  <tr key={productIndex}>
-                    <td id= 'product-name' className="order-product">{product.name}</td>
-                    <td id= 'product-qty' className="order-product">{product.qty}</td>
-                    
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-         
+                  {order.products.map((product: Product, productIndex: number) => (
+                    <tr key={productIndex}>
+                      <td id='product-name' className="order-product">{product.name}</td>
+                      <td id='product-qty' className="order-product">{product.qty}</td>
 
-          <button className="finalice-order">Finalizar</button>
-        </section>
- ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+
+            </section>
+            <section className="buttonChef-section">
+            <button className="finalice-order">Finalizar</button>
+            </section>
+          </section>
+        ))}
 
 
       </section>
