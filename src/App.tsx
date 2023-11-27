@@ -1,21 +1,34 @@
-import './App.css'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './components/Login/Login'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Login from './components/Login/Login';
 import NewOrder from './components/Waiter/NewOrder';
 import Orders from './components/Chef/ChefOrders';
 
-function App() {
-  //const [count, setCount] = useState(0)
+const ProtectedRoute = ({ element, allowedRoles }: any) => {
+  const userRole = localStorage.getItem('userRole');
 
+  if (userRole && allowedRoles.includes(userRole)) {
+    return element;
+  } else {
+    return <Navigate to="/" />;
+  }
+};
+
+function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<Login />}/>
-        <Route path='/waiter/newOrder' element={<NewOrder />}/>
-        <Route path='/chef/orders' element={<Orders />}/>
+        <Route path="/" element={<Login />} />
+        <Route
+          path="/waiter/newOrder"
+          element={<ProtectedRoute element={<NewOrder />} allowedRoles={['Mesero']} />}
+        />
+        <Route
+          path="/chef/orders"
+          element={<ProtectedRoute element={<Orders />} allowedRoles={['Chef']} />}
+        />
       </Routes>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;
