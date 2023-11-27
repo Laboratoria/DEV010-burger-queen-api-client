@@ -6,9 +6,12 @@ import { getOrders, updateOrder } from "../../services/request";
 
 const ChefOrders = () => {
   const token = localStorage.getItem("token");
-  const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState<Orders[]>([]);
   const [pendingOrders, setPendingOrders] = useState([]); // Estado para órdenes pendientes
-
+  const [disabledButtons, setDisabledButtons] = useState<{ [key: number]: boolean }>(() => {
+    const storedState = localStorage.getItem("disabledButtons");
+    return storedState ? JSON.parse(storedState) : {};
+  });
   function getAllOrders(token: string | "") {
     if (typeof token === 'string') {
       getOrders(token)
@@ -29,6 +32,9 @@ const ChefOrders = () => {
     }
   }
   const finalizeOrder = (orderId: number) => {
+    setDisabledButtons((prevDisabledButtons) => {
+      return { ...(prevDisabledButtons || {}), [orderId]: true };
+    });
     // Llama a la función de actualización del estado
     updateOrder(orderId, 'Por entregar')
     .then(() => {
@@ -39,6 +45,7 @@ const ChefOrders = () => {
     .catch((error) => {
       console.error("Error al actualizar el estado de la orden", error);
     });
+
  };
 
 
@@ -49,13 +56,24 @@ const ChefOrders = () => {
     }
   }, [token]);
 
+  useEffect(() => {
+    localStorage.setItem("disabledButtons", JSON.stringify(disabledButtons));
+  }, [disabledButtons]);
+
+  const orderedOrders = [...orders].sort((a, b) => {
+    const isADisabled = disabledButtons[a.id] || false;
+    const isBDisabled = disabledButtons[b.id] || false;
+  
+    // Coloca las órdenes con botones deshabilitados al final
+    return isADisabled === isBDisabled ? 0 : isADisabled ? 1 : -1;
+  });
   console.log(orders);
 
   return (
     <section className="chef-section">
       <Header />
       <section className="orders-section">
-        {orders.map((order: Orders) => (
+        {orderedOrders.map((order: Orders) => (
           <section className="orderCard-section">
             <section className="table-section">
               <table className="table" key={order.id}>
@@ -75,7 +93,7 @@ const ChefOrders = () => {
 
             </section>
             <section className="buttonChef-section">
-            <button className="finalice-order" onClick ={ () => finalizeOrder(order.id)}>Finalizar</button>
+            <button className="finalice-order" onClick ={ () => finalizeOrder(order.id)}   disabled={disabledButtons[order.id]}>Finalizar</button>
             </section>
           </section>
         ))}

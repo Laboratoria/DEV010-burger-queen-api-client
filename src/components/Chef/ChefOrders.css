@@ -61,6 +61,11 @@
   width: 100px;*/
   padding: 10px 25px;
   }
+  .finalice-order:disabled {
+    background-color: var(--rojo-suave);
+    cursor: not-allowed; /* Cambia el cursor a "no permitido" cuando está deshabilitado */
+  
+  }
   .buttonChef-section {
   width: 100%;
   height: 40px;
