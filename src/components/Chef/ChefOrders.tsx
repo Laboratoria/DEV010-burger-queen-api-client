@@ -37,16 +37,16 @@ const ChefOrders = () => {
     });
     // Llama a la función de actualización del estado
     updateOrder(orderId, 'Por entregar')
-    .then(() => {
-         console.log('Antes de setPendingOrders:', pendingOrders);
-         setPendingOrders(pendingOrders.filter((order: Orders) => order.id !== orderId));
-         console.log('Después de setPendingOrders:', pendingOrders);
-    })
-    .catch((error) => {
-      console.error("Error al actualizar el estado de la orden", error);
-    });
+      .then(() => {
+        console.log('Antes de setPendingOrders:', pendingOrders);
+        setPendingOrders(pendingOrders.filter((order: Orders) => order.id !== orderId));
+        console.log('Después de setPendingOrders:', pendingOrders);
+      })
+      .catch((error) => {
+        console.error("Error al actualizar el estado de la orden", error);
+      });
 
- };
+  };
 
 
 
@@ -63,7 +63,7 @@ const ChefOrders = () => {
   const orderedOrders = [...orders].sort((a, b) => {
     const isADisabled = disabledButtons[a.id] || false;
     const isBDisabled = disabledButtons[b.id] || false;
-  
+
     // Coloca las órdenes con botones deshabilitados al final
     return isADisabled === isBDisabled ? 0 : isADisabled ? 1 : -1;
   });
@@ -72,11 +72,11 @@ const ChefOrders = () => {
   return (
     <section className="chef-section">
       <Header />
-      <section className="orders-section">
+      <section className="orders-section" >
         {orderedOrders.map((order: Orders) => (
-          <section className="orderCard-section">
+          <section className="orderCard-section" key={order.id}>
             <section className="table-section">
-              <table className="table" key={order.id}>
+              <table className="table" key={`table-${order.id}`}>
                 <caption className="order-table">{order.table}</caption>
                 <caption className="order-time">{order.dateEntry}</caption>
                 <tbody>
@@ -93,7 +93,7 @@ const ChefOrders = () => {
 
             </section>
             <section className="buttonChef-section">
-            <button className="finalice-order" onClick ={ () => finalizeOrder(order.id)}   disabled={disabledButtons[order.id]}>Finalizar</button>
+              <button className="finalice-order" onClick={() => finalizeOrder(order.id)} disabled={disabledButtons[order.id]}>Finalizar</button>
             </section>
           </section>
         ))}
