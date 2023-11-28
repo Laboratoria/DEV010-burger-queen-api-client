@@ -56,7 +56,7 @@ const NewOrder = () => {
       setUserRole(role);
     }
   }, []);
-    
+
   const handleAddProduct = (product: Product) => {
     setSelectedProducts((prevSelectedProducts) => {
       const existingProductIndex = prevSelectedProducts.findIndex((p) => p.id === product.id);
@@ -64,11 +64,11 @@ const NewOrder = () => {
       if (existingProductIndex !== -1) {
         const updatedProducts = [...prevSelectedProducts];
         const existingProduct = updatedProducts[existingProductIndex];
-          // Aumentar la cantidad
-          updatedProducts[existingProductIndex] = {
-            ...existingProduct,
-            qty: existingProduct.qty + 1,
-            pricetotal: (existingProduct.qty + 1) * existingProduct.price,
+        // Aumentar la cantidad
+        updatedProducts[existingProductIndex] = {
+          ...existingProduct,
+          qty: existingProduct.qty + 1,
+          pricetotal: (existingProduct.qty + 1) * existingProduct.price,
         }
         return updatedProducts;
       } else {
@@ -89,14 +89,14 @@ const NewOrder = () => {
     });
   };
   const date = new Date();
-const formattedTime = date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' });
+  const formattedTime = date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' });
 
-const dataOrder = {
-  client: clientName,
-  table: table,
-  products: selectedProducts,
-  dateEntry: formattedTime, // Utiliza la hora formateada
-};
+  const dataOrder = {
+    client: clientName,
+    table: table,
+    products: selectedProducts,
+    dateEntry: formattedTime, // Utiliza la hora formateada
+  };
   const saveOrder = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
@@ -116,13 +116,17 @@ const dataOrder = {
     createOrder(dataOrder).then(() => {
       Swal.fire({ text: 'Orden creada exitosamente', icon: 'success' })
     })
-    window.location.reload()
+    setSelectedProducts([]);
+    console.log("Antes de setClientName: ", clientName);
+    setClientName('');
+    console.log("Después de setClientName: ", clientName);
+    setTable('');
     console.log(dataOrder)
 
   };
 
   return (
-    
+
     <section className="newOrder-Section">
       <section className="headerSection">
         <img className="logo-img" id="logo-Header" src={Logo} />
@@ -159,47 +163,50 @@ const dataOrder = {
               type="text"
               className="name"
               placeholder="Nombre del cliente"
+              value={clientName}
+
               onChange={(e) => setClientName(e.target.value)}
             />
           </section>
-          <ProductList onAddProduct={handleAddProduct} onSubtractProduct={handleSubtractProduct}/>
+          <ProductList onAddProduct={handleAddProduct} onSubtractProduct={handleSubtractProduct} />
         </section>
         <section className="orderInfoSection">
           <section className='orderInfo-section'>
 
-          
-          <h3> Pedido </h3>
-          <table>
-            <thead>
-              <tr>
-                <th> Producto </th>
-                <th> Cant </th>
-                <th> Valor </th>
-              </tr>
-            </thead>
-            <tbody>
-              {selectedProducts.map((product) => (
-                <tr key={product.id}>
-                  <td>{product.name}</td>
-                  <td>{product.qty}</td>
-                  <td>$ {product.pricetotal}</td>
+
+            <h3> Pedido </h3>
+            <table>
+              <thead>
+                <tr>
+                  <th> Producto </th>
+                  <th> Cant </th>
+                  <th> Valor </th>
                 </tr>
-              ))}
-              {dataOrder.products.length > 0 && (
-                <tr id='total'>
-                  <td>Total</td>
-                  <td> {selectedProducts.length === 0 ? '0' : selectedProducts.reduce((prev, next) => prev + next.qty, 0)} </td>
-                  <td>
-  $ {selectedProducts.length === 0 ? '0' : selectedProducts.reduce((prev, next) => prev + next.pricetotal, 0)}
-</td>                </tr>
-              )}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {selectedProducts.map((product) => (
+                  <tr key={product.id}>
+                    <td>{product.name}</td>
+                    <td>{product.qty}</td>
+                    <td>$ {product.pricetotal}</td>
+                  </tr>
+                ))}
+                {dataOrder.products.length > 0 && (
+                  <tr id='total'>
+                    <td>Total</td>
+                    <td> {selectedProducts.length === 0 ? '0' : selectedProducts.reduce((prev, next) => prev + next.qty, 0)} </td>
+                    <td>
+                      $ {selectedProducts.length === 0 ? '0' : selectedProducts.reduce((prev, next) => prev + next.pricetotal, 0)}
+                    </td>                
+                    </tr>
+                )}
+              </tbody>
+            </table>
           </section>
           <section className='orderButton-section'>
-          <button className="sendOrderButton" onClick={saveOrder}>
-            Enviar pedido
-          </button>
+            <button className="sendOrderButton" onClick={saveOrder}>
+              Enviar pedido
+            </button>
           </section>
         </section>
       </section>

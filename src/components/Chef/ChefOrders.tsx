@@ -12,8 +12,8 @@ const ChefOrders = () => {
 
 
   const [disabledButtons, setDisabledButtons] = useState<{ [key: number]: boolean }>(() => {
-    
-    
+
+
     const storedState = localStorage.getItem("disabledButtons");
     return storedState ? JSON.parse(storedState) : {};
   });
@@ -47,6 +47,7 @@ const ChefOrders = () => {
       return { ...(prevDisabledButtons || {}), [orderId]: true };
     });
 
+
     // Actualiza la orden con la nueva propiedad dateFinal
     await updateOrder(orderId, 'Por entregar', formattedFinalDate)
       .then(() => {
@@ -60,6 +61,7 @@ const ChefOrders = () => {
       .catch((error) => {
         console.error("Error al actualizar el estado de la orden", error);
       });
+
   };
 
 
@@ -77,7 +79,7 @@ const ChefOrders = () => {
   const orderedOrders = [...orders].sort((a, b) => {
     const isADisabled = disabledButtons[a.id] || false;
     const isBDisabled = disabledButtons[b.id] || false;
-  
+
     // Coloca las órdenes con botones deshabilitados al final
     return isADisabled === isBDisabled ? 0 : isADisabled ? 1 : -1;
   });
@@ -98,25 +100,27 @@ const ChefOrders = () => {
 
     const timeDifferenceInMillis = dateFinal.getTime() - dateEntry.getTime();
 
-   // Convertir la diferencia de tiempo a horas y minutos
-  const hours = Math.floor(timeDifferenceInMillis / (1000 * 60 * 60));
-  const minutes = Math.floor((timeDifferenceInMillis % (1000 * 60 * 60)) / (1000 * 60));
+    // Convertir la diferencia de tiempo a horas y minutos
+    const hours = Math.floor(timeDifferenceInMillis / (1000 * 60 * 60));
+    const minutes = Math.floor((timeDifferenceInMillis % (1000 * 60 * 60)) / (1000 * 60));
 
-  // Formatear la diferencia de tiempo como una cadena
-  const formattedTimeDifference = `${hours} horas y ${minutes} minutos`;
+    // Formatear la diferencia de tiempo como una cadena
+    const formattedTimeDifference = `${hours} horas y ${minutes} minutos`;
 
-  return formattedTimeDifference;
-}
- 
+    return formattedTimeDifference;
+  }
+
 
   return (
     <section className="chef-section">
       <Header />
-      <section className="orders-section">
+      <section className="orders-section" >
         {orderedOrders.map((order: Orders) => (
           <section className="orderCard-section" key={order.id}>
             <section className="table-section">
-            <table className="table" key={`table-${order.id}`}>
+
+              <table className="table" key={`table-${order.id}`}>
+
                 <caption className="order-table">{order.table}</caption>
                 <caption className="order-time">{order.dateEntry}</caption>
                 <tbody>
@@ -133,18 +137,20 @@ const ChefOrders = () => {
 
             </section>
             <section className="buttonChef-section">
-  <button
-    className="finalice-order"
-    onClick={() => finalizeOrder(order.id)} disabled={disabledButtons[order.id]}
-  >
-    Finalizar
-  </button>
-  {disabledButtons[order.id] && (
-    <p className="total-time">
-      Tiempo: {calculateTime(order.dateEntry, order.dateFinal)}
-    </p>
-  )}
-</section>
+
+              <button
+                className="finalice-order"
+                onClick={() => finalizeOrder(order.id)} disabled={disabledButtons[order.id]}
+              >
+                Finalizar
+              </button>
+              {disabledButtons[order.id] && (
+                <p className="total-time">
+                  Tiempo: {calculateTime(order.dateEntry, order.dateFinal)}
+                </p>
+              )}
+            </section>
+
           </section>
         ))}
 
