@@ -4,14 +4,21 @@ import { Orders, Product } from "../../types/Types";
 import { getOrders, updateOrder } from "../../services/request";
 
 
+
 const ChefOrders = () => {
   const token = localStorage.getItem("token");
   const [orders, setOrders] = useState<Orders[]>([]);
   const [pendingOrders, setPendingOrders] = useState([]); // Estado para órdenes pendientes
+
+
   const [disabledButtons, setDisabledButtons] = useState<{ [key: number]: boolean }>(() => {
+    
+    
     const storedState = localStorage.getItem("disabledButtons");
     return storedState ? JSON.parse(storedState) : {};
   });
+
+
   function getAllOrders(token: string | "") {
     if (typeof token === 'string') {
       getOrders(token)
@@ -31,22 +38,29 @@ const ChefOrders = () => {
       console.error("No se encontró el token");
     }
   }
-  const finalizeOrder = (orderId: number) => {
+  const finalizeOrder = async (orderId: number) => {
+    // Obtén la hora actual al hacer clic en el botón "Finalizar"
+    const currentDate = new Date();
+    const formattedFinalDate = currentDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' });
+
     setDisabledButtons((prevDisabledButtons) => {
       return { ...(prevDisabledButtons || {}), [orderId]: true };
     });
-    // Llama a la función de actualización del estado
-    updateOrder(orderId, 'Por entregar')
-    .then(() => {
-         console.log('Antes de setPendingOrders:', pendingOrders);
-         setPendingOrders(pendingOrders.filter((order: Orders) => order.id !== orderId));
-         console.log('Después de setPendingOrders:', pendingOrders);
-    })
-    .catch((error) => {
-      console.error("Error al actualizar el estado de la orden", error);
-    });
 
- };
+    // Actualiza la orden con la nueva propiedad dateFinal
+    await updateOrder(orderId, 'Por entregar', formattedFinalDate)
+      .then(() => {
+        // Actualiza el estado de las órdenes pendientes
+        setPendingOrders(pendingOrders.filter((order: Orders) => order.id !== orderId));
+
+        // Muestra ambas horas en la consola
+        console.log('dateEntry:', orders.find(order => order.id === orderId)?.dateEntry);
+        console.log('dateFinal:', formattedFinalDate);
+      })
+      .catch((error) => {
+        console.error("Error al actualizar el estado de la orden", error);
+      });
+  };
 
 
 
@@ -69,14 +83,40 @@ const ChefOrders = () => {
   });
   console.log(orders);
 
+
+  function convertToValidDate(time: string): Date {
+    const currentDate = new Date();
+    const combinedDateTimeString = currentDate.toDateString() + ' ' + time;
+    return new Date(combinedDateTimeString);
+  }
+
+  function calculateTime(startDateTime: string, endDateTime: string): string {
+    const dateEntry = convertToValidDate(startDateTime);
+    console.log(dateEntry)
+    const dateFinal = convertToValidDate(endDateTime);
+    console.log(dateFinal)
+
+    const timeDifferenceInMillis = dateFinal.getTime() - dateEntry.getTime();
+
+   // Convertir la diferencia de tiempo a horas y minutos
+  const hours = Math.floor(timeDifferenceInMillis / (1000 * 60 * 60));
+  const minutes = Math.floor((timeDifferenceInMillis % (1000 * 60 * 60)) / (1000 * 60));
+
+  // Formatear la diferencia de tiempo como una cadena
+  const formattedTimeDifference = `${hours} horas y ${minutes} minutos`;
+
+  return formattedTimeDifference;
+}
+ 
+
   return (
     <section className="chef-section">
       <Header />
       <section className="orders-section">
         {orderedOrders.map((order: Orders) => (
-          <section className="orderCard-section">
+          <section className="orderCard-section" key={order.id}>
             <section className="table-section">
-              <table className="table" key={order.id}>
+            <table className="table" key={`table-${order.id}`}>
                 <caption className="order-table">{order.table}</caption>
                 <caption className="order-time">{order.dateEntry}</caption>
                 <tbody>
@@ -93,8 +133,18 @@ const ChefOrders = () => {
 
             </section>
             <section className="buttonChef-section">
-            <button className="finalice-order" onClick ={ () => finalizeOrder(order.id)}   disabled={disabledButtons[order.id]}>Finalizar</button>
-            </section>
+  <button
+    className="finalice-order"
+    onClick={() => finalizeOrder(order.id)} disabled={disabledButtons[order.id]}
+  >
+    Finalizar
+  </button>
+  {disabledButtons[order.id] && (
+    <p className="total-time">
+      Tiempo: {calculateTime(order.dateEntry, order.dateFinal)}
+    </p>
+  )}
+</section>
           </section>
         ))}
 

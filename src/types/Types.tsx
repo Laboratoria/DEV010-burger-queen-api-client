@@ -34,6 +34,7 @@ export type Orders ={
     }
   ]
   dateEntry:  string;
+  dateFinal: string;
   id: number;
   status:  string;
 }

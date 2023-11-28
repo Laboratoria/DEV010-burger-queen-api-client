@@ -47,6 +47,8 @@ const NewOrder = () => {
       return prevSelectedProducts;
     });
   };
+
+
   useEffect(() => {
     // Lee el rol desde localStorage y actualiza el estado
     const role = (localStorage.getItem("userRole"));
