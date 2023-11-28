@@ -8,28 +8,24 @@ import { getOrders, updateOrder } from "../../services/request";
 const ChefOrders = () => {
   const token = localStorage.getItem("token");
   const [orders, setOrders] = useState<Orders[]>([]);
-  const [pendingOrders, setPendingOrders] = useState([]); // Estado para órdenes pendientes
-
-
-  const [disabledButtons, setDisabledButtons] = useState<{ [key: number]: boolean }>(() => {
-
-
-    const storedState = localStorage.getItem("disabledButtons");
-    return storedState ? JSON.parse(storedState) : {};
-  });
-
+  const [pendingOrders, setPendingOrders] = useState([]);
+  const [disabledButtons, setDisabledButtons] = useState<{ [key: number]: boolean }>(() => ({}));
 
   function getAllOrders(token: string | "") {
     if (typeof token === 'string') {
       getOrders(token)
         .then((response) => {
-          console.log('Response:', response);  // Agrega este console log
+          console.log('Response:', response);
           if (response.ok) {
             return response.json();
           }
         })
         .then((data) => {
           setOrders(data);
+
+          // Cargar el estado disabledButtons después de obtener las órdenes
+          const storedState = localStorage.getItem("disabledButtons");
+          setDisabledButtons(storedState ? JSON.parse(storedState) : {});
         })
         .catch(() => {
           console.error("Ocurrió un error al tratar de obtener las órdenes");
@@ -38,33 +34,23 @@ const ChefOrders = () => {
       console.error("No se encontró el token");
     }
   }
-  const finalizeOrder = async (orderId: number) => {
-    // Obtén la hora actual al hacer clic en el botón "Finalizar"
+
+  const finalizeOrder = (orderId: number, timeDifference: string) => {
     const currentDate = new Date();
     const formattedFinalDate = currentDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' });
 
-    setDisabledButtons((prevDisabledButtons) => {
-      return { ...(prevDisabledButtons || {}), [orderId]: true };
-    });
-
-
     // Actualiza la orden con la nueva propiedad dateFinal
-    await updateOrder(orderId, 'Por entregar', formattedFinalDate)
+    updateOrder(orderId, 'Por entregar', formattedFinalDate)
       .then(() => {
-        // Actualiza el estado de las órdenes pendientes
         setPendingOrders(pendingOrders.filter((order: Orders) => order.id !== orderId));
-
-        // Muestra ambas horas en la consola
-        console.log('dateEntry:', orders.find(order => order.id === orderId)?.dateEntry);
+        console.log('dateEntry:', orders.find((order) => order.id === orderId)?.dateEntry);
         console.log('dateFinal:', formattedFinalDate);
+        console.log('Tiempo:', timeDifference); // Muestra el tiempo calculado
       })
       .catch((error) => {
         console.error("Error al actualizar el estado de la orden", error);
       });
-
   };
-
-
 
   useEffect(() => {
     if (token) {
@@ -85,7 +71,6 @@ const ChefOrders = () => {
   });
   console.log(orders);
 
-
   function convertToValidDate(time: string): Date {
     const currentDate = new Date();
     const combinedDateTimeString = currentDate.toDateString() + ' ' + time;
@@ -96,7 +81,7 @@ const ChefOrders = () => {
     const dateEntry = convertToValidDate(startDateTime);
     console.log(dateEntry)
     const dateFinal = convertToValidDate(endDateTime);
-    console.log(dateFinal)
+    console.log('Hora final:', dateFinal)
 
     const timeDifferenceInMillis = dateFinal.getTime() - dateEntry.getTime();
 
@@ -109,6 +94,7 @@ const ChefOrders = () => {
 
     return formattedTimeDifference;
   }
+
 
 
   return (
@@ -140,15 +126,25 @@ const ChefOrders = () => {
 
               <button
                 className="finalice-order"
-                onClick={() => finalizeOrder(order.id)} disabled={disabledButtons[order.id]}
+                onClick={() => {
+                  const timeDifference = calculateTime(order.dateEntry, order.dateFinal);
+
+                  
+                  setDisabledButtons((prevDisabledButtons) => {
+                    return { ...(prevDisabledButtons || {}), [order.id]: true };
+                  });
+
+                  finalizeOrder(order.id, timeDifference); 
+                }}
+                disabled={disabledButtons[order.id]}
               >
                 Finalizar
               </button>
-              {disabledButtons[order.id] && (
+              {/*{disabledButtons[order.id] && (
                 <p className="total-time">
                   Tiempo: {calculateTime(order.dateEntry, order.dateFinal)}
                 </p>
-              )}
+              )}*/}
             </section>
 
           </section>
