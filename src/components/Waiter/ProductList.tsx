@@ -23,7 +23,6 @@ const ProductList = ({ onAddProduct, onSubtractProduct }: { onAddProduct: (produ
     const fetchData = async () => {
       try {
         if (token !== null) {
-          console.log(token);
           const response = await getProducts(token);
 
           if (response.ok) {
