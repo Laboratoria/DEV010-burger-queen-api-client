@@ -1,3 +1,19 @@
+<1.0.2> - <2023-11-29>
+
+
+## Sprint learnings
+
+Obtencion y manejo de data
+
+## Added
+
+Estilos vista chef
+
+Obtener la data para mostrar al chef 
+
+Funcionalidad de vista chef
+
+
 <1.0.1> - <2023-11-22>
 
 
