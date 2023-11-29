@@ -9,7 +9,6 @@ const ChefOrders = () => {
   const token = localStorage.getItem("token");
   const [orders, setOrders] = useState<Orders[]>([]);
   const [pendingOrders, setPendingOrders] = useState([]);
-  const [disabledButtons, setDisabledButtons] = useState<{ [key: number]: boolean }>(() => ({}));
 
   function getAllOrders(token: string | "") {
     if (typeof token === 'string') {
@@ -24,8 +23,6 @@ const ChefOrders = () => {
           setOrders(data);
 
           // Cargar el estado disabledButtons después de obtener las órdenes
-          const storedState = localStorage.getItem("disabledButtons");
-          setDisabledButtons(storedState ? JSON.parse(storedState) : {});
         })
         .catch(() => {
           console.error("Ocurrió un error al tratar de obtener las órdenes");
@@ -58,18 +55,6 @@ const ChefOrders = () => {
     }
   }, [token]);
 
-  useEffect(() => {
-    localStorage.setItem("disabledButtons", JSON.stringify(disabledButtons));
-  }, [disabledButtons]);
-
-  const orderedOrders = [...orders].sort((a, b) => {
-    const isADisabled = disabledButtons[a.id] || false;
-    const isBDisabled = disabledButtons[b.id] || false;
-
-    // Coloca las órdenes con botones deshabilitados al final
-    return isADisabled === isBDisabled ? 0 : isADisabled ? 1 : -1;
-  });
-  console.log(orders);
 
   function convertToValidDate(time: string): Date {
     const currentDate = new Date();
@@ -101,7 +86,9 @@ const ChefOrders = () => {
     <section className="chef-section">
       <Header />
       <section className="orders-section" >
-        {orderedOrders.map((order: Orders) => (
+      {orders
+        .sort((a) => (a.status === 'Por entregar' ? 1 : -1)) // Ordenar por estado
+        .map((order: Orders) => (
           <section className="orderCard-section" key={order.id}>
             <section className="table-section">
 
@@ -129,22 +116,20 @@ const ChefOrders = () => {
                 onClick={() => {
                   const timeDifference = calculateTime(order.dateEntry, order.dateFinal);
 
-                  
-                  setDisabledButtons((prevDisabledButtons) => {
-                    return { ...(prevDisabledButtons || {}), [order.id]: true };
-                  });
+                  // Actualizar el estado local antes de llamar a finalizeOrder
+                  setOrders(prevOrders => prevOrders.map(prevOrder => 
+                    prevOrder.id === order.id ? { ...prevOrder, status: 'Por entregar' } : prevOrder
+                  ));
 
-                  finalizeOrder(order.id, timeDifference); 
+                  finalizeOrder(order.id, timeDifference);
                 }}
-                disabled={disabledButtons[order.id]}
+                disabled={order.status === 'Por entregar'}
               >
                 Finalizar
               </button>
-              {/*{disabledButtons[order.id] && (
-                <p className="total-time">
-                  Tiempo: {calculateTime(order.dateEntry, order.dateFinal)}
-                </p>
-              )}*/}
+              {order.status === 'Por entregar' && (
+                  <p> Tiempo: {calculateTime(order.dateEntry, order.dateFinal)}</p>
+                )}          
             </section>
 
           </section>
@@ -159,3 +144,5 @@ const ChefOrders = () => {
 }
 
 export default ChefOrders;
+
+//disabled
