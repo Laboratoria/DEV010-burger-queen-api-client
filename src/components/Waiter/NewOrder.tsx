@@ -47,6 +47,8 @@ const NewOrder = () => {
       return prevSelectedProducts;
     });
   };
+
+
   useEffect(() => {
     // Lee el rol desde localStorage y actualiza el estado
     const role = (localStorage.getItem("userRole"));
@@ -115,11 +117,8 @@ const NewOrder = () => {
       Swal.fire({ text: 'Orden creada exitosamente', icon: 'success' })
     })
     setSelectedProducts([]);
-    console.log("Antes de setClientName: ", clientName);
     setClientName('');
-    console.log("Después de setClientName: ", clientName);
     setTable('');
-    console.log(dataOrder)
 
   };
 

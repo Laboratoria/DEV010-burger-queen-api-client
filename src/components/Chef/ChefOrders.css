@@ -41,6 +41,7 @@
   border-bottom:  1px solid var(--marron);
   font-size: 15px;
   padding-bottom: 15px;
+  padding-bottom: 10px; /* Ajusta el espacio entre la hora y la tabla */
   }
   
   .order-table {
@@ -68,13 +69,20 @@
   }
   .buttonChef-section {
   width: 100%;
-  height: 40px;
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 15px;
+  flex-direction: column;
   }
   
   #product-name {
   width: 70%
+  }
+
+  .total-time {
+    text-align: center;
+    font-size: 15px;
+    color: var(--rojo);
   }

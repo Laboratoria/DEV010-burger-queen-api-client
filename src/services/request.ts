@@ -60,7 +60,7 @@ export const getOrders = (token: string) => {
   });
 };
 
-export const updateOrder = async (orderId: number, newStatus: string) => {
+export const updateOrder = async (orderId: number, newStatus: string, dateFinal: string) => {
   try {
     const response = await fetch(`http://localhost:8080/orders/${orderId}`, {
       method: 'PATCH',
@@ -69,7 +69,9 @@ export const updateOrder = async (orderId: number, newStatus: string) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ 
-        status: newStatus
+        status: newStatus,
+        dateFinal: dateFinal,
+       
       }),
     });
 
