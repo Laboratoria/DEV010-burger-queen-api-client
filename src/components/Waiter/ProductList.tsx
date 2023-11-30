@@ -21,22 +21,24 @@ const ProductList = ({ onAddProduct, onSubtractProduct }: { onAddProduct: (produ
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        if (token !== null) {
-          const response = await getProducts(token);
+      console.log('se ejecuto', token)
+      //try {
+      if (token !== null) {
+        const response = await getProducts(token);
 
-          if (response.ok) {
-            const data: Product[] = await response.json();
-            setProducts(data);
-          } else {
-            console.error(`Error: ${response.status} - ${response.statusText}`);
-          }
+        if (response.ok) {
+          const data: Product[] = await response.json();
+          setProducts(data);
+          //console.log(data);
+        } else {
+          console.error(`Error: ${response.status} - ${response.statusText}`);
         }
-      } catch (error) {
-        console.error('Error during API request:', error);
       }
+      /*} catch (error) {
+        console.error('Error during API request:', error);
+      }*/
     };
-
+    console.log('hola');
     fetchData();
   }, [token]);
 
