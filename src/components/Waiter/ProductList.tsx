@@ -80,10 +80,10 @@ const ProductList = ({ onAddProduct, onSubtractProduct }: { onAddProduct: (produ
                   <p className="product-name">{product.name}</p>
                   <p className="product-price">${product.price}</p>
                   <section className='addProductButtons'>
-                    <button className='iconsButton' id='lessButton' onClick={() => onSubtractProduct(product, true)}>
+                    <button className='iconsButton' id='lessButton' data-testid='lessProductButton' onClick={() => onSubtractProduct(product, true)}>
                       <img className='icons' src={iconoMenos} />
                     </button>
-                    <button className='iconsButton' id='moreButton' onClick={() => onAddProduct(product)} >
+                    <button className='iconsButton' id='moreButton' data-testid='addProductButton' onClick={() => onAddProduct(product)}>
                       <img className='icons' src={iconoAgregar} />
                     </button>
                   </section>

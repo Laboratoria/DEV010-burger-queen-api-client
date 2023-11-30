@@ -182,7 +182,7 @@ const NewOrder = () => {
               </thead>
               <tbody>
                 {selectedProducts.map((product) => (
-                  <tr key={product.id}>
+                  <tr key={product.id} data-testid= 'products-table'>
                     <td>{product.name}</td>
                     <td>{product.qty}</td>
                     <td>$ {product.pricetotal}</td>
