@@ -12,7 +12,7 @@ jest.mock('react-router-dom', () => ({
 }));
 
 jest.mock('../../services/request', () => ({
-  getProducts: jest.fn(() => Promise.resolve( 
+  getProducts: jest.fn(() => Promise.resolve(
     {
       ok: 'ok',
       json: () => Promise.resolve(
@@ -26,7 +26,7 @@ jest.mock('../../services/request', () => ({
         }]
       )
     }
- 
+
   )),
   createOrder: jest.fn(() => Promise.resolve()),
 }));
@@ -76,7 +76,7 @@ describe('NewOrder component', () => {
       return 'token'
     })*/
     //key in localStorage ? localStorage[key] : null
-  
+
     render(<NewOrder />);
 
 
@@ -100,17 +100,102 @@ describe('NewOrder component', () => {
 
     await waitFor(() => {
       expect(createOrder).toHaveBeenCalledTimes(1)
-        // client: 'Maria',
-        // table: 'Mesa 1',
-        // products: expect.any(Array),
-        // dateEntry: 
+      // client: 'Maria',
+      // table: 'Mesa 1',
+      // products: expect.any(Array),
+      // dateEntry: 
 
-    
+
     });
 
     // Verifica si se muestra el mensaje de éxito
     expect(Swal.fire).toHaveBeenCalledWith({ text: 'Orden creada exitosamente', icon: 'success' });
-    
+
   });
+
+  it('should not call createOrder when items are subtracted from the list of products', async () => {
+    render(<NewOrder />);
+    // Simula las entradas del usuario
+    fireEvent.change(screen.getByTestId('table'), { target: { value: 'Mesa 1' } });
+    fireEvent.change(screen.getByPlaceholderText('Nombre del cliente'), { target: { value: 'Maria' } });
+
+    await waitFor(() => {
+
+      fireEvent.click(screen.getByTestId('lessProductButton')); // No consigue esto
+
+
+    });
+    fireEvent.click(screen.getByText('Enviar pedido'));
+
+
+    await waitFor(() => {
+      expect(createOrder).toHaveBeenCalledTimes(0)
+
+
+    });
+
+    expect(Swal.fire).toHaveBeenCalledWith({ text: 'Pedido vacío', icon: 'warning' });
+  })
+
+  it('should show a message that the table input is empty', async () => {
+    render(<NewOrder />);
+    // Simula las entradas del usuario
+    fireEvent.change(screen.getByTestId('table'), { target: { value: '' } });
+    fireEvent.change(screen.getByPlaceholderText('Nombre del cliente'), { target: { value: 'Maria' } });
+
+    fireEvent.click(screen.getByText('Enviar pedido'));
+
+
+    await waitFor(() => {
+      expect(createOrder).toHaveBeenCalledTimes(0);
+      expect(Swal.fire).toHaveBeenCalledWith({ text: 'Seleccione una mesa', icon: 'warning' });
+
+
+    });
+
+
+  });
+
+
+  it('should show a message that the name input is empty', async () => {
+    render(<NewOrder />);
+    // Simula las entradas del usuario
+    fireEvent.change(screen.getByTestId('table'), { target: { value: 'Mesa 1' } });
+    fireEvent.change(screen.getByPlaceholderText('Nombre del cliente'), { target: { value: '' } });
+
+    fireEvent.click(screen.getByText('Enviar pedido'));
+
+
+    await waitFor(() => {
+      expect(createOrder).toHaveBeenCalledTimes(0);
+      expect(Swal.fire).toHaveBeenCalledWith({ text: 'Ingrese nombre de cliente', icon: 'warning' });
+
+
+    });
+
+  });
+
+  it('should substract an item when clicking the subtract bottom', async () => {
+    render(<NewOrder />);
+
+    fireEvent.change(screen.getByTestId('table'), { target: { value: 'Mesa 1' } });
+    fireEvent.change(screen.getByPlaceholderText('Nombre del cliente'), { target: { value: 'Maria' } });
+
+    await waitFor(() => {
+
+      fireEvent.click(screen.getByTestId('addProductButton')); // No consigue esto
+    });
+    const qty= screen.getByTestId('product-qty')
+    expect(qty).toHaveTextContent('1');
+
+    await waitFor(() => {
+
+      fireEvent.click(screen.getByTestId('lessProductButton')); // No consigue esto
+    });
+    
+    expect(qty).not.toBeInTheDocument();
+  });
+
+
 
 });

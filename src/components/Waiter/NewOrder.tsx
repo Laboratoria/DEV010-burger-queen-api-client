@@ -183,9 +183,9 @@ const NewOrder = () => {
               <tbody>
                 {selectedProducts.map((product) => (
                   <tr key={product.id} data-testid= 'products-table'>
-                    <td>{product.name}</td>
-                    <td>{product.qty}</td>
-                    <td>$ {product.pricetotal}</td>
+                    <td data-testid= 'product-name'>{product.name}</td>
+                    <td data-testid= 'product-qty'>{product.qty}</td>
+                    <td data-testid= 'product-price'>$ {product.pricetotal}</td>
                   </tr>
                 ))}
                 {dataOrder.products.length > 0 && (
