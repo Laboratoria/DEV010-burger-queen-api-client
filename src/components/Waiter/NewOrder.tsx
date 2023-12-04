@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../../assets/burger-queen-logo.png';
 import LogOut from '../../assets/log-out.png';
 import Profile from '../../assets/profile.png';
@@ -22,6 +22,8 @@ const NewOrder = () => {
 
   //Se declara una constante para el useNavigate
   const navigate = useNavigate();
+
+
 
   //Función para manejar si se ha iniciado sesión, si no hay token, se debe navegar al login
   const handleLoggedSession = () => {
@@ -160,7 +162,9 @@ const NewOrder = () => {
         </section>
       </section>
       <section className="orderSection">
-        <button className="allOrdersButton"> Ver todos los pedidos </button>
+        <Link to= {'/waiter/OrderList'}>
+        <button  className="allOrdersButton"> Ver todos los pedidos </button>
+        </Link>
       </section>
       <section className="dashboardSection">
         <section className="menuSection">
