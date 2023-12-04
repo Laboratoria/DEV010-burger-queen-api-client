@@ -135,7 +135,7 @@ const ChefOrders = () => {
                 </button>
                 
                 {order.status === 'Por entregar' && (
-                  <p className="total-time"> Tiempo: {calculateTime(order.dateEntry, order.dateFinal)}</p>
+                  <p data-testid='total-time' className="total-time"> Tiempo: {calculateTime(order.dateEntry, order.dateFinal)}</p>
                 )}    
               </section>
 
