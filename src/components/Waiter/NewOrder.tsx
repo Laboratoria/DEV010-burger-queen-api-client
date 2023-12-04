@@ -10,29 +10,43 @@ import Swal from 'sweetalert2'
 
 
 const NewOrder = () => {
+
+  //Estado de los productos seleccionados
   const [selectedProducts, setSelectedProducts] = useState<Product[]>([]); // Nuevo estado para los productos seleccionados
+  //Estado del input del nombre del cliente
   const [clientName, setClientName] = useState('');
+  //Estado del select de mesa
   const [table, setTable] = useState('');
+  //Estado del Role 
   const [userRole, setUserRole] = useState('');
 
+  //Se declara una constante para el useNavigate
   const navigate = useNavigate();
 
+  //Función para manejar si se ha iniciado sesión, si no hay token, se debe navegar al login
   const handleLoggedSession = () => {
     localStorage.removeItem('token');
     navigate('/');
   };
 
+  //Función para manejar la sustracción de productos, recibe dos parámetros
   const handleSubtractProduct = (product: Product, remove?: boolean) => {
+    //Actualiza el estado de selectedProducts y como argumento establece el estado anterior
     setSelectedProducts((prevSelectedProducts) => {
+      //Usamoa el método findIndex para encontrar el índice del primer elemento cuyo id sea igual al del producto
       const existingProductIndex = prevSelectedProducts.findIndex((p) => p.id === product.id);
+
+      //Si encuentra el producto, se hace una copia del array prevSelectedProducts para no alterar el estado anterior
       if (existingProductIndex !== -1) {
         const updatedProducts = [...prevSelectedProducts];
+        //Se obtiene una referencia al producto existente en el array updatedProducts utilizando el índice obtenido anteriormente.
         const existingProduct = updatedProducts[existingProductIndex];
         if (remove) {
           if (existingProduct.qty <= 1) {
             // Eliminar el producto si la cantidad es menor o igual a 1
             updatedProducts.splice(existingProductIndex, 1);
           } else {
+            //De lo contrario se actualiza el producto con la cantidad y el precio total
             updatedProducts[existingProductIndex] = {
               ...existingProduct,
               qty: existingProduct.qty - 1,
@@ -57,6 +71,7 @@ const NewOrder = () => {
     }
   }, []);
 
+//Función que maneja la adición de productos
   const handleAddProduct = (product: Product) => {
     setSelectedProducts((prevSelectedProducts) => {
       const existingProductIndex = prevSelectedProducts.findIndex((p) => p.id === product.id);
@@ -88,15 +103,20 @@ const NewOrder = () => {
       }
     });
   };
+
+//Configuramos como queremos que se muestre la hora del pedido
   const date = new Date();
   const formattedTime = date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' });
 
+  //Configuramos como estará estructurada la orden
   const dataOrder = {
     client: clientName,
     table: table,
     products: selectedProducts,
     dateEntry: formattedTime, // Utiliza la hora formateada
   };
+
+  //Función para guardar la orden
   const saveOrder = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
@@ -112,10 +132,12 @@ const NewOrder = () => {
       Swal.fire({ text: 'Pedido vacío', icon: 'warning' })
       return
     }
-
+//Acá llamamos a la función que hace la petición tipo Post a la API para crear la orden
     createOrder(dataOrder).then(() => {
       Swal.fire({ text: 'Orden creada exitosamente', icon: 'success' })
     })
+
+    //Limpiamos los campos
     setSelectedProducts([]);
     setClientName('');
     setTable('');
@@ -182,10 +204,10 @@ const NewOrder = () => {
               </thead>
               <tbody>
                 {selectedProducts.map((product) => (
-                  <tr key={product.id} data-testid= 'products-table'>
-                    <td data-testid= 'product-name'>{product.name}</td>
-                    <td data-testid= 'product-qty'>{product.qty}</td>
-                    <td data-testid= 'product-price'>$ {product.pricetotal}</td>
+                  <tr key={product.id} data-testid='products-table'>
+                    <td data-testid='product-name'>{product.name}</td>
+                    <td data-testid='product-qty'>{product.qty}</td>
+                    <td data-testid='product-price'>$ {product.pricetotal}</td>
                   </tr>
                 ))}
                 {dataOrder.products.length > 0 && (
@@ -194,8 +216,8 @@ const NewOrder = () => {
                     <td> {selectedProducts.length === 0 ? '0' : selectedProducts.reduce((prev, next) => prev + next.qty, 0)} </td>
                     <td>
                       $ {selectedProducts.length === 0 ? '0' : selectedProducts.reduce((prev, next) => prev + next.pricetotal, 0)}
-                    </td>                
-                    </tr>
+                    </td>
+                  </tr>
                 )}
               </tbody>
             </table>

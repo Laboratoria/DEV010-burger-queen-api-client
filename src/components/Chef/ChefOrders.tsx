@@ -10,8 +10,10 @@ const ChefOrders = () => {
   const [orders, setOrders] = useState<Orders[]>([]);
   const [pendingOrders, setPendingOrders] = useState([]);
 
+  //Definimos una función para obtener las órdenes
   function getAllOrders(token: string | "") {
     if (typeof token === 'string') {
+      //Llamamos a la función que hace la petición GET de las órdenes
       getOrders(token)
         .then((response) => {
           console.log('Response:', response);
@@ -20,6 +22,7 @@ const ChefOrders = () => {
           }
         })
         .then((data) => {
+          //actualizamos el estado de las órdenes con el resultado de la petición
           setOrders(data);
 
           // Cargar el estado disabledButtons después de obtener las órdenes
@@ -32,7 +35,9 @@ const ChefOrders = () => {
     }
   }
 
+  //Definimos una función para finalizar las órdenes
   const finalizeOrder = async (orderId: number) => {
+    //Configuramos la hora
     const currentDate = new Date();
     const formattedFinalDate = currentDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' });
   
@@ -44,7 +49,7 @@ const ChefOrders = () => {
   
       // Actualiza la orden en la base de datos
       await updateOrder(orderId, 'Por entregar', formattedFinalDate);
-  
+      //Actualiza el estado de las órdenes pendientes
       setPendingOrders(pendingOrders.filter((order: Orders) => order.id !== orderId));
       
     } catch (error) {
@@ -52,19 +57,20 @@ const ChefOrders = () => {
     }
   };
 
+  //Con el hook llamamos a la función getAllOrders
   useEffect(() => {
     if (token) {
       getAllOrders(token);
     }
   }, [token]);
 
-
+  //Creamos una función para convertir la hora
   function convertToValidDate(time: string): Date {
     const currentDate = new Date();
     const combinedDateTimeString = currentDate.toDateString() + ' ' + time;
     return new Date(combinedDateTimeString);
 }
-
+//Calculamos la diferencia entre la hora en que fué creado el pedido y la hora en que se finalizó
   function calculateTime(startDateTime: string, endDateTime: string): string {
     const dateEntry = convertToValidDate(startDateTime);
     const dateFinal = convertToValidDate(endDateTime);
@@ -114,6 +120,7 @@ const ChefOrders = () => {
 
                 <button
                   className="finalice-order"
+                  //Al hacer click cambia el estado de las ordenes con el status Por entregar, además llama a la función finalizeOrder y deshabilita el botón
                   onClick={() => {
                    
                     setOrders(prevOrders => prevOrders.map(prevOrder =>
@@ -126,6 +133,7 @@ const ChefOrders = () => {
                 >
                   Finalizar
                 </button>
+                
                 {order.status === 'Por entregar' && (
                   <p className="total-time"> Tiempo: {calculateTime(order.dateEntry, order.dateFinal)}</p>
                 )}    

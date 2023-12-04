@@ -30,6 +30,7 @@ export type Orders ={
       pricetotal: number;
       image:  string;
       type:  string;
+      dateEntry: string;
       
     }
   ]
