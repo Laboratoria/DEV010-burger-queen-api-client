@@ -1,39 +1,41 @@
 import { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import { Orders, Product } from "../../types/Types";
-import { getOrders, updateOrder } from "../../services/request";
+import { updateOrder } from "../../services/request";
+import getAllOrders from "../Orders/GetAllOrders";
+//import getAllOrders from '../Orders/getAllOrders';
 
 
 
-const ChefOrders = () => {
+const ChefOrders: React.FC = () => {
   const token = localStorage.getItem("token");
   const [orders, setOrders] = useState<Orders[]>([]);
   const [pendingOrders, setPendingOrders] = useState([]);
 
-  //Definimos una función para obtener las órdenes
-  function getAllOrders(token: string | "") {
-    if (typeof token === 'string') {
-      //Llamamos a la función que hace la petición GET de las órdenes
-      getOrders(token)
-        .then((response) => {
-          console.log('Response:', response);
-          if (response.ok) {
-            return response.json();
-          }
-        })
-        .then((data) => {
-          //actualizamos el estado de las órdenes con el resultado de la petición
-          setOrders(data);
+  //  //Definimos una función para obtener las órdenes
+  //  function getAllOrders(token: string | "") {
+  //    if (typeof token === 'string') {
+  //      //Llamamos a la función que hace la petición GET de las órdenes
+  //      getOrders(token)
+  //        .then((response) => {
+  //          console.log('Response:', response);
+  //         if (response.ok) {
+  //            return response.json();
+  //          }
+  //        })
+  //       .then((data) => {
+  //          //actualizamos el estado de las órdenes con el resultado de la petición
+  //          setOrders(data);
 
-          // Cargar el estado disabledButtons después de obtener las órdenes
-        })
-        .catch(() => {
-          console.error("Ocurrió un error al tratar de obtener las órdenes");
-        });
-    } else {
-      console.error("No se encontró el token");
-    }
-  }
+  //          // Cargar el estado disabledButtons después de obtener las órdenes
+  //        })
+  //       .catch(() => {
+  //          console.error("Ocurrió un error al tratar de obtener las órdenes");
+  //        });
+  //    } else {
+  //      console.error("No se encontró el token");
+  //    }
+  //  }
 
   //Definimos una función para finalizar las órdenes
   const finalizeOrder = async (orderId: number) => {
@@ -57,11 +59,20 @@ const ChefOrders = () => {
     }
   };
 
-  //Con el hook llamamos a la función getAllOrders
-  useEffect(() => {
-    if (token) {
-      getAllOrders(token);
-    }
+   //Con el hook llamamos a la función getAllOrders
+   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (token) {
+          const ordersData = await getAllOrders(token);
+          setOrders(ordersData);
+        }
+      } catch (error) {
+        console.error("Error al obtener las órdenes:", error);
+      }
+    };
+
+    fetchData();
   }, [token]);
 
   //Creamos una función para convertir la hora

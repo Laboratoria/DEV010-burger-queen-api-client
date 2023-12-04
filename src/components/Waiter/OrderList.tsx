@@ -1,9 +1,30 @@
 import { Link } from "react-router-dom";
 import Header from "../Header/Header"
+import { useEffect, useState } from "react";
+//import getAllOrders from "../Orders/getAllOrders";
 //import { getOrders } from "../../services/request";
+import getAllOrders from "../Orders/GetAllOrders";
+import { Orders } from "../../types/Types";
 
 
 const OrderList = () => {
+    const token = localStorage.getItem("token");
+    const [orders, setOrders] = useState<Orders[]>([]);
+
+    useEffect(() => {
+        const fetchOrders = async () => {
+          try {
+            if (token) {
+              const orderData = await getAllOrders(token);
+              setOrders(orderData);
+            }
+          } catch (error) {
+            console.error("Error al obtener las órdenes:", error);
+          }
+        };
+    
+        fetchOrders();
+      }, [token]);
 
     return (
         <section className="order-list">
@@ -26,13 +47,18 @@ const OrderList = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                        {orders.map((order: Orders) => (
+                        <tr key={`tr-${order.id}`}>
+                        <td>{order.id}</td>
+                        <td>{order.client}</td>
+                        <td>{order.table}</td>
+                        <td>{order.status}</td>
+                        <td>
+                            <button className="button-action">Entregar</button>
+                        </td>
+                    </tr>
+                        ))}
+
                     </tbody>
                 </table>
             </section>

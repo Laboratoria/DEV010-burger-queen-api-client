@@ -5,15 +5,19 @@
     height: 964px;
     width: auto;
     padding: 30px;
-    /* display: flex;
-    justify-content: center; */
+    display: flex;
+  flex-direction: column;
+
   
   }
   .orders-dashboard {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 20px;
+    overflow-y: auto;
+   
+    display: inline-block;
+
   }
 
   .orders-title {
@@ -22,6 +26,9 @@
     font-size: 25px;
     border-radius: 10px 10px 0 0;
     padding: 12px;
+  
+    
+  
   }
 
   .orders-table {
@@ -29,6 +36,10 @@
     border-radius: 0 0 10px 10px;
     width: 90%;
     background-color: var(--blanco);
+    margin: auto;
+
+  
+    
   }
   .order-th {
     color: var(--marron);
@@ -49,4 +60,13 @@
   }
   #order-th-5 {
     width: 20%;
+  }
+
+  .button-action {
+    background-color: var(--amarillo);
+    color: var(--blanco);
+    font-weight: bold;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
   }
