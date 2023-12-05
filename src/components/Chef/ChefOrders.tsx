@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import { Orders, Product } from "../../types/Types";
 import { updateOrder } from "../../services/request";
-import getAllOrders from "../../services/GetAllOrders";
+import getAllOrders from "../../services/getAllOrders";
 //import getAllOrders from '../Orders/getAllOrders';
 
 
@@ -118,12 +118,8 @@ const ChefOrders: React.FC = () => {
 
                 <button
                   className="finalice-order"
-                  //Al hacer click cambia el estado de las ordenes con el status Por entregar, además llama a la función finalizeOrder y deshabilita el botón
+                  //Al hacer click llama a la función finalizeOrder y deshabilita el botón
                   onClick={() => {
-
-                    /*  setOrders(prevOrders => prevOrders.map(prevOrder =>
-                       prevOrder.id === order.id ? { ...prevOrder, status: 'Por entregar' } : prevOrder
-                     )); */
 
                     finalizeOrder(order.id);
                   }}

@@ -3,7 +3,7 @@ import Header from "../Header/Header"
 import { useEffect, useState } from "react";
 //import getAllOrders from "../Orders/getAllOrders";
 //import { getOrders } from "../../services/request";
-import getAllOrders from "../../services/GetAllOrders";
+import getAllOrders from "../../services/getAllOrders";
 import { Orders } from "../../types/Types";
 import { updateFinalizedOrder } from "../../services/request";
 
