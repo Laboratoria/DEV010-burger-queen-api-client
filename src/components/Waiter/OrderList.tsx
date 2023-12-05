@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 import Header from "../Header/Header"
 import { useEffect, useState } from "react";
-//import getAllOrders from "../Orders/getAllOrders";
-//import { getOrders } from "../../services/request";
 import getAllOrders from "../../services/getAllOrders";
 import { Orders } from "../../types/Types";
 import { updateFinalizedOrder } from "../../services/request";
+import Swal from "sweetalert2";
 
 //Componente para renderizar las órdenes en la vista del Mesero
 const OrderList = () => {
@@ -17,7 +16,10 @@ const OrderList = () => {
     setOrders(prevOrders => prevOrders.map(prevOrder =>
       prevOrder.id === order.id ? { ...prevOrder, status: 'Entregado' } : prevOrder
     ));
-    await updateFinalizedOrder(order.id, 'Entregado');
+    await updateFinalizedOrder(order.id, 'Entregado')
+    .then(() => {
+      Swal.fire({ text: 'Orden entregada exitosamente', icon: 'success' })
+    })
   }
 
   useEffect(() => {
