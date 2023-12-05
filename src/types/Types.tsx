@@ -14,7 +14,7 @@ export type Product = {
   image: string;
   type: string;
   dateEntry: string;
-  qty: number; // Add this property
+  qty: number; 
   pricetotal: number;
 };
 

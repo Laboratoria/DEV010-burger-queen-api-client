@@ -3,10 +3,10 @@ import Header from "../Header/Header"
 import { useEffect, useState } from "react";
 //import getAllOrders from "../Orders/getAllOrders";
 //import { getOrders } from "../../services/request";
-import getAllOrders from "../Orders/GetAllOrders";
+import getAllOrders from "../../services/GetAllOrders";
 import { Orders } from "../../types/Types";
 
-
+//Componente para renderizar las órdenes en la vista del Mesero
 const OrderList = () => {
     const token = localStorage.getItem("token");
     const [orders, setOrders] = useState<Orders[]>([]);

@@ -48,35 +48,38 @@ describe('ChefOrders component', () => {
   beforeAll(() => {
     localStorage.setItem('token', 'token')
   })
-  it('should show Finalizar Button', async () =>{
-    render (<ChefOrders />)
-  
+  it('should show Finalizar Button', async () => {
+    render(<ChefOrders />)
+
     await waitFor(() => {
       expect(screen.getByText('Finalizar')).toBeInTheDocument();
-  
+
     })
-  
+
   });
   it('should change the status to Por entregar and disables the button', async () => {
     render(<ChefOrders />);
-  
+
     // Esperar hasta que se muestre el botón 'Finalizar'
     await waitFor(() => {
       expect(screen.getByText('Finalizar')).toBeInTheDocument();
+      
     });
-  
+
     // Esperar hasta que se haga clic en el botón 'Finalizar'
-    fireEvent.click(screen.getByText('Finalizar'));
-    console.log(document.body.innerHTML);
-  
-    // Esperar hasta que se complete la operación asíncrona (puede ser necesario ajustar según la lógica real)
-    await waitFor(() => {
-      expect(updateOrder).toHaveBeenCalledTimes(1);
-    });
-  
+    //fireEvent.click(screen.getByText('Finalizar'));
+    const button = screen.getByRole('button', { name: 'Finalizar' })
+    screen.debug(button);
+    
+    fireEvent.click(button)
+    //console.log(document.body.innerHTML);
+
+
+    await waitFor(() => expect(updateOrder).toHaveBeenCalledTimes(1));
+
     // Esperar hasta que se muestre el elemento con data-testid 'total-time'
     const timeElement = await screen.findByTestId('total-time');
-  
+
     // Realizar las aserciones
     expect(timeElement.textContent).toBe('Tiempo: 0 horas y 15 minutos');
   });
