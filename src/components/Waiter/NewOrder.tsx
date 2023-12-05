@@ -73,7 +73,7 @@ const NewOrder = () => {
     }
   }, []);
 
-//Función que maneja la adición de productos
+  //Función que maneja la adición de productos
   const handleAddProduct = (product: Product) => {
     setSelectedProducts((prevSelectedProducts) => {
       const existingProductIndex = prevSelectedProducts.findIndex((p) => p.id === product.id);
@@ -106,7 +106,7 @@ const NewOrder = () => {
     });
   };
 
-//Configuramos como queremos que se muestre la hora del pedido
+  //Configuramos como queremos que se muestre la hora del pedido
   const date = new Date();
   const formattedTime = date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' });
 
@@ -122,6 +122,7 @@ const NewOrder = () => {
   const saveOrder = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
+
     if (dataOrder.client == '') {
       Swal.fire({ text: 'Ingrese nombre de cliente', icon: 'warning' })
       return
@@ -134,7 +135,7 @@ const NewOrder = () => {
       Swal.fire({ text: 'Pedido vacío', icon: 'warning' })
       return
     }
-//Acá llamamos a la función que hace la petición tipo Post a la API para crear la orden
+    //Acá llamamos a la función que hace la petición tipo Post a la API para crear la orden
     createOrder(dataOrder).then(() => {
       Swal.fire({ text: 'Orden creada exitosamente', icon: 'success' })
     })
@@ -162,8 +163,8 @@ const NewOrder = () => {
         </section>
       </section>
       <section className="orderSection">
-        <Link to= {'/waiter/OrderList'}>
-        <button  className="allOrdersButton"> Ver todos los pedidos </button>
+        <Link to={'/waiter/OrderList'}>
+          <button className="allOrdersButton"> Ver todos los pedidos </button>
         </Link>
       </section>
       <section className="dashboardSection">
