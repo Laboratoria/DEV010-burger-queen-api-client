@@ -1,0 +1,72 @@
+.order-list {
+    background-image: url('../../assets/background.png');
+    background-size: cover;
+    margin: 0;
+    height: 964px;
+    width: auto;
+    padding: 30px;
+    display: flex;
+  flex-direction: column;
+
+  
+  }
+  .orders-dashboard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+   
+    display: inline-block;
+
+  }
+
+  .orders-title {
+    background-color: var(--marron);
+    color: var(--blanco);
+    font-size: 25px;
+    border-radius: 10px 10px 0 0;
+    padding: 12px;
+  
+    
+  
+  }
+
+  .orders-table {
+    border: 1px solid var(--marron);
+    border-radius: 0 0 10px 10px;
+    width: 90%;
+    background-color: var(--blanco);
+    margin: auto;
+
+  
+    
+  }
+  .order-th {
+    color: var(--marron);
+  }
+
+  #order-th-1 {
+    width: 10%;
+  }
+
+  #order-th-2 {
+    width: 20%;
+  }
+  #order-th-3 {
+    width: 20%;
+  }
+  #order-th-4 {
+    width: 30%;
+  }
+  #order-th-5 {
+    width: 20%;
+  }
+
+  .button-action {
+    background-color: var(--amarillo);
+    color: var(--blanco);
+    font-weight: bold;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+  }

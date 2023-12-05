@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Login from './components/Login/Login';
 import NewOrder from './components/Waiter/NewOrder';
 import Orders from './components/Chef/ChefOrders';
+import OrderList from './components/Waiter/OrderList';
 
 const ProtectedRoute = ({ element, allowedRoles }: any) => {
   const userRole = localStorage.getItem('userRole');
@@ -25,6 +26,10 @@ function App() {
         <Route
           path="/chef/orders"
           element={<ProtectedRoute element={<Orders />} allowedRoles={['Chef']} />}
+        />
+        <Route
+          path="/waiter/OrderList"
+          element={<ProtectedRoute element={<OrderList />} allowedRoles={['Mesero']} />}
         />
       </Routes>
     </Router>
