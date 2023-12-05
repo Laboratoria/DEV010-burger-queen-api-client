@@ -3,6 +3,7 @@ import Header from "../Header/Header";
 import { Orders, Product } from "../../types/Types";
 import { updateOrder } from "../../services/request";
 import getAllOrders from "../../services/GetAllOrders";
+import Swal from "sweetalert2";
 //import getAllOrders from '../Orders/getAllOrders';
 
 
@@ -27,9 +28,11 @@ const ChefOrders: React.FC = () => {
       ));
 
       // Actualiza la orden en la base de datos
-      await updateOrder(orderId, 'Por entregar', formattedFinalDate);
+      await updateOrder(orderId, 'Por entregar', formattedFinalDate).then(() => {
+        Swal.fire({ text: 'Orden finalizada exitosamente', icon: 'success' })
+      })
       //Actualiza el estado de las órdenes pendientes
-      setPendingOrders(pendingOrders.filter((order: Orders) => order.id !== orderId));
+      setPendingOrders(pendingOrders.filter((order: Orders) => order.id !== orderId))
       console.log(orders)
     } catch (error) {
       console.error("Error al actualizar el estado de la orden", error);

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import getAllOrders from "../../services/GetAllOrders";
 import { Orders } from "../../types/Types";
 import { updateFinalizedOrder } from "../../services/request";
+import Swal from "sweetalert2";
 
 //Componente para renderizar las órdenes en la vista del Mesero
 const OrderList = () => {
@@ -17,7 +18,10 @@ const OrderList = () => {
     setOrders(prevOrders => prevOrders.map(prevOrder =>
       prevOrder.id === order.id ? { ...prevOrder, status: 'Entregado' } : prevOrder
     ));
-    await updateFinalizedOrder(order.id, 'Entregado');
+    await updateFinalizedOrder(order.id, 'Entregado')
+    .then(() => {
+      Swal.fire({ text: 'Orden entregada exitosamente', icon: 'success' })
+    })
   }
 
   useEffect(() => {
