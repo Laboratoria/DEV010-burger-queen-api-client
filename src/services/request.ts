@@ -1,9 +1,6 @@
 import { Token } from "../types/Types";
-
-const url_ = 'https://burger-queen-api-mock-gamma.vercel.app'
-
 export const auth = async (email: string, password: string): Promise<Token> => {
-  const response = await fetch(`${url_}/login`, {
+  const response = await fetch('http://localhost:8080/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -14,14 +11,11 @@ export const auth = async (email: string, password: string): Promise<Token> => {
       password: password,
     }),
   })
-
   const data: Token = await response.json();
   return data;
-
 };
-
 export const getProducts = (token: string) => {
-  return fetch(`${url_}/products`, {
+  return fetch('http://localhost:8080/products', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -30,27 +24,24 @@ export const getProducts = (token: string) => {
     },
   })
 }
-
 export const createOrder = async (order: object) => {
   console.log({ order })
   const orderWithStatus = { ...order, status: 'Pendiente' };
-  const response = await fetch(`${url_}/orders`, {
+  const response = await fetch('http://localhost:8080/orders', {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${localStorage.getItem('token')}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify(orderWithStatus),  });
-
   if (response.status === 201) {
     return await response.json();
   } else {
     throw new Error('No se pudo crear el producto');
   }
 };
-
 export const getOrders = (token: string) => {
-  return fetch(`${url_}/orders`, {
+  return fetch('http://localhost:8080/orders', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -59,22 +50,19 @@ export const getOrders = (token: string) => {
     },
   });
 };
-
 export const updateOrder = async (orderId: number, newStatus: string, dateFinal: string) => {
   try {
-    const response = await fetch( `${url_}/orders/${orderId}`, {
+    const response = await fetch(`http://localhost:8080/orders/${orderId}`, {
       method: 'PATCH',
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ 
+      body: JSON.stringify({
         status: newStatus,
         dateFinal: dateFinal,
-       
       }),
     });
-
     if (response.status === 200) {
       return await response.json();
     } else if (response.status === 401) {
@@ -91,21 +79,18 @@ export const updateOrder = async (orderId: number, newStatus: string, dateFinal:
     throw error;
   }
 };
-
 export const updateFinalizedOrder = async (orderId: number, newStatus: string) => {
   try {
-    const response = await fetch(`${url_}/orders/${orderId}`, {
+    const response = await fetch(`http://localhost:8080/orders/${orderId}`, {
       method: 'PATCH',
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ 
+      body: JSON.stringify({
         status: newStatus,
-           
       }),
     });
-
     if (response.status === 200) {
       return await response.json();
     } else if (response.status === 401) {
