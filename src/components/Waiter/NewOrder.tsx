@@ -80,6 +80,7 @@ const NewOrder = () => {
 
       if (existingProductIndex !== -1) {
         const updatedProducts = [...prevSelectedProducts];
+        //Obtenemos una referencia del producto con su índice en la nueva copia
         const existingProduct = updatedProducts[existingProductIndex];
         // Aumentar la cantidad
         updatedProducts[existingProductIndex] = {

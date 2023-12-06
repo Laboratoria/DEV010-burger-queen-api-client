@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import { Orders, Product } from "../../types/Types";
 import { updateOrder } from "../../services/request";
-import getAllOrders from "../../services/GetAllOrders";
+import getAllOrders from "../../services/getAllOrders";
 import Swal from "sweetalert2";
 //import getAllOrders from '../Orders/getAllOrders';
 
