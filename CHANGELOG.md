@@ -1,3 +1,22 @@
+<1.0.2> - <2023-12-06>
+
+
+## Sprint learnings
+
+Despliegue de API
+Test unitarios
+
+## Added
+
+Vista Todos los Pedidos
+
+Estilos nueva vista 
+
+Funcionalidad botón Finalizar de las ordenes
+
+Test unitarios Historia 3
+
+
 <1.0.2> - <2023-11-29>
 
 
