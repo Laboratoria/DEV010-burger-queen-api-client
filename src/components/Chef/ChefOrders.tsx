@@ -121,12 +121,8 @@ const ChefOrders: React.FC = () => {
 
                 <button
                   className="finalice-order"
-                  //Al hacer click cambia el estado de las ordenes con el status Por entregar, además llama a la función finalizeOrder y deshabilita el botón
+                  //Al hacer click llama a la función finalizeOrder y deshabilita el botón
                   onClick={() => {
-
-                    /*  setOrders(prevOrders => prevOrders.map(prevOrder =>
-                       prevOrder.id === order.id ? { ...prevOrder, status: 'Por entregar' } : prevOrder
-                     )); */
 
                     finalizeOrder(order.id);
                   }}

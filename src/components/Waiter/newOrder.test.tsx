@@ -4,6 +4,7 @@ import NewOrder from './NewOrder';
 //import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { createOrder } from '../../services/request';
+import { MemoryRouter } from 'react-router-dom';
 //import ProductList from './ProductList';
 
 jest.mock('react-router-dom', () => ({
@@ -49,7 +50,7 @@ describe('NewOrder component', () => {
     localStorage.setItem('token', 'token')
   })
   it('should show Enviar pedido button ', () => {
-    render(<NewOrder />);
+    render(<MemoryRouter><NewOrder /></MemoryRouter>);
     expect(screen.getByText('Enviar pedido')).toBeInTheDocument();
   });
 
@@ -77,7 +78,7 @@ describe('NewOrder component', () => {
     })*/
     //key in localStorage ? localStorage[key] : null
 
-    render(<NewOrder />);
+    render(<MemoryRouter><NewOrder /></MemoryRouter>);
 
 
 
@@ -114,7 +115,7 @@ describe('NewOrder component', () => {
   });
 
   it('should not call createOrder when items are subtracted from the list of products', async () => {
-    render(<NewOrder />);
+    render(<MemoryRouter><NewOrder /></MemoryRouter>);
     // Simula las entradas del usuario
     fireEvent.change(screen.getByTestId('table'), { target: { value: 'Mesa 1' } });
     fireEvent.change(screen.getByPlaceholderText('Nombre del cliente'), { target: { value: 'Maria' } });
@@ -138,7 +139,7 @@ describe('NewOrder component', () => {
   })
 
   it('should show a message that the table input is empty', async () => {
-    render(<NewOrder />);
+    render(<MemoryRouter><NewOrder /></MemoryRouter>);
     // Simula las entradas del usuario
     fireEvent.change(screen.getByTestId('table'), { target: { value: '' } });
     fireEvent.change(screen.getByPlaceholderText('Nombre del cliente'), { target: { value: 'Maria' } });
@@ -158,7 +159,7 @@ describe('NewOrder component', () => {
 
 
   it('should show a message that the name input is empty', async () => {
-    render(<NewOrder />);
+    render(<MemoryRouter><NewOrder /></MemoryRouter>);
     // Simula las entradas del usuario
     fireEvent.change(screen.getByTestId('table'), { target: { value: 'Mesa 1' } });
     fireEvent.change(screen.getByPlaceholderText('Nombre del cliente'), { target: { value: '' } });
@@ -176,7 +177,7 @@ describe('NewOrder component', () => {
   });
 
   it('should substract an item when clicking the subtract bottom', async () => {
-    render(<NewOrder />);
+    render(<MemoryRouter><NewOrder /></MemoryRouter>);
 
     fireEvent.change(screen.getByTestId('table'), { target: { value: 'Mesa 1' } });
     fireEvent.change(screen.getByPlaceholderText('Nombre del cliente'), { target: { value: 'Maria' } });
