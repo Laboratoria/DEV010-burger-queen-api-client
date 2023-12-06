@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Header from "../Header/Header"
 import { useEffect, useState } from "react";
-import getAllOrders from "../../services/getAllOrders";
+import getAllOrders from "../../services/GetAllOrders";
 import { Orders } from "../../types/Types"; 
 import { updateFinalizedOrder } from "../../services/request";
 import Swal from "sweetalert2";
