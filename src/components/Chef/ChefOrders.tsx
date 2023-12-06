@@ -131,7 +131,7 @@ const ChefOrders: React.FC = () => {
                   Finalizar
                 </button>
 
-                {order.status === 'Por entregar' && (
+                {(order.status === 'Por entregar' || order.status === 'Entregado') && (
                   <p data-testid='total-time' className="total-time"> Tiempo: {calculateTime(order.dateEntry, order.dateFinal)}</p>
                 )}
               </section>
