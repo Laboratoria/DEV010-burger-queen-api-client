@@ -298,7 +298,12 @@
 <a name='L233'></a><a href='#L233'>233</a>
 <a name='L234'></a><a href='#L234'>234</a>
 <a name='L235'></a><a href='#L235'>235</a>
-<a name='L236'></a><a href='#L236'>236</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L236'></a><a href='#L236'>236</a>
+<a name='L237'></a><a href='#L237'>237</a>
+<a name='L238'></a><a href='#L238'>238</a>
+<a name='L239'></a><a href='#L239'>239</a>
+<a name='L240'></a><a href='#L240'>240</a>
+<a name='L241'></a><a href='#L241'>241</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -322,6 +327,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">18x</span>
@@ -419,6 +426,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -445,6 +453,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -533,7 +543,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import { useNavigate } from 'react-router-dom';
+<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../../assets/burger-queen-logo.png';
 import LogOut from '../../assets/log-out.png';
 import Profile from '../../assets/profile.png';
@@ -557,6 +567,8 @@ const NewOrder = () =&gt; {
 &nbsp;
   //Se declara una constante para el useNavigate
   const navigate = useNavigate();
+&nbsp;
+&nbsp;
 &nbsp;
   //Función para manejar si se ha iniciado sesión, si no hay token, se debe navegar al login
   const handleLoggedSession = <span class="fstat-no" title="function not covered" >() =</span>&gt; {
@@ -606,7 +618,7 @@ const NewOrder = () =&gt; {
     }
   }, []);
 &nbsp;
-//Función que maneja la adición de productos
+  //Función que maneja la adición de productos
   const handleAddProduct = (product: Product) =&gt; {
     setSelectedProducts((prevSelectedProducts) =&gt; {
       const existingProductIndex = prevSelectedProducts.findIndex(<span class="fstat-no" title="function not covered" >(p</span>) =&gt; <span class="cstat-no" title="statement not covered" >p.id === product.id)</span>;
@@ -639,7 +651,7 @@ const NewOrder = () =&gt; {
     });
   };
 &nbsp;
-//Configuramos como queremos que se muestre la hora del pedido
+  //Configuramos como queremos que se muestre la hora del pedido
   const date = new Date();
   const formattedTime = date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' });
 &nbsp;
@@ -655,6 +667,7 @@ const NewOrder = () =&gt; {
   const saveOrder = (e: { preventDefault: () =&gt; void }) =&gt; {
     e.preventDefault();
 &nbsp;
+&nbsp;
     if (dataOrder.client == '') {
       Swal.fire({ text: 'Ingrese nombre de cliente', icon: 'warning' })
       return
@@ -667,7 +680,7 @@ const NewOrder = () =&gt; {
       Swal.fire({ text: 'Pedido vacío', icon: 'warning' })
       return
     }
-//Acá llamamos a la función que hace la petición tipo Post a la API para crear la orden
+    //Acá llamamos a la función que hace la petición tipo Post a la API para crear la orden
     createOrder(dataOrder).then(() =&gt; {
       Swal.fire({ text: 'Orden creada exitosamente', icon: 'success' })
     })
@@ -695,7 +708,9 @@ const NewOrder = () =&gt; {
         &lt;/section&gt;
       &lt;/section&gt;
       &lt;section className="orderSection"&gt;
-        &lt;button className="allOrdersButton"&gt; Ver todos los pedidos &lt;/button&gt;
+        &lt;Link to={'/waiter/OrderList'}&gt;
+          &lt;button className="allOrdersButton"&gt; Ver todos los pedidos &lt;/button&gt;
+        &lt;/Link&gt;
       &lt;/section&gt;
       &lt;section className="dashboardSection"&gt;
         &lt;section className="menuSection"&gt;
@@ -775,7 +790,7 @@ export default NewOrder;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-12-04T14:31:48.419Z
+                at 2023-12-06T12:29:00.796Z
             </div>
         <script src="../prettify.js"></script>
         <script>

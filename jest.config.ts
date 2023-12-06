@@ -44,6 +44,7 @@ const config: Config = {
     '\\.(jpg|jpeg|png|gif|webp|svg|html)$',
    ],
 
+
 };
 
 export default config;
