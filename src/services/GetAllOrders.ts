@@ -31,4 +31,5 @@ import { Orders } from "../types/Types";
       }
     });
   };
+  
   export default getAllOrders;
