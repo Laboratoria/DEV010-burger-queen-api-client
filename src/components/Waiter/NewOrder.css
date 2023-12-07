@@ -2,7 +2,7 @@
   background-image: url('../../assets/background.png');
   background-size: cover;
   margin: 0;
-  height: 964px;
+  min-height: 100vh;
   width: auto;
   padding: 30px;
   /* display: flex;
@@ -58,11 +58,26 @@
 .orderSection {
   display: flex;
   justify-content: end;
+  margin-bottom: 20px;
+}
+
+@media(min-width: 1500px) {
+  .orderSection {
+    margin-right: 50px;
+    margin-bottom: 20px;
+  }
+}
+
+@media(min-width: 1000px) {
+  .orderSection {
+    margin-right: 30px;
+    margin-bottom: 20px;
+  }
 }
 .dashboardSection {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 .menuSection {
   display: flex;
@@ -75,6 +90,18 @@
   padding: 10px;
 /*   overflow-y: auto; /* Permite el desplazamiento vertical */
 
+}
+
+@media(min-width: 1000px) {
+  .menuSection {
+    width: 400px;
+  }
+}
+@media(min-width: 1500px) {
+  .menuSection {
+    width: 600px;
+    height: 600px
+  }
 }
 .selectSection {
   display: flex;
@@ -134,6 +161,12 @@ option {
  
 }
 
+@media(min-width:1500px) {
+  .cards {
+    grid-template-columns: auto auto auto auto;
+  }
+}
+
 .product-img {
   height: 80px;
   width: 80px;
@@ -167,7 +200,16 @@ option {
 }
 .foodSection {
   overflow-y: auto; /* Permite el desplazamiento vertical */
-  height: 590px;
+  height: 550px;
+  overflow-x: hidden;
+
+}
+
+@media(min-width: 1500px) {
+  .foodSection {
+height: 400px;
+overflow-x: hidden;
+  }
 }
 
 .orderInfoSection {
@@ -185,17 +227,35 @@ option {
   text-align: center;
 }
 
+@media(min-width: 1000px) {
+  .orderInfoSection {
+    width: 400px;
+  }
+}
+
+@media(min-width: 1500px) {
+  .orderInfoSection {
+    width: 600px;
+    height: 600px;
+  }
+}
+
 h3 {
   font-size: 25px;
-  margin: 10px
+  margin: 10px 0 15px 0;
 }
 
 table {
-   table-layout: auto;
+  table-layout: auto;
   width: 320px;
   font-size: 20px;
 }
 
+@media(min-width: 1500px) {
+  .table-order-waiter {
+    width: 550px;
+  }
+}
 .sendOrderButton {
   /* Puedes ajustar el valor según sea necesario */
   background-color: var(--rojo);
@@ -268,4 +328,40 @@ td {
  
   margin-bottom: 20px;/* Cambiado de height a min-height */
   /* Otros estilos... */
+}
+
+body::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+}
+body::-webkit-scrollbar-track {
+  background: var(--blanco);        /* color of the tracking area */
+}
+body::-webkit-scrollbar-thumb {
+  background-color: var(--marron);    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 3px solid var(--blanco);  /* creates padding around scroll thumb */
+}
+
+.foodSection::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+}
+.foodSection::-webkit-scrollbar-track {
+  background: var(--blanco);        /* color of the tracking area */
+}
+.foodSection::-webkit-scrollbar-thumb {
+  background-color: var(--marron);    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 3px solid var(--blanco);  /* creates padding around scroll thumb */
+}
+
+.orderInfoSection::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+}
+.orderInfoSection::-webkit-scrollbar-track {
+  background: none;        /* color of the tracking area */
+}
+.orderInfoSection::-webkit-scrollbar-thumb {
+  background-color: var(--marron);    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 3px solid var(--amarillo);  /* creates padding around scroll thumb */
 }

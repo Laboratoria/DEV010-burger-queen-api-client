@@ -1,0 +1,44 @@
+.headerSection {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  @media(min-width: 1000px) {
+    .headerSection {
+      margin: 0 50px 0 50px;
+    }
+  }
+  
+  .headerButton {
+    background-color: transparent;
+    border: none;
+    width: 60px;
+    height: 60px;
+  }
+  .button-img {
+    width: 45px;
+    height: 45px;
+  }
+  .buttonHeader {
+    width: 150px;
+    display: flex;
+    flex-direction: row;
+  }
+  #profile-button{
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--marron);
+    font-size: 20px;
+    margin-right: 10px;
+  }
+  #profileImg {
+    margin-left: 10px;
+  }
+  #logo-Header{
+    width: 150px;
+    height: 150px;
+  }
