@@ -200,7 +200,7 @@ const NewOrder = () => {
 
 
             <h3> Pedido </h3>
-            <table>
+            <table className='table-order-waiter'>
               <thead>
                 <tr>
                   <th> Producto </th>

@@ -3,7 +3,8 @@
     background-image: url('../../assets/background.png');
     background-size: cover;
     margin: 0;
-    height: auto;
+    min-height: 100vh;
+    max-height: 200vh;
     width: auto;
     padding: 30px;
     /* display: flex;
@@ -13,11 +14,37 @@
   
   .orders-section {
   display: grid;
+  justify-content: center;
   grid-template-columns: auto auto auto;
   margin-top: 30px;
   overflow-y: auto;
   
   }
+
+  @media(min-width: 1000px) {
+    .orders-section {
+      grid-template-columns: auto auto auto auto;
+    }
+  }
+
+  @media(min-width: 1350px) {
+    .orders-section {
+      grid-template-columns: auto auto auto auto auto;
+    }
+  }
+
+  @media(min-width: 1500px) {
+    .orders-section {
+      grid-template-columns: auto auto auto auto auto auto;
+    }
+  }
+
+  @media(min-width: 1700px) {
+    .orders-section {
+      grid-template-columns: auto auto auto auto auto auto auto;
+    }
+  }
+
   .orderCard-section {
   display: flex;
   flex-direction: column;
