@@ -124,7 +124,7 @@ const ChefOrders: React.FC = () => {
                   className="finalice-order"
                   //Al hacer click llama a la función finalizeOrder y deshabilita el botón
                   onClick={() => {
-
+                    console.log('boton')
                     finalizeOrder(order.id);
                   }}
                   disabled={order.status === 'Por entregar' || order.status === 'Entregado'}
