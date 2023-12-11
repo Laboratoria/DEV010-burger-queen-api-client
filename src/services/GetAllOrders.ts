@@ -13,22 +13,21 @@ import { Orders } from "../types/Types";
             console.log('Response:', response);
             if (response.ok) {
               return response.json();
-            } else {
-              reject("Error al obtener las órdenes");
             }
           })
           .then((data) => {
             // Devolvemos las órdenes
             resolve(data);
           })
-          .catch((error) => {
-            console.error("Ocurrió un error al tratar de obtener las órdenes", error);
+          .catch(() => {
+            //console.error("Ocurrió un error al tratar de obtener las órdenes", error);
             reject("Error al obtener las órdenes");
           });
-      } else {
-        console.error("No se encontró el token");
-        reject("Token no válido");
-      }
+       } 
+      //else {
+      //   console.error("No se encontró el token");
+      //   reject("Token no válido");
+      // }
     });
   };
   export default getAllOrders;
