@@ -63,6 +63,7 @@ describe('ChefOrders component', () => {
     await waitFor(() => expect(updateOrder).toHaveBeenCalledTimes(1));
     // Esperar hasta que se muestre el elemento con data-testid 'total-time'
     /* const timeElement = await screen.findByTestId('total-time');
+
     // Realizar las aserciones
     expect(timeElement.textContent).toBe('Tiempo: 0 horas y 15 minutos'); */
   });
