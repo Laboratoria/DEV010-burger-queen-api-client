@@ -2,12 +2,10 @@ import ChefOrders from "./ChefOrders";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { updateOrder } from "../../services/request";
 import '@testing-library/jest-dom';
-
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useNavigate: jest.fn(),
 }));
-
 jest.mock('../../services/request', () => ({
   getOrders: jest.fn(() => Promise.resolve(
     {
@@ -35,37 +33,26 @@ jest.mock('../../services/request', () => ({
         }],
       )
     }
-
   )),
   updateOrder: jest.fn(() => Promise.resolve()),
 }));
-
-
-
-
-
 describe('ChefOrders component', () => {
   beforeAll(() => {
     localStorage.setItem('token', 'token')
   })
   it('should show Finalizar Button', async () => {
     render(<ChefOrders />)
-
     await waitFor(() => {
       expect(screen.getByText('Finalizar')).toBeInTheDocument();
-
     })
-
   });
   it('should change the status to Por entregar and disables the button', async () => {
     render(<ChefOrders />);
-
     // Esperar hasta que se muestre el botón 'Finalizar'
     await waitFor(() => {
       expect(screen.getByText('Finalizar')).toBeInTheDocument();
       
     });
-
     // Esperar hasta que se haga clic en el botón 'Finalizar'
     //fireEvent.click(screen.getByText('Finalizar'));
     const button = screen.getByRole('button', { name: 'Finalizar' })
@@ -73,18 +60,11 @@ describe('ChefOrders component', () => {
     
     fireEvent.click(button)
     //console.log(document.body.innerHTML);
-
-
     await waitFor(() => expect(updateOrder).toHaveBeenCalledTimes(1));
-
     // Esperar hasta que se muestre el elemento con data-testid 'total-time'
     /* const timeElement = await screen.findByTestId('total-time');
 
     // Realizar las aserciones
     expect(timeElement.textContent).toBe('Tiempo: 0 horas y 15 minutos'); */
   });
-
-
-
-
 })
