@@ -1,6 +1,6 @@
 import { Token } from "../types/Types";
 
-const url_ = 'https://bq-api-mock-e6uc.onrender.com'
+const url_ = 'https://bq-api-mock-e6uc.onrender.com' 
 
 export const auth = async (email: string, password: string): Promise<Token> => {
   const response = await fetch(`${url_}/login`, {
