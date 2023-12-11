@@ -39,3 +39,11 @@ export type Orders ={
   id: number;
   status:  string;
 }
+
+export type Workers = {
+  name: string,
+  email: string,
+  role: string,
+  id: number
+
+    }

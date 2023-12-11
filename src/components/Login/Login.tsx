@@ -24,7 +24,8 @@ const Login = () => {
         navigate("/waiter/newOrder");
       } else if (response.user.role === 'Chef') {
         navigate("/chef/orders");
-      }
+      } else if (response.user.role === 'Admin') {
+      navigate("/admin/workerList");
     } else {
 
       console.log(response);
@@ -47,7 +48,7 @@ const Login = () => {
       setPassword("")
     }
   }
-
+  };
   return (
     <section className='login-section'>
       <section className='login-container'>
