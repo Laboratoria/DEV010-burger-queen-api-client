@@ -4,7 +4,7 @@ import { Orders, Product } from "../../types/Types";
 import { updateOrder } from "../../services/request";
 
 import Swal from "sweetalert2";
-import getAllOrders from "../../services/GetAllOrders";
+import getAllOrders from "../../services/getAllOrders";
 //import getAllOrders from '../Orders/getAllOrders';
 
 
