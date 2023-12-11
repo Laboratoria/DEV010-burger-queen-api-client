@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import { Orders, Product } from "../../types/Types";
 import { updateOrder } from "../../services/request";
-import getAllOrders from "../../services/getAllOrders";
+
 import Swal from "sweetalert2";
+import getAllOrders from "../../services/GetAllOrders";
 //import getAllOrders from '../Orders/getAllOrders';
 
 
@@ -123,15 +124,16 @@ const ChefOrders: React.FC = () => {
                   className="finalice-order"
                   //Al hacer click llama a la función finalizeOrder y deshabilita el botón
                   onClick={() => {
-
+                    console.log('boton')
                     finalizeOrder(order.id);
                   }}
                   disabled={order.status === 'Por entregar' || order.status === 'Entregado'}
                 >
                   Finalizar
                 </button>
+                
 
-                {order.status === 'Por entregar' && (
+                {(order.status === 'Por entregar' || order.status === 'Entregado') && (
                   <p data-testid='total-time' className="total-time"> Tiempo: {calculateTime(order.dateEntry, order.dateFinal)}</p>
                 )}
               </section>
