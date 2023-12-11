@@ -3,6 +3,7 @@ import Login from './components/Login/Login';
 import NewOrder from './components/Waiter/NewOrder';
 import ChefOrders from './components/Chef/ChefOrders';
 import OrderList from './components/Waiter/OrderList';
+import WorkerList from './components/Admin/WorkerList';
 
 const ProtectedRoute = ({ element, allowedRoles }: any) => {
   const userRole = localStorage.getItem('userRole');
@@ -28,9 +29,15 @@ function App() {
           element={<ProtectedRoute element={<ChefOrders />} allowedRoles={['Chef']} />}
         />
         <Route
-          path="/waiter/OrderList"
+          path="/waiter/orderList"
           element={<ProtectedRoute element={<OrderList />} allowedRoles={['Mesero']} />}
         />
+        <Route
+          path="/admin/workerList"
+          element={<ProtectedRoute element={<WorkerList />} allowedRoles={['Admin']} />}
+        />
+
+
       </Routes>
     </Router>
   );

@@ -41,7 +41,7 @@ const OrderList = () => {
     <section className="order-list">
       <Header />
       <section className="orderSection">
-        <Link to={'/waiter/NewOrder'}>
+        <Link to={'/waiter/newOrder'}>
           <button className="allOrdersButton"> Nuevo Pedido </button>
         </Link>
       </section>

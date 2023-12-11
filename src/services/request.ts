@@ -122,3 +122,14 @@ export const updateFinalizedOrder = async (orderId: number, newStatus: string) =
     throw error;
   }
 };
+
+export const getWorkers = (token: string) => {
+  return fetch(`${url_}/users`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept-Encoding': 'gzip, deflate, br',
+      'Authorization': `Bearer ${token}`
+    },
+  });
+};
