@@ -6,12 +6,19 @@
     "description": "La app sirve para ayudar a los trabajadores de un local de hamburguesas a tomar y ordenar pedidos",
     "lang": "es",
     "icons": [
-      {
-        "src": "/src/assets/burger-queen-logo.png",
-        "sizes": "512x512",
-        "type": "image/png"
-      }
-    ],
+        {
+          "src": "/src/assets/burger-queen-logo.png",
+          "sizes": "512x512",
+          "type": "image/png"
+        },
+        {
+          "src": "/src/assets/burger-queen-maskable-icon.png",
+          "sizes": "192x192",
+          "type": "image/png",
+          "purpose": "maskable"
+        }
+      ],
+      
     "theme_color": "#FEAE0D",
     "background_color": "#ffffff",
     "orientation": "portrait"
