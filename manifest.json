@@ -10,7 +10,13 @@
           "src": "/src/assets/burger-queen-logo.png",
           "sizes": "520x520",
           "type": "image/png"
-        }
+        },
+        {
+            "src": "src/assets/maskable_icon (1).png",
+            "sizes": "196x196",
+            "type": "image/png",
+            "purpose": "any maskable"
+          }
     
       ],
       
