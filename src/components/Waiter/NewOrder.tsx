@@ -73,6 +73,10 @@ const NewOrder = () => {
     }
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem('selectedProducts', JSON.stringify(selectedProducts));
+  }, [selectedProducts]);
+
   //Función que maneja la adición de productos
   const handleAddProduct = (product: Product) => {
     setSelectedProducts((prevSelectedProducts) => {
