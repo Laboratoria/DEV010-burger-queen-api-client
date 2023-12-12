@@ -4,5 +4,13 @@
   "start_url": "https://burger-queen-nine.vercel.app",
   "display": "browser",
   "description": "La app sirve para ayudar a los trabajadores de un local de hamburguesas a tomar y ordenar pedidos",
-  "lang": "es"
+  "lang": "es",
+  "icons": [
+    {
+      "src": "/src/assets/burger-queen-logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#FEAE0D"
 }
