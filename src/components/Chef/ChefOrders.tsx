@@ -50,8 +50,7 @@ const ChefOrders: React.FC = () => {
             !order.status ? { ...order, status: 'Pendiente' } : order
           );
           setOrders(updatedOrders);
-          localStorage.setItem("orders", JSON.stringify(updatedOrders));
-
+          
         }
       } catch (error) {
         console.error("Error al obtener las órdenes:", error);

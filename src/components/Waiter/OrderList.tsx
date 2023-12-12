@@ -28,7 +28,7 @@ const OrderList = () => {
         if (token) {
           const orderData = await getAllOrders(token);
           setOrders(orderData);
-          localStorage.setItem("orders", JSON.stringify(orderData));
+          
         }
       } catch (error) {
         console.error("Error al obtener las órdenes:", error);
