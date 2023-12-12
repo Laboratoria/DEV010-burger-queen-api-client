@@ -1,5 +1,5 @@
 {
-    "name": "BurgerQueen",
+    "name": "Burger Queen",
     "short_name": "BQ",
     "start_url": "https://burger-queen-nine.vercel.app",
     "display": "standalone",
@@ -7,7 +7,7 @@
     "lang": "es",
     "icons": [
       {
-        "src": "/src/assets/burger-queen-logo.png",
+        "src": "/public/burger-queen-logo.png",
         "sizes": "520x520",
         "type": "image/png"
       },
