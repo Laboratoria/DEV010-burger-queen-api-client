@@ -1,19 +1,20 @@
 {
-    "name": "BurgerQueen",
-    "short_name": "BQ",
-    "start_url": "https://burger-queen-nine.vercel.app",
-    "display": "standalone",
-    "description": "La app sirve para ayudar a los trabajadores de un local de hamburguesas a tomar y ordenar pedidos",
-    "lang": "es",
-    "icons": [
-      {
-        "src": "/src/assets/burger-queen-logo.png",
-        "sizes": "512x512",
-        "type": "image/png"
-      }
-    ],
-    "theme_color": "#FEAE0D",
-    "background_color": "#ffffff",
-    "orientation": "portrait"
-  }
-  
+  "name": "BurgerQueen",
+  "short_name": "BQ",
+  "start_url": "https://burger-queen-nine.vercel.app",
+  "display": "standalone",
+  "description": "La app sirve para ayudar a los trabajadores de un local de hamburguesas a tomar y ordenar pedidos",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "/src/assets/burger-queen-logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+
+  "theme_color": "#FEAE0D",
+
+  "background_color": "#ffffff",
+  "orientation": "portrait"
+}
