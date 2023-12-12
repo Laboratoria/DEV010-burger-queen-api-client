@@ -1,135 +1,134 @@
 import { Token } from "../types/Types";
 
-const url_ = 'https://bq-api-mock-e6uc.onrender.com' 
+const url_ = "https://bq-api-mock-e6uc.onrender.com";
 
 export const auth = async (email: string, password: string): Promise<Token> => {
   const response = await fetch(`${url_}/login`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
-      'Accept-Encoding': 'gzip, deflate, br',
+      "Content-Type": "application/json",
+      "Accept-Encoding": "gzip, deflate, br",
     },
     body: JSON.stringify({
       email: email,
       password: password,
     }),
-  })
-
+  });
   const data: Token = await response.json();
   return data;
-
 };
 
 export const getProducts = (token: string) => {
   return fetch(`${url_}/products`, {
-    method: 'GET',
+    method: "GET",
     headers: {
-      'Content-Type': 'application/json',
-      'Accept-Encoding': 'gzip, deflate, br',
-      'Authorization': `Bearer ${token}`
+      "Content-Type": "application/json",
+      "Accept-Encoding": "gzip, deflate, br",
+      Authorization: `Bearer ${token}`,
     },
-  })
-}
+  });
+};
 
 export const createOrder = async (order: object) => {
-  console.log({ order })
-  const orderWithStatus = { ...order, status: 'Pendiente' };
+  console.log({ order });
+  const orderWithStatus = { ...order, status: "Pendiente" };
   const response = await fetch(`${url_}/orders`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(orderWithStatus),  });
-
+    body: JSON.stringify(orderWithStatus),
+  });
   if (response.status === 201) {
     return await response.json();
   } else {
-    throw new Error('No se pudo crear el producto');
+    throw new Error("No se pudo crear el producto");
   }
 };
 
 export const getOrders = (token: string) => {
   return fetch(`${url_}/orders`, {
-    method: 'GET',
+    method: "GET",
     headers: {
-      'Content-Type': 'application/json',
-      'Accept-Encoding': 'gzip, deflate, br',
-      'Authorization': `Bearer ${token}`
+      "Content-Type": "application/json",
+      "Accept-Encoding": "gzip, deflate, br",
+      Authorization: `Bearer ${token}`,
     },
   });
 };
 
-export const updateOrder = async (orderId: number, newStatus: string, dateFinal: string) => {
+export const updateOrder = async (
+  orderId: number,
+  newStatus: string,
+  dateFinal: string
+) => {
   try {
-    const response = await fetch( `${url_}/orders/${orderId}`, {
-      method: 'PATCH',
+    const response = await fetch(`${url_}/orders/${orderId}`, {
+      method: "PATCH",
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`,
-        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ 
+      body: JSON.stringify({
         status: newStatus,
         dateFinal: dateFinal,
-       
       }),
     });
 
     if (response.status === 200) {
       return await response.json();
     } else if (response.status === 401) {
-      // Maneja el caso de token no válido aquí
-      throw new Error('Token inválido, inicie sesión nuevamente');
+      throw new Error("Token inválido, inicie sesión nuevamente");
     } else if (response.status === 404) {
-      throw new Error('Orden no encontrada');
+      throw new Error("Orden no encontrada");
     } else {
-      // Maneja otros códigos de estado aquí
-      throw new Error('Error al actualizar la orden');
+      throw new Error("Error al actualizar la orden");
     }
   } catch (error) {
-    console.error('Error al actualizar la orden:', error);
+    console.error("Error al actualizar la orden:", error);
     throw error;
   }
 };
 
-export const updateFinalizedOrder = async (orderId: number, newStatus: string) => {
+export const updateFinalizedOrder = async (
+  orderId: number,
+  newStatus: string
+) => {
   try {
     const response = await fetch(`${url_}/orders/${orderId}`, {
-      method: 'PATCH',
+      method: "PATCH",
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`,
-        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ 
+      body: JSON.stringify({
         status: newStatus,
-           
       }),
     });
 
     if (response.status === 200) {
       return await response.json();
     } else if (response.status === 401) {
-      // Maneja el caso de token no válido aquí
-      throw new Error('Token inválido, inicie sesión nuevamente');
+      throw new Error("Token inválido, inicie sesión nuevamente");
     } else if (response.status === 404) {
-      throw new Error('Orden no encontrada');
+      throw new Error("Orden no encontrada");
     } else {
-      // Maneja otros códigos de estado aquí
-      throw new Error('Error al actualizar la orden');
+      throw new Error("Error al actualizar la orden");
     }
   } catch (error) {
-    console.error('Error al actualizar la orden:', error);
+    console.error("Error al actualizar la orden:", error);
     throw error;
   }
 };
 
 export const getWorkers = (token: string) => {
   return fetch(`${url_}/users`, {
-    method: 'GET',
+    method: "GET",
     headers: {
-      'Content-Type': 'application/json',
-      'Accept-Encoding': 'gzip, deflate, br',
-      'Authorization': `Bearer ${token}`
+      "Content-Type": "application/json",
+      "Accept-Encoding": "gzip, deflate, br",
+      Authorization: `Bearer ${token}`,
     },
   });
 };
