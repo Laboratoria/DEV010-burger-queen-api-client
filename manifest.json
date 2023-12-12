@@ -8,19 +8,14 @@
     "icons": [
         {
           "src": "/src/assets/burger-queen-logo.png",
-          "sizes": "512x512",
+          "sizes": "520x520",
           "type": "image/png"
-        },
-        {
-          "src": "/src/assets/burger-queen-maskable-icon.png",
-          "sizes": "192x192",
-          "type": "image/png",
-          "purpose": "maskable"
         }
+    
       ],
       
-    "theme_color": "#FEAE0D",
-    "background_color": "#ffffff",
+    "theme_color": "#F5F5F5",
+    "background_color": "#FEAE0D",
     "orientation": "portrait"
   }
   
