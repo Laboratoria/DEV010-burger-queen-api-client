@@ -11,6 +11,7 @@ const WorkerList = () => {
   const [workers, setWorkers] = useState<Workers[]>([]);
 
   useEffect(() => {
+    // cuando el valor de token cambia, se llama a fetchWorkers
     const fetchWorkers = async () => {
       try {
         if (token) {
