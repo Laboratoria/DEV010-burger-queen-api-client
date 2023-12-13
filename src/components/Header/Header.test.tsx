@@ -40,22 +40,14 @@ describe('Header component', () => {
         <Header />
       </MemoryRouter>
     );
-
     // Esperar hasta que se haya renderizado el componente
     await waitFor(() => {});
-
     // Hacer clic en el botón de cerrar sesión
     fireEvent.click(screen.getByTestId('logOut-button'));
-
     // Verificar que localStorage.removeItem haya sido llamado al menos una vez
     expect(localStorageMock.removeItem).toHaveBeenCalled();
-
     // Verificar que useNavigate haya sido llamado con '/'
     expect(mockNavigate).toHaveBeenCalledWith('/');
-
-    // await waitFor(() => {
-    //     expect(screen.getByTestId('profile-button')).toHaveTextContent('');
-    //   });
   });
 
   it('should verify role', async () => {
@@ -65,9 +57,7 @@ describe('Header component', () => {
         <Header />
       </MemoryRouter>
     );
-    // Esperar hasta que se haya renderizado el componente
     await waitFor(() => {});
-    // Verificar que setUserRole haya sido llamado con el valor del localStorage
     expect(localStorageMock.getItem).toHaveBeenCalledWith('userRole');
     expect(localStorageMock.setItem).not.toHaveBeenCalled(); // Asegurarse de que no se haya llamado setItem en este caso
   })

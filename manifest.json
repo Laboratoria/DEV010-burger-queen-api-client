@@ -1,0 +1,24 @@
+{
+    "name": "Burger Queen",
+    "short_name": "BQ",
+    "start_url": "https://burger-queen-nine.vercel.app",
+    "display": "standalone",
+    "description": "La app sirve para ayudar a los trabajadores de un local de hamburguesas a tomar y ordenar pedidos",
+    "lang": "es-ES",
+    "icons": [
+      {
+        "src": "/public/burger-queen-logo.png",
+        "sizes": "520x520",
+        "type": "image/png"
+      },
+      {
+        "src": "/src/assets/maskable_icon.png",
+        "sizes": "196x196",
+        "type": "image/png",
+        "purpose": "any maskable"
+      }
+    ],
+    "theme_color": "#F5F5F5",
+    "background_color": "#FEAE0D",
+    "orientation": "portrait"
+  }
