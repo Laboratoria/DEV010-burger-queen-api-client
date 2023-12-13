@@ -3,7 +3,7 @@ import Header from "../Header/Header";
 import { Orders, Product } from "../../types/Types";
 import { updateOrder } from "../../services/request";
 import Swal from "sweetalert2";
-import getAllOrders from "../../services/GetAllOrders";
+import getAllOrders from "../../services/getAllOrders";
 
 const ChefOrders: React.FC = () => {
   const token = localStorage.getItem("token");
