@@ -1,5 +1,5 @@
 TN:
-SF:src/components/Chef/ChefOrders.tsx
+SF:src\components\Chef\ChefOrders.tsx
 FN:8,(anonymous_1)
 FN:14,(anonymous_2)
 FN:23,(anonymous_3)
@@ -96,7 +96,7 @@ BRF:10
 BRH:8
 end_of_record
 TN:
-SF:src/components/Header/Header.tsx
+SF:src\components\Header\Header.tsx
 FN:7,(anonymous_1)
 FN:9,(anonymous_2)
 FN:18,(anonymous_3)
@@ -129,7 +129,7 @@ BRF:1
 BRH:1
 end_of_record
 TN:
-SF:src/components/Login/Login.tsx
+SF:src\components\Login\Login.tsx
 FN:7,(anonymous_1)
 FN:14,userAuth
 FN:58,(anonymous_3)
@@ -200,7 +200,7 @@ BRF:17
 BRH:14
 end_of_record
 TN:
-SF:src/components/Waiter/NewOrder.tsx
+SF:src\components\Waiter\NewOrder.tsx
 FN:11,(anonymous_1)
 FN:25,(anonymous_2)
 FN:31,(anonymous_3)
@@ -327,7 +327,7 @@ BRF:16
 BRH:12
 end_of_record
 TN:
-SF:src/components/Waiter/OrderList.tsx
+SF:src\components\Waiter\OrderList.tsx
 FN:10,(anonymous_1)
 FN:15,(anonymous_2)
 FN:16,(anonymous_3)
@@ -390,7 +390,7 @@ BRF:5
 BRH:4
 end_of_record
 TN:
-SF:src/components/Waiter/ProductList.tsx
+SF:src\components\Waiter\ProductList.tsx
 FN:8,(anonymous_1)
 FN:20,(anonymous_2)
 FN:24,(anonymous_3)
@@ -455,7 +455,7 @@ BRF:9
 BRH:7
 end_of_record
 TN:
-SF:src/services/GetAllOrders.ts
+SF:src\services\GetAllOrders.ts
 FN:4,(anonymous_0)
 FN:5,(anonymous_1)
 FN:8,(anonymous_2)
