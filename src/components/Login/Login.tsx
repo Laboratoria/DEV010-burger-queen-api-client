@@ -25,24 +25,24 @@ const Login = () => {
         navigate("/chef/orders");
       } else if (response.user.role === "Admin") {
         navigate("/admin/workerList");
-      } else {
-        setError(true);
-        if (`${response}` === "Email and password are required") {
-          setErrorMessage("Ingrese email y contraseña");
-        } else if (`${response}` === "Incorrect password") {
-          setErrorMessage("Contraseña incorrecta");
-        } else if (`${response}` === "Cannot find user") {
-          setErrorMessage("Usuario no encontrado");
-        } else if (`${response}` === "Email format is invalid") {
-          setErrorMessage("Formato de email incorrecto");
-        } else {
-          setErrorMessage(
-            "Error durante la autenticación. Por favor, inténtalo de nuevo."
-          );
-        }
-        setEmail("");
-        setPassword("");
       }
+    } else {
+      setError(true);
+      if (`${response}` === "Email and password are required") {
+        setErrorMessage("Ingrese email y contraseña");
+      } else if (`${response}` === "Incorrect password") {
+        setErrorMessage("Contraseña incorrecta");
+      } else if (`${response}` === "Cannot find user") {
+        setErrorMessage("Usuario no encontrado");
+      } else if (`${response}` === "Email format is invalid") {
+        setErrorMessage("Formato de email incorrecto");
+      } else {
+        setErrorMessage(
+          "Error durante la autenticación. Por favor, inténtalo de nuevo."
+        );
+      }
+      setEmail("");
+      setPassword("");
     }
   }
 
