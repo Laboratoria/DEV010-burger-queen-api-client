@@ -59,20 +59,22 @@ const WorkerList = () => {
                   <td>{worker.email}</td>
                   <td>{worker.role}</td>
                   <td>
+                    <section className="tableButtons">
                     <button
                       className="worker-edit"
                       onClick={() => {
                       }}
                     >
-                      <img src={EditButton} alt="Editar trabajador" />
+                      <img src={EditButton} alt="Editar trabajador" className="imgButton"/>
                     </button>
                     <button
                       className="worker-delete"
                       onClick={() => {
                       }}
                     >
-                      <img src={DeleteButton} alt="Borrar trabajador" />
+                      <img src={DeleteButton} alt="Borrar trabajador" className="imgButton" />
                     </button>
+                    </section>
                   </td>
                 </tr>
               ))}
@@ -85,7 +87,8 @@ const WorkerList = () => {
             onClick={() => {
             }}
           >
-            <img src={AddWorker} alt="Agregar trabajador" />
+            <img src={AddWorker} alt="Agregar trabajador" className="imgButton"/>
+            Agregar trabajador
           </button>
         </section>
       </section>
