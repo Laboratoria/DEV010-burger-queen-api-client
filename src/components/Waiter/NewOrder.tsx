@@ -1,33 +1,23 @@
-import { Link, useNavigate } from "react-router-dom";
-import Logo from "../../assets/burger-queen-logo.png";
-import LogOut from "../../assets/log-out.png";
-import Profile from "../../assets/profile.png";
+import { Link } from "react-router-dom";
 import ProductList from "./ProductList";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { createOrder } from "../../services/request";
 import { Product } from "../../types/Types";
 import Swal from "sweetalert2";
+import Header from "../Header/Header";
 
 const NewOrder = () => {
   //Estado de los productos seleccionados
-  const [selectedProducts, setSelectedProducts] = useState<Product[]>([]); // Nuevo estado para los productos seleccionados
+  const [selectedProducts, setSelectedProducts] = useState<Product[]>([]);
   //Estado del input del nombre del cliente
   const [clientName, setClientName] = useState("");
   //Estado del select de mesa
   const [table, setTable] = useState("");
-  //Estado del Role
-  const [userRole, setUserRole] = useState("");
 
-  //Se declara una constante para el useNavigate
-  const navigate = useNavigate();
 
   //Función para manejar si se ha iniciado sesión, si no hay token, se debe navegar al login
-  const handleLoggedSession = () => {
-    localStorage.removeItem("token");
-    navigate("/");
-  };
 
-  //Función para manejar la sustracción de productos, recibe dos parámetros
+
   const handleSubtractProduct = (product: Product, remove?: boolean) => {
     //Actualiza el estado de selectedProducts y como argumento establece el estado anterior
     setSelectedProducts((prevSelectedProducts) => {
@@ -42,10 +32,9 @@ const NewOrder = () => {
         const existingProduct = updatedProducts[existingProductIndex];
         if (remove) {
           if (existingProduct.qty <= 1) {
-            // Eliminar el producto si la cantidad es menor o igual a 1
             updatedProducts.splice(existingProductIndex, 1);
           } else {
-            //De lo contrario se actualiza el producto con la cantidad y el precio total
+            //Si no, se actualiza el producto con la cantidad y el precio total
             updatedProducts[existingProductIndex] = {
               ...existingProduct,
               qty: existingProduct.qty - 1,
@@ -61,15 +50,6 @@ const NewOrder = () => {
     });
   };
 
-  useEffect(() => {
-    // Lee el rol desde localStorage y actualiza el estado
-    const role = localStorage.getItem("userRole");
-    if (role) {
-      setUserRole(role);
-    }
-  }, []);
-
-  //Función que maneja la adición de productos
   const handleAddProduct = (product: Product) => {
     setSelectedProducts((prevSelectedProducts) => {
       const existingProductIndex = prevSelectedProducts.findIndex(
@@ -142,22 +122,7 @@ const NewOrder = () => {
   };
   return (
     <section className="newOrder-Section">
-      <section className="headerSection">
-        <img className="logo-img" id="logo-Header" src={Logo} />
-        <section className="buttonHeader">
-          <button id="profile-button" className="headerButton">
-            {userRole}
-            <img className="button-img" id="profileImg" src={Profile} />
-          </button>
-          <button
-            data-testid="logOut-button"
-            className="headerButton"
-            onClick={handleLoggedSession}
-          >
-            <img className="button-img" id="logOutimg" src={LogOut} />
-          </button>
-        </section>
-      </section>
+      <Header />
       <section className="orderSection">
         <Link to={"/waiter/OrderList"}>
           <button className="allOrdersButton"> Ver todos los pedidos </button>
