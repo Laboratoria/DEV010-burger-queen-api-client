@@ -43,7 +43,7 @@ export const createOrder = async (order: object) => {
   if (response.status === 201) {
     return await response.json();
   } else {
-    throw new Error("No se pudo crear el producto");
+    throw new Error("No se pudo crear la orden");
   }
 };
 
@@ -132,3 +132,50 @@ export const getWorkers = (token: string) => {
     },
   });
 };
+
+
+export const createWorker = async (user: object) => {
+  console.log({ user });
+  const response = await fetch(`${url_}/users`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  });
+  if (response.status === 201) {
+    return await response.json();
+  } else {
+    throw new Error("No se pudo crear el usuario");
+  }
+};
+
+
+  export const updateWorker = async (user:object, id:number) => {
+    const response = await fetch(`${url_}/users/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user)
+    })
+    if (response.status == 200) {
+      return await response.json()
+    }
+  }
+
+  export const deleteUser = async (id:number) => {
+    const response = await fetch(`${url_}/users/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        "Content-Type": "application/json",
+      }
+    })
+    if (response.status == 200) {
+      return await response.json()
+    }
+  }
+

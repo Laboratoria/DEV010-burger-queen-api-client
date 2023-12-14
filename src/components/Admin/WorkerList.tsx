@@ -1,17 +1,22 @@
 import { useEffect, useState } from "react";
 import { Workers } from "../../types/Types";
-import { getWorkers } from "../../services/request";
 import Header from "../Header/Header";
 import EditButton from "../../assets/editar-button.png";
 import DeleteButton from "../../assets/delete-button.png";
 import AddWorker from "../../assets/add-worker-button.png";
+import { deleteUser, getWorkers } from "../../services/request";
+import { Modal } from "react-bootstrap";
+import WorkerAddModal from "./WorkerAddModal";
+import Swal from "sweetalert2";
+import WorkerEditModal from "./workerEditModal";
 
 const WorkerList = () => {
   const token = localStorage.getItem("token");
   const [workers, setWorkers] = useState<Workers[]>([]);
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
 
   useEffect(() => {
-    // cuando el valor de token cambia, se llama a fetchWorkers
     const fetchWorkers = async () => {
       try {
         if (token) {
@@ -25,6 +30,47 @@ const WorkerList = () => {
     };
     fetchWorkers();
   }, [token]);
+
+  const showAddModals = () => {
+    setShowAddModal(true);
+  };
+
+  const hideAddModal = () => {
+    setShowAddModal(false);
+  };
+
+  const showEditModals = () => {
+    setShowEditModal(true);
+  };
+
+  const hideEditModal = () => {
+    setShowEditModal(false);
+  };
+
+  const deleteWorker = (worker: Workers) => {
+    Swal.fire({
+      title: `Eliminar al usuario`,
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: "Sí",
+      denyButtonText: `No`,
+      customClass: {
+        confirmButton: "custom-button",
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteUser(worker.id).then(() => {
+          Swal.fire({
+            text: "Usuario eliminado exitosamente!",
+            icon: "success",
+          });
+          setWorkers((prevWorkers) =>
+            prevWorkers.filter((prevWorker) => prevWorker.id !== worker.id)
+          );
+        });
+      }
+    });
+  };
 
   return (
     <section className="worker-list">
@@ -61,20 +107,23 @@ const WorkerList = () => {
                   <td>{worker.role}</td>
                   <td>
                     <section className="tableButtons">
-                    <button
-                      className="worker-edit"
-                      onClick={() => {
-                      }}
-                    >
-                      <img src={EditButton} alt="Editar trabajador" className="imgButton"/>
-                    </button>
-                    <button
-                      className="worker-delete"
-                      onClick={() => {
-                      }}
-                    >
-                      <img src={DeleteButton} alt="Borrar trabajador" className="imgButton" />
-                    </button>
+                      <button className="worker-edit" onClick={showEditModals}>
+                        <img
+                          src={EditButton}
+                          alt="Editar trabajador"
+                          className="imgButton"
+                        />
+                      </button>
+                      <button
+                        className="worker-delete"
+                        onClick={() => deleteWorker(worker)}
+                      >
+                        <img
+                          src={DeleteButton}
+                          alt="Borrar trabajador"
+                          className="imgButton"
+                        />
+                      </button>
                     </section>
                   </td>
                 </tr>
@@ -83,16 +132,32 @@ const WorkerList = () => {
           </table>
         </section>
         <section className="add-button-section">
-          <button
-            className="worker-add"
-            onClick={() => {
-            }}
-          >
-            <img src={AddWorker} alt="Agregar trabajador" className="imgButton"/>
+          <button className="worker-add" onClick={showAddModals}>
+            <img
+              src={AddWorker}
+              alt="Agregar trabajador"
+              className="imgButton"
+            />
             Agregar trabajador
           </button>
         </section>
       </section>
+      <Modal
+        dialogClassName="custom-modal"
+        show={showAddModal}
+        onHide={hideAddModal}
+        variant="success"
+      >
+        <WorkerAddModal setWorkers={setWorkers} onHide={hideAddModal} />
+      </Modal>
+      <Modal
+        dialogClassName="custom-modal"
+        show={showEditModal}
+        onHide={hideEditModal}
+        variant="success"
+      >
+        <WorkerEditModal workers={workers} setWorkers={setWorkers} />
+      </Modal>
     </section>
   );
 };
