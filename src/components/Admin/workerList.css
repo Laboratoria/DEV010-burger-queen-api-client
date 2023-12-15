@@ -1,5 +1,3 @@
-
-
 .worker-list {
   background-image: url("../../assets/background.png");
   background-size: cover;
@@ -17,7 +15,7 @@
   padding: none;
   display: flex;
   background-color: var(--blanco);
-
+  margin-top: 20px;
   flex-direction: column;
   overflow-y: auto;
   justify-content: space-between;
@@ -109,13 +107,10 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
-
 }
-
 
 /* Estilos para centrar el modal */
 .worker-modal-container {
- 
   position: fixed;
   top: 0;
   left: 0;
@@ -131,8 +126,8 @@
 .worker-modal-content {
   border: 1px solid var(--marron);
   border-radius: 10px;
-  background-color: var(--blanco); 
-  color: var(--marron); 
+  background-color: var(--blanco);
+  color: var(--marron);
   font-weight: bold;
   padding: 20px;
   border-radius: 10px;
@@ -140,80 +135,75 @@
   width: 450px; /* Ajusta según sea necesario */
 }
 
-
 .form-select {
   width: 364px;
   border-radius: 10px;
   border: 1px solid var(--marron);
   margin: 8px 0;
   padding: 7px;
-  position: relative; /* Importante para posicionar las opciones */
+  position: relative;
 }
-option{
+option {
   width: 100%;
-  background-color:var(--blanco);
+  background-color: var(--blanco);
 }
-
 
 .input-modal {
   width: 350px;
   border-radius: 10px;
   margin: 8px 0;
-  
 }
 /* Estilos para el formulario dentro del modal
 .worker-edit-modal-form {
   width: 100%; /* O ajusta según sea necesario */
 
-  .close-button-modal {
-    position: relative;
-    right: -190px;
-    
-  }
+.close-button-modal {
+  position: relative;
+  right: -190px;
+}
 
-  .modal-title {
-    margin-bottom: 10px;
-  }
+.modal-title {
+  margin-bottom: 10px;
+}
 
-  .modal-header {
-    display: flex;
-    flex-direction: column-reverse;
-  }
+.modal-header {
+  display: flex;
+  flex-direction: column-reverse;
+}
 
-  .custom-close-button {
-    width: 25px; /* Ajusta según sea necesario */
-    height: 25px; /* Ajusta según sea necesario */
-    cursor: pointer;
-    padding: 0;
-    background: none;
-    border: none;
-   
-  }
+.custom-close-button {
+  width: 25px; /* Ajusta según sea necesario */
+  height: 25px; /* Ajusta según sea necesario */
+  cursor: pointer;
+  padding: 0;
+  background: none;
+  border: none;
+}
 
-  .close-img {
-    width: 25px; /* Ajusta según sea necesario */
-    height: 25px;
-  }
-  .modalHeader{
-    display: flex;
-    flex-direction: row;
-  }
-  .btn-close{
-    background-image: url('../../assets/x.png');
-    width: 25px;
-    height: 25px;
-    background-size: 25px;
-    border: none;
-    background-color: none;
-    transform: translate(150px);
-  }
-  .btn-success {
-    border: none;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: var(--amarillo);
-    color: var(--blanco);
-    font-size: 15px;
-    width: 140px;
-    margin-top: 20px;
-  }
+.close-img {
+  width: 25px; /* Ajusta según sea necesario */
+  height: 25px;
+}
+.modalHeader {
+  display: flex;
+  flex-direction: row;
+}
+.btn-close {
+  background-image: url("../../assets/x.png");
+  width: 25px;
+  height: 25px;
+  background-size: 25px;
+  border: none;
+  background-color: none;
+  transform: translate(150px);
+}
+.btn-success {
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--amarillo);
+  color: var(--blanco);
+  font-size: 15px;
+  width: 140px;
+  margin-top: 20px;
+}
