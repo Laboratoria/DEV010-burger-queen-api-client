@@ -1,29 +1,18 @@
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import { Button, Form, FormGroup, Modal } from "react-bootstrap";
 import { updateWorker } from "../../services/request";
 import Swal from "sweetalert2";
 import { Workers } from "../../types/Types";
 
 interface WorkerEditModalProps {
-  workers: Workers;
+  worker: Workers | null;
   setWorkers: React.Dispatch<React.SetStateAction<Workers[]>>;
 }
 
-const WorkerEditModal = ({
-  workers,
-  setWorkers,
-}: WorkerEditModalProps) => {
-  const [name, setName] = useState("");
-  const [role, setRole] = useState("");
-  const [email, setEmail] = useState("");
-
-  useEffect(() => {
-    if (workers) {
-      setName(workers.name);
-      setEmail(workers.email);
-      setRole(workers.role);
-    }
-  }, [workers]);
+const WorkerEditModal = ({ worker, setWorkers }: WorkerEditModalProps) => {
+  const [name, setName] = useState(worker ? worker.name : "");
+  const [role, setRole] = useState(worker ? worker.role : "");
+  const [email, setEmail] = useState(worker ? worker.email : "");
 
   const dataUser = {
     password: "123456", // Asegúrate de manejar esto de manera segura
@@ -35,10 +24,12 @@ const WorkerEditModal = ({
   const saveWorkerEdited = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      if (workers) {
+      if (worker) {
+        await updateWorker(dataUser, worker.id);
+
         setWorkers((prevWorkers) =>
           prevWorkers.map((prevWorker) =>
-            prevWorker.id === workers.id
+            prevWorker.id === worker.id
               ? {
                   ...prevWorker,
                   name: name,
@@ -49,17 +40,16 @@ const WorkerEditModal = ({
           )
         );
 
-        await updateWorker(dataUser, workers.id).then(() => {
-          Swal.fire({
-            text: "Usuario editado exitosamente",
-            icon: "success",
-          });
+        Swal.fire({
+          text: "Usuario editado exitosamente",
+          icon: "success",
         });
       }
     } catch (error) {
-      console.error("Error al actualizar el estado de la orden", error);
+      console.error("Error al actualizar el estado del trabajador", error);
     }
   };
+
 
   return (
     <div className="bg-dark text-white">
