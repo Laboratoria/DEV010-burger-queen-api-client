@@ -52,15 +52,16 @@ const WorkerEditModal = ({ worker, setWorkers }: WorkerEditModalProps) => {
 
 
   return (
-    <div className="bg-dark text-white">
-      <Form onSubmit={saveWorkerEdited}>
+    <div className="worker-modal-container">
+      <Form onSubmit={saveWorkerEdited} className="worker-modal-content">
         <Modal.Header closeButton>
-          <Modal.Title>Usuarios</Modal.Title>
+          <Modal.Title>Editar Usuarios</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form.Group className="mb-3">
             <Form.Label>Nombre</Form.Label>
             <Form.Control
+              className="input-modal"
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -69,6 +70,7 @@ const WorkerEditModal = ({ worker, setWorkers }: WorkerEditModalProps) => {
           <Form.Group className="mb-3">
             <Form.Label>Email</Form.Label>
             <Form.Control
+              className="input-modal"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -77,6 +79,7 @@ const WorkerEditModal = ({ worker, setWorkers }: WorkerEditModalProps) => {
           <FormGroup>
             <Form.Label>Puesto</Form.Label>
             <Form.Select
+              className="form-select"
               aria-label="Select de tipos"
               name="role"
               value={role}
@@ -98,4 +101,5 @@ const WorkerEditModal = ({ worker, setWorkers }: WorkerEditModalProps) => {
     </div>
   );
 };
+
 export default WorkerEditModal;

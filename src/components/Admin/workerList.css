@@ -1,3 +1,5 @@
+
+
 .worker-list {
   background-image: url("../../assets/background.png");
   background-size: cover;
@@ -109,3 +111,84 @@
   margin-bottom: 20px;
 
 }
+
+
+/* Estilos para centrar el modal */
+.worker-modal-container {
+ 
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5); /* Fondo oscuro con transparencia */
+}
+
+/* Estilos específicos para el contenido del modal */
+.worker-modal-content {
+  border: 1px solid var(--marron);
+  border-radius: 10px;
+  background-color: var(--blanco); 
+  color: var(--marron); 
+  font-weight: bold;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  width: 450px; /* Ajusta según sea necesario */
+}
+
+
+.form-select{
+  width: 364px;
+  border-radius: 10px;
+  border: 1px solid var(--marron);
+  margin: 8px 0;
+  padding: 7px
+}
+.form-select option {
+  width: 100%;
+  border: 1px solid var(--marron);
+}
+
+.input-modal {
+  width: 350px;
+  border-radius: 10px;
+  margin: 8px 0;
+  
+}
+/* Estilos para el formulario dentro del modal
+.worker-edit-modal-form {
+  width: 100%; /* O ajusta según sea necesario */
+
+  .close-button-modal {
+    position: relative;
+    right: -190px;
+    
+  }
+
+  .modal-title {
+    margin-bottom: 10px;
+  }
+
+  .modal-header {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .custom-close-button {
+    width: 25px; /* Ajusta según sea necesario */
+    height: 25px; /* Ajusta según sea necesario */
+    cursor: pointer;
+    padding: 0;
+    background: none;
+    border: none;
+   
+  }
+
+  .close-img {
+    width: 25px; /* Ajusta según sea necesario */
+    height: 25px;
+  }

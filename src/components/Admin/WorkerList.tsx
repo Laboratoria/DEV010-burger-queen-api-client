@@ -43,6 +43,7 @@ const WorkerList = () => {
   const showEditModals = (worker: Workers) => {
     setSelectedWorker(worker);
     setShowEditModal(true);
+    setSelectedWorker(worker); // Agrega esta línea para almacenar el trabajador seleccionado
   };
 
   const hideEditModal = () => {
