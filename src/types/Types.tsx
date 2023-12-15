@@ -44,4 +44,5 @@ export type Workers = {
   email: string;
   role: string;
   id: number;
+  password: string
 };

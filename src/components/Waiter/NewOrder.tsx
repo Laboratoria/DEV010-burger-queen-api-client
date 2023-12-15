@@ -14,10 +14,6 @@ const NewOrder = () => {
   //Estado del select de mesa
   const [table, setTable] = useState("");
 
-
-  //Función para manejar si se ha iniciado sesión, si no hay token, se debe navegar al login
-
-
   const handleSubtractProduct = (product: Product, remove?: boolean) => {
     //Actualiza el estado de selectedProducts y como argumento establece el estado anterior
     setSelectedProducts((prevSelectedProducts) => {
