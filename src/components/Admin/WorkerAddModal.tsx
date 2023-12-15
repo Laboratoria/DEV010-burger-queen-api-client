@@ -3,7 +3,6 @@ import { Button, Form, FormGroup, Modal } from "react-bootstrap";
 import { createWorker, getWorkers } from "../../services/request";
 import Swal from "sweetalert2";
 import { Workers } from "../../types/Types";
-import closeX from "../../assets/x.png";
 
 interface WorkerAddModalProps {
   setWorkers: React.Dispatch<React.SetStateAction<Workers[]>>;
@@ -59,10 +58,7 @@ const WorkerAddModal: React.FC<WorkerAddModalProps> = ({
   return (
     <div className="worker-modal-container">
       <Form onSubmit={saveWorker} className="worker-modal-content">
-        <Modal.Header>
-          <button className="custom-close-button" onClick={onHide}>
-            <img src={closeX} alt="Cerrar" className="close-img" />
-          </button>
+        <Modal.Header className="modalHeader" closeButton>
           <Modal.Title className="modal-title">Crear Usuario</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -93,15 +89,15 @@ const WorkerAddModal: React.FC<WorkerAddModalProps> = ({
               onChange={(e) => setRole(e.target.value)}
             >
               <option>Rol</option>
-              <option value="chef">Chef</option>
-              <option value="administrador">Administrador</option>
-              <option value="mesero">Mesero</option>
+              <option value="Chef">Chef</option>
+              <option value="Admin">Admin</option>
+              <option value="Mesero">Mesero</option>
             </Form.Select>
           </FormGroup>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="success" type="submit">
-            Crear usuario
+            Guardar cambios
           </Button>
         </Modal.Footer>
       </Form>

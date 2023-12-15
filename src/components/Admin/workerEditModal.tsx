@@ -7,9 +7,11 @@ import { Workers } from "../../types/Types";
 interface WorkerEditModalProps {
   worker: Workers | null;
   setWorkers: React.Dispatch<React.SetStateAction<Workers[]>>;
+  onHide: () => void;
+
 }
 
-const WorkerEditModal = ({ worker, setWorkers }: WorkerEditModalProps) => {
+const WorkerEditModal = ({ worker, setWorkers, onHide }: WorkerEditModalProps) => {
   const [name, setName] = useState(worker ? worker.name : "");
   const [role, setRole] = useState(worker ? worker.role : "");
   const [email, setEmail] = useState(worker ? worker.email : "");
@@ -26,7 +28,6 @@ const WorkerEditModal = ({ worker, setWorkers }: WorkerEditModalProps) => {
     try {
       if (worker) {
         await updateWorker(dataUser, worker.id);
-
         setWorkers((prevWorkers) =>
           prevWorkers.map((prevWorker) =>
             prevWorker.id === worker.id
@@ -39,12 +40,27 @@ const WorkerEditModal = ({ worker, setWorkers }: WorkerEditModalProps) => {
               : prevWorker
           )
         );
-
+     
+    
+        if (
+          dataUser.name === "" ||
+          dataUser.email === "" ||
+          dataUser.role === ""
+        ) {
+          Swal.fire({
+            text: "Todos los campos son obligatorios",
+            icon: "warning",
+          });
+          return;
+        }
         Swal.fire({
           text: "Usuario editado exitosamente",
           icon: "success",
         });
+        onHide();
+
       }
+     
     } catch (error) {
       console.error("Error al actualizar el estado del trabajador", error);
     }
@@ -54,13 +70,14 @@ const WorkerEditModal = ({ worker, setWorkers }: WorkerEditModalProps) => {
   return (
     <div className="worker-modal-container">
       <Form onSubmit={saveWorkerEdited} className="worker-modal-content">
-        <Modal.Header closeButton>
+        <Modal.Header className="modalHeader" closeButton>
           <Modal.Title>Editar Usuarios</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form.Group className="mb-3">
-            <Form.Label>Nombre</Form.Label>
+            <Form.Label></Form.Label>
             <Form.Control
+            placeholder="Nombre"
               className="input-modal"
               type="text"
               value={name}
@@ -68,8 +85,9 @@ const WorkerEditModal = ({ worker, setWorkers }: WorkerEditModalProps) => {
             />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>Email</Form.Label>
+            <Form.Label></Form.Label>
             <Form.Control
+            placeholder="Email"
               className="input-modal"
               type="email"
               value={email}
@@ -77,7 +95,7 @@ const WorkerEditModal = ({ worker, setWorkers }: WorkerEditModalProps) => {
             />
           </Form.Group>
           <FormGroup>
-            <Form.Label>Puesto</Form.Label>
+            <Form.Label></Form.Label>
             <Form.Select
               className="form-select"
               aria-label="Select de tipos"
@@ -86,15 +104,15 @@ const WorkerEditModal = ({ worker, setWorkers }: WorkerEditModalProps) => {
               onChange={(e) => setRole(e.target.value)}
             >
               <option>Tipo </option>
-              <option value="chef">Chef</option>
-              <option value="administrador">Administrador</option>
-              <option value="mesero">Mesero</option>
+              <option value="Chef">Chef</option>
+              <option value="Admin">Admin</option>
+              <option value="Mesero">Mesero</option>
             </Form.Select>
           </FormGroup>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="success" type="submit">
-            Editar usuario
+            Guardar cambios
           </Button>
         </Modal.Footer>
       </Form>

@@ -111,25 +111,29 @@ const WorkerList = () => {
                   <td>{worker.role}</td>
                   <td>
                     <section className="tableButtons">
-                    <button
-          className="worker-edit"
-          onClick={() => showEditModals(worker)}
-        >                        <img
+                      <button
+                        className="worker-edit"
+                        onClick={() => showEditModals(worker)}
+                      >
+                        {" "}
+                        <img
                           src={EditButton}
                           alt="Editar trabajador"
                           className="imgButton"
                         />
                       </button>
-                      <button
-                        className="worker-delete"
-                        onClick={() => deleteWorker(worker)}
-                      >
-                        <img
-                          src={DeleteButton}
-                          alt="Borrar trabajador"
-                          className="imgButton"
-                        />
-                      </button>
+                      {(worker.role === "Mesero" || worker.role === "Chef") && (
+                        <button
+                          className="worker-delete"
+                          onClick={() => deleteWorker(worker)}
+                        >
+                          <img
+                            src={DeleteButton}
+                            alt="Borrar trabajador"
+                            className="imgButton"
+                          />
+                        </button>
+                      )}
                     </section>
                   </td>
                 </tr>
@@ -162,7 +166,11 @@ const WorkerList = () => {
         onHide={hideEditModal}
         variant="success"
       >
-        <WorkerEditModal worker={selectedWorker} setWorkers={setWorkers} />
+        <WorkerEditModal
+          worker={selectedWorker}
+          setWorkers={setWorkers}
+          onHide={hideEditModal}
+        />
       </Modal>
     </section>
   );
