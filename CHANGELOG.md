@@ -1,3 +1,29 @@
+<1.0.3> - <2023-12-13>
+
+
+## Sprint learnings
+
+PWA
+Despliegue de API
+Test unitarios
+
+## Added
+
+vercel.json
+
+Vista Administrador
+
+Test unitarios Historia 3
+
+Test unitarios Historia 4
+
+manifest.json
+
+## Changed
+
+Estilos en algunas vistas
+
+
 <1.0.2> - <2023-12-06>
 
 
