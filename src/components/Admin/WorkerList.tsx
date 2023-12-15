@@ -15,6 +15,7 @@ const WorkerList = () => {
   const [workers, setWorkers] = useState<Workers[]>([]);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [selectedWorker, setSelectedWorker] = useState<Workers | null>(null);
 
   useEffect(() => {
     const fetchWorkers = async () => {
@@ -39,8 +40,9 @@ const WorkerList = () => {
     setShowAddModal(false);
   };
 
-  const showEditModals = () => {
+  const showEditModals = (worker: Workers) => {
     setShowEditModal(true);
+    setSelectedWorker(worker); // Agrega esta línea para almacenar el trabajador seleccionado
   };
 
   const hideEditModal = () => {
@@ -107,7 +109,7 @@ const WorkerList = () => {
                   <td>{worker.role}</td>
                   <td>
                     <section className="tableButtons">
-                      <button className="worker-edit" onClick={showEditModals}>
+                      <button className="worker-edit" onClick={() => showEditModals(worker)}>
                         <img
                           src={EditButton}
                           alt="Editar trabajador"
@@ -151,13 +153,13 @@ const WorkerList = () => {
         <WorkerAddModal setWorkers={setWorkers} onHide={hideAddModal} />
       </Modal>
       <Modal
-        dialogClassName="custom-modal"
-        show={showEditModal}
-        onHide={hideEditModal}
-        variant="success"
-      >
-        <WorkerEditModal workers={workers} setWorkers={setWorkers} />
-      </Modal>
+  dialogClassName="custom-modal"
+  show={showEditModal}
+  onHide={hideEditModal}
+  variant="success"
+>
+  <WorkerEditModal worker={selectedWorker!} setWorkers={setWorkers} />
+</Modal>
     </section>
   );
 };

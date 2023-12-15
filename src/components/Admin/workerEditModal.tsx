@@ -5,25 +5,22 @@ import Swal from "sweetalert2";
 import { Workers } from "../../types/Types";
 
 interface WorkerEditModalProps {
-  workers: Workers;
+  worker: Workers;
   setWorkers: React.Dispatch<React.SetStateAction<Workers[]>>;
 }
 
-const WorkerEditModal = ({
-  workers,
-  setWorkers,
-}: WorkerEditModalProps) => {
+const WorkerEditModal = ({ worker, setWorkers }: WorkerEditModalProps) => {
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
   const [email, setEmail] = useState("");
 
   useEffect(() => {
-    if (workers) {
-      setName(workers.name);
-      setEmail(workers.email);
-      setRole(workers.role);
+    if (worker) {
+      setName(worker.name);
+      setEmail(worker.email);
+      setRole(worker.role);
     }
-  }, [workers]);
+  }, [worker]);
 
   const dataUser = {
     password: "123456", // Asegúrate de manejar esto de manera segura
@@ -35,10 +32,10 @@ const WorkerEditModal = ({
   const saveWorkerEdited = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      if (workers) {
+      if (worker) {
         setWorkers((prevWorkers) =>
           prevWorkers.map((prevWorker) =>
-            prevWorker.id === workers.id
+            prevWorker.id === worker.id
               ? {
                   ...prevWorker,
                   name: name,
@@ -49,7 +46,7 @@ const WorkerEditModal = ({
           )
         );
 
-        await updateWorker(dataUser, workers.id).then(() => {
+        await updateWorker(dataUser, worker.id).then(() => {
           Swal.fire({
             text: "Usuario editado exitosamente",
             icon: "success",
@@ -62,15 +59,16 @@ const WorkerEditModal = ({
   };
 
   return (
-    <div className="bg-dark text-white">
-      <Form onSubmit={saveWorkerEdited}>
+    <div className="worker-modal-container">
+      <Form onSubmit={saveWorkerEdited} className="worker-modal-content">
         <Modal.Header closeButton>
-          <Modal.Title>Usuarios</Modal.Title>
+          <Modal.Title>Editar Usuarios</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form.Group className="mb-3">
             <Form.Label>Nombre</Form.Label>
             <Form.Control
+              className="input-modal"
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -79,6 +77,7 @@ const WorkerEditModal = ({
           <Form.Group className="mb-3">
             <Form.Label>Email</Form.Label>
             <Form.Control
+              className="input-modal"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -87,6 +86,7 @@ const WorkerEditModal = ({
           <FormGroup>
             <Form.Label>Puesto</Form.Label>
             <Form.Select
+              className="form-select"
               aria-label="Select de tipos"
               name="role"
               value={role}
@@ -108,4 +108,5 @@ const WorkerEditModal = ({
     </div>
   );
 };
+
 export default WorkerEditModal;
