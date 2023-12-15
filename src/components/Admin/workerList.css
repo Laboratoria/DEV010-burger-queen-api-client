@@ -141,17 +141,19 @@
 }
 
 
-.form-select{
+.form-select {
   width: 364px;
   border-radius: 10px;
   border: 1px solid var(--marron);
   margin: 8px 0;
-  padding: 7px
+  padding: 7px;
+  position: relative; /* Importante para posicionar las opciones */
 }
-.form-select option {
+option{
   width: 100%;
-  border: 1px solid var(--marron);
+  background-color:var(--blanco);
 }
+
 
 .input-modal {
   width: 350px;
@@ -191,4 +193,27 @@
   .close-img {
     width: 25px; /* Ajusta según sea necesario */
     height: 25px;
+  }
+  .modalHeader{
+    display: flex;
+    flex-direction: row;
+  }
+  .btn-close{
+    background-image: url('../../assets/x.png');
+    width: 25px;
+    height: 25px;
+    background-size: 25px;
+    border: none;
+    background-color: none;
+    transform: translate(150px);
+  }
+  .btn-success {
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: var(--amarillo);
+    color: var(--blanco);
+    font-size: 15px;
+    width: 140px;
+    margin-top: 20px;
   }
