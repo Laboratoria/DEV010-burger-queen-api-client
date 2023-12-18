@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import { Product } from "../../types/Types";
-import Header from "../Header/Header";
-import EditButton from "../../assets/editar-button.png";
-import DeleteButton from "../../assets/delete-button.png";
-import { deleteProducts, getProducts } from "../../services/request";
+import { Product } from "../../../types/Types";
+import Header from "../../Header/Header";
+import EditButton from "../../../assets/editar-button.png";
+import DeleteButton from "../../../assets/delete-button.png";
+import { deleteProducts, getProducts } from "../../../services/request";
 import { Modal } from "react-bootstrap";
 import Swal from "sweetalert2";
 import ProductAddModal from "./productAddModal";
 import ProductEditModal from "./productEditModal";
+import { Link } from "react-router-dom";
 
 const AdminProducts = () => {
   const token = localStorage.getItem("token");
@@ -76,11 +77,16 @@ const AdminProducts = () => {
       }
     });
   };
-
   return (
-    <section className="worker-list">
+    <section className="admin-product-list">
       <Header />
-      <section className="worker-list-container">
+      <section className="orderSection">
+        <Link to={"/admin/workerList"}>
+          <button className="allOrdersButton">Trabajadores</button>
+        </Link>
+      </section>
+
+      <section className="admin-product-list-container">
         <section className="worker-dashboard">
           <table className="worker-table">
             <caption className="worker-title">Productos</caption>
@@ -112,28 +118,35 @@ const AdminProducts = () => {
                   <td>{product.id}</td>
                   <td>{product.name}</td>
                   <td>{product.price}</td>
-                  <td>{product.image}</td>
-                  <td>{product.type}</td>
+                  <td>
+                    <img src={product.image} className="imgButton" />
+                  </td>
+                  <td>
+                    {product.type === "Lunch" && "Almuerzo"}
+                    {product.type === "Breakfast" && "Desayuno"}
+                  </td>
                   <td>
                     <section className="tableButtons">
                       <button
                         className="worker-edit"
                         onClick={() => showEditModals(product)}
+                        data-testid="product-edit-button"
                       >
                         {" "}
                         <img
                           src={EditButton}
-                          alt="Editar trabajador"
+                          alt="Editar"
                           className="imgButton"
                         />
                       </button>
                       <button
                         className="worker-delete"
                         onClick={() => deleteProduct(product)}
+                        data-testid="product-delete-button"
                       >
                         <img
                           src={DeleteButton}
-                          alt="Borrar trabajador"
+                          alt="Borrar"
                           className="imgButton"
                         />
                       </button>
@@ -145,7 +158,7 @@ const AdminProducts = () => {
           </table>
         </section>
         <section className="add-button-section">
-          <button className="worker-add" onClick={showAddModals}>
+          <button className="admin-products-add" data-testid="product-add-button" onClick={showAddModals}>
             Agregar producto
           </button>
         </section>

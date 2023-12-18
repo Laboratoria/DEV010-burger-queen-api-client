@@ -1,5 +1,5 @@
 .worker-list {
-  background-image: url("../../assets/background.png");
+  background-image: url("../../../assets/background.png");
   background-size: cover;
   margin: 0;
   height: 964px;
@@ -15,7 +15,7 @@
   padding: none;
   display: flex;
   background-color: var(--blanco);
-  margin-top: 20px;
+  
   flex-direction: column;
   overflow-y: auto;
   justify-content: space-between;
@@ -189,7 +189,7 @@ option {
   flex-direction: row;
 }
 .btn-close {
-  background-image: url("../../assets/x.png");
+  background-image: url("../../../assets/x.png");
   width: 25px;
   height: 25px;
   background-size: 25px;

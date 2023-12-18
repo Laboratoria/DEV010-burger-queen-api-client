@@ -1,8 +1,8 @@
 import { FormEvent, useState } from "react";
 import { Button, Form, FormGroup, Modal } from "react-bootstrap";
-import { updateProduct } from "../../services/request";
+import { updateProduct } from "../../../services/request";
 import Swal from "sweetalert2";
-import { Product } from "../../types/Types";
+import { Product } from "../../../types/Types";
 
 interface ProductEditModalProps {
   product: Product | null;
@@ -73,7 +73,7 @@ const ProductEditModal = ({
     <div className="worker-modal-container">
       <Form onSubmit={saveProductEdited} className="worker-modal-content">
         <Modal.Header className="modalHeader" closeButton>
-          <Modal.Title>Editar Usuarios</Modal.Title>
+          <Modal.Title>Editar Producto</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form.Group className="mb-3">
@@ -93,7 +93,7 @@ const ProductEditModal = ({
             type="number"
             placeholder="Precio"
             value={price}
-            onChange={(e) => setPrice(e.target.value)}
+            onChange={(e) => setPrice(Number(e.target.value))}
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -117,8 +117,8 @@ const ProductEditModal = ({
                onChange={(e) => setType(e.target.value)}
              >
                <option>Tipo</option>
-               <option value="Desayuno">Desayuno</option>
-               <option value="Almuerzo">Almuerzo</option>
+               <option value="Breakfast">Desayuno</option>
+               <option value="Lunch">Almuerzo</option>
             </Form.Select>
           </FormGroup>
         </Modal.Body>

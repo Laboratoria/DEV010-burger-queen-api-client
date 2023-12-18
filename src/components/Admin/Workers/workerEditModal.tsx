@@ -1,8 +1,8 @@
 import { FormEvent, useState } from "react";
 import { Button, Form, FormGroup, Modal } from "react-bootstrap";
-import { updateWorker } from "../../services/request";
+import { updateWorker } from "../../../services/request";
 import Swal from "sweetalert2";
-import { Workers } from "../../types/Types";
+import { Workers } from "../../../types/Types";
 
 interface WorkerEditModalProps {
   worker: Workers | null;
