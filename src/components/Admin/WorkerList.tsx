@@ -82,7 +82,7 @@ const WorkerList = () => {
       <section className="worker-list-container">
         <section className="worker-dashboard">
           <table className="worker-table">
-            <caption className="worker-title">Pedidos</caption>
+            <caption className="worker-title">Trabajadores</caption>
             <thead>
               <tr>
                 <th id="worker-th-1" className="order-th">
