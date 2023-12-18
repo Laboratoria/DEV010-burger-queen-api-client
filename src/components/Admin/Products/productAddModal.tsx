@@ -1,8 +1,8 @@
 import { useState, FormEvent } from "react";
 import { Button, Form, FormGroup, Modal } from "react-bootstrap";
-import { createProduct, getProducts } from "../../services/request";
+import { createProduct, getProducts } from "../../../services/request";
 import Swal from "sweetalert2";
-import { Product } from "../../types/Types";
+import { Product } from "../../../types/Types";
 
 interface ProductAddModalProps {
   setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
@@ -60,7 +60,7 @@ const ProductAddModal: React.FC<ProductAddModalProps> = ({
     <div className="worker-modal-container">
       <Form onSubmit={saveProducts} className="worker-modal-content">
         <Modal.Header className="modalHeader" closeButton>
-          <Modal.Title className="modal-title">Crear Usuario</Modal.Title>
+          <Modal.Title className="modal-title">Crear Producto</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form.Group className="form-group">
@@ -99,8 +99,8 @@ const ProductAddModal: React.FC<ProductAddModalProps> = ({
               onChange={(e) => setType(e.target.value)}
             >
               <option>Tipo</option>
-              <option value="Desayuno">Desayuno</option>
-              <option value="Almuerzo">Almuerzo</option>
+              <option value="Breakfast">Desayuno</option>
+              <option value="Lunch">Almuerzo</option>
             </Form.Select>
           </FormGroup>
         </Modal.Body>

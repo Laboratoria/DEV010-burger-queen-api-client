@@ -8,8 +8,8 @@ import Login from "./components/Login/Login";
 import NewOrder from "./components/Waiter/NewOrder";
 import ChefOrders from "./components/Chef/ChefOrders";
 import OrderList from "./components/Waiter/OrderList";
-import WorkerList from "./components/Admin/WorkerList";
-import AdminProducts from "./components/Admin/AdminProducts";
+import WorkerList from "./components/Admin/Workers/WorkerList";
+import AdminProducts from "./components/Admin/Products/AdminProducts";
 
 // Ruta protegida. Verifica si el rol del usuario almacenado en localStorage,
 // Está dentro de los permitidos para decidir que ruta tomar

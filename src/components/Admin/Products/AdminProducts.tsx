@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Product } from "../../types/Types";
-import Header from "../Header/Header";
-import EditButton from "../../assets/editar-button.png";
-import DeleteButton from "../../assets/delete-button.png";
-import { deleteProducts, getProducts } from "../../services/request";
+import { Product } from "../../../types/Types";
+import Header from "../../Header/Header";
+import EditButton from "../../../assets/editar-button.png";
+import DeleteButton from "../../../assets/delete-button.png";
+import { deleteProducts, getProducts } from "../../../services/request";
 import { Modal } from "react-bootstrap";
 import Swal from "sweetalert2";
 import ProductAddModal from "./productAddModal";
@@ -77,7 +77,6 @@ const AdminProducts = () => {
       }
     });
   };
-
   return (
     <section className="admin-product-list">
       <Header />
@@ -131,21 +130,23 @@ const AdminProducts = () => {
                       <button
                         className="worker-edit"
                         onClick={() => showEditModals(product)}
+                        data-testid="product-edit-button"
                       >
                         {" "}
                         <img
                           src={EditButton}
-                          alt="Editar trabajador"
+                          alt="Editar"
                           className="imgButton"
                         />
                       </button>
                       <button
                         className="worker-delete"
                         onClick={() => deleteProduct(product)}
+                        data-testid="product-delete-button"
                       >
                         <img
                           src={DeleteButton}
-                          alt="Borrar trabajador"
+                          alt="Borrar"
                           className="imgButton"
                         />
                       </button>
@@ -157,7 +158,7 @@ const AdminProducts = () => {
           </table>
         </section>
         <section className="add-button-section">
-          <button className="admin-products-add" onClick={showAddModals}>
+          <button className="admin-products-add" data-testid="product-add-button" onClick={showAddModals}>
             Agregar producto
           </button>
         </section>
