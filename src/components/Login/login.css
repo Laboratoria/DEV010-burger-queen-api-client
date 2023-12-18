@@ -36,6 +36,13 @@ body {
   align-items: center;
   flex-direction: column;
 }
+@media (max-width: 710px){
+  .login-container {
+    padding: 10px 50px 25px 50px;
+
+  }
+
+}
 
 .logo-img {
   height: 200px;

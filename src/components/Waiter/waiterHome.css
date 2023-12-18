@@ -10,8 +10,8 @@
     background-image: url("../../assets/background.png");
     background-size: cover;
     margin: 0;
-    height: 964px;
-    width: auto;
+    height:100vh;
+       width: auto;
     padding: 30px;
     display: flex;
     flex-direction: column;
@@ -36,4 +36,23 @@
 }
 a {
     text-decoration: none;
+}
+@media (max-width: 710px) {
+    .waiterHomeButton {
+        width: 300px;
+        height: 200px;
+        flex-direction: row;
+        margin: 10px 0;
+    }
+    .waiterHomeImg{
+        width: 40%;
+        height: 55%;
+    }
+    .waiterHomeSection{
+        flex-direction: column;
+        justify-content: center;
+        height: 90%;
+        align-items: center;
+        padding: 0 30px;
+    }
 }

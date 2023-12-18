@@ -172,15 +172,15 @@ const NewOrder = () => {
               <tbody>
                 {selectedProducts.map((product) => (
                   <tr key={product.id} data-testid="products-table">
-                    <td data-testid="product-name">{product.name}</td>
-                    <td data-testid="product-qty">{product.qty}</td>
-                    <td data-testid="product-price">$ {product.pricetotal}</td>
+                    <td data-testid="product-name" className="table-td">{product.name}</td>
+                    <td data-testid="product-qty" className="table-td">{product.qty}</td>
+                    <td data-testid="product-price" className="table-td">$ {product.pricetotal}</td>
                   </tr>
                 ))}
                 {dataOrder.products.length > 0 && (
                   <tr id="total">
-                    <td>Total</td>
-                    <td>
+                    <td className="table-td">Total</td>
+                    <td className="table-td">
                       {" "}
                       {selectedProducts.length === 0
                         ? "0"
@@ -189,7 +189,7 @@ const NewOrder = () => {
                             0
                           )}{" "}
                     </td>
-                    <td>
+                    <td className="table-td">
                       ${" "}
                       {selectedProducts.length === 0
                         ? "0"
