@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
-import { Workers } from "../../types/Types";
-import Header from "../Header/Header";
-import EditButton from "../../assets/editar-button.png";
-import DeleteButton from "../../assets/delete-button.png";
-import AddWorker from "../../assets/add-worker-button.png";
-import { deleteUser, getWorkers } from "../../services/request";
+import { Workers } from "../../../types/Types";
+import Header from "../../Header/Header";
+import EditButton from "../../../assets/editar-button.png";
+import DeleteButton from "../../../assets/delete-button.png";
+import AddWorker from "../../../assets/add-worker-button.png";
+import { deleteUser, getWorkers } from "../../../services/request";
 import { Modal } from "react-bootstrap";
 import WorkerAddModal from "./WorkerAddModal";
 import Swal from "sweetalert2";
 import WorkerEditModal from "./workerEditModal";
+import { Link } from "react-router-dom";
 
 const WorkerList = () => {
   const token = localStorage.getItem("token");
@@ -43,6 +44,7 @@ const WorkerList = () => {
   const showEditModals = (worker: Workers) => {
     setSelectedWorker(worker);
     setShowEditModal(true);
+    setSelectedWorker(worker); // Agrega esta línea para almacenar el trabajador seleccionado
   };
 
   const hideEditModal = () => {
@@ -78,10 +80,15 @@ const WorkerList = () => {
   return (
     <section className="worker-list">
       <Header />
+      <section className="orderSection">
+        <Link to={"/admin/adminProducts"}>
+          <button className="allOrdersButton">Productos</button>
+        </Link>
+      </section>
       <section className="worker-list-container">
         <section className="worker-dashboard">
           <table className="worker-table">
-            <caption className="worker-title">Pedidos</caption>
+            <caption className="worker-title">Trabajadores</caption>
             <thead>
               <tr>
                 <th id="worker-th-1" className="order-th">
@@ -110,25 +117,31 @@ const WorkerList = () => {
                   <td>{worker.role}</td>
                   <td>
                     <section className="tableButtons">
-                    <button
-          className="worker-edit"
-          onClick={() => showEditModals(worker)}
-        >                        <img
+                      <button
+                        className="worker-edit"
+                        onClick={() => showEditModals(worker)}
+                        data-testid= 'worker-edit-button'
+                      >
+                        {" "}
+                        <img
                           src={EditButton}
                           alt="Editar trabajador"
                           className="imgButton"
                         />
                       </button>
-                      <button
-                        className="worker-delete"
-                        onClick={() => deleteWorker(worker)}
-                      >
-                        <img
-                          src={DeleteButton}
-                          alt="Borrar trabajador"
-                          className="imgButton"
-                        />
-                      </button>
+                      {(worker.role === "Mesero" || worker.role === "Chef") && (
+                        <button
+                          className="worker-delete"
+                          onClick={() => deleteWorker(worker)}
+                          data-testid= 'worker-delete-button'
+                        >
+                          <img
+                            src={DeleteButton}
+                            alt="Borrar trabajador"
+                            className="imgButton"
+                          />
+                        </button>
+                      )}
                     </section>
                   </td>
                 </tr>
@@ -137,7 +150,7 @@ const WorkerList = () => {
           </table>
         </section>
         <section className="add-button-section">
-          <button className="worker-add" onClick={showAddModals}>
+          <button className="worker-add" data-testid= 'worker-add-button' onClick={showAddModals}>
             <img
               src={AddWorker}
               alt="Agregar trabajador"
@@ -161,7 +174,11 @@ const WorkerList = () => {
         onHide={hideEditModal}
         variant="success"
       >
-        <WorkerEditModal worker={selectedWorker} setWorkers={setWorkers} />
+        <WorkerEditModal
+          worker={selectedWorker}
+          setWorkers={setWorkers}
+          onHide={hideEditModal}
+        />
       </Modal>
     </section>
   );
