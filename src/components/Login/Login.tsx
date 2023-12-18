@@ -48,7 +48,7 @@ const Login = () => {
 
   return (
     <section className="login-section">
-      <section className="login-container">
+      <main className="login-container">
         <img className="logo-img" src={Logo} />
         <h1>Bienvenido/a</h1>
         <form>
@@ -69,7 +69,7 @@ const Login = () => {
             Ingresar
           </button>
         </form>
-      </section>
+      </main>
     </section>
   );
 };

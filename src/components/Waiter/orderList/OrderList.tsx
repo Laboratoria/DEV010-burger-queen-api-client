@@ -42,12 +42,12 @@ const OrderList = () => {
   return (
     <section className="order-list">
       <Header />
-      <section className="orderSection">
+      <nav className="orderSection">
         <Link to={"/waiter/newOrder"}>
           <button className="allOrdersButton"> Nuevo Pedido </button>
         </Link>
-      </section>
-      <section className="orders-dashboard">
+      </nav>
+      <main className="orders-dashboard">
         <table className="orders-table">
           <caption className="orders-title">Pedidos</caption>
           <thead>
@@ -74,7 +74,7 @@ const OrderList = () => {
               .sort((a, b) => {
                 const orderStatus: { [key: string]: number } = {
                   Pendiente: 1,
-                  'Por entregar': 2,
+                  "Por entregar": 2,
                   Entregado: 3,
                 };
                 return (
@@ -104,7 +104,7 @@ const OrderList = () => {
               ))}
           </tbody>
         </table>
-      </section>
+      </main>
     </section>
   );
 };

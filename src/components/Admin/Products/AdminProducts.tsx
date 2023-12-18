@@ -80,13 +80,13 @@ const AdminProducts = () => {
   return (
     <section className="admin-product-list">
       <Header />
-      <section className="orderSection">
+      <nav className="orderSection">
         <Link to={"/admin/workerList"}>
           <button className="allOrdersButton">Trabajadores</button>
         </Link>
-      </section>
+      </nav>
 
-      <section className="admin-product-list-container">
+      <main className="admin-product-list-container">
         <section className="worker-dashboard">
           <table className="worker-table">
             <caption className="worker-title">Productos</caption>
@@ -158,11 +158,15 @@ const AdminProducts = () => {
           </table>
         </section>
         <section className="add-button-section">
-          <button className="admin-products-add" data-testid="product-add-button" onClick={showAddModals}>
+          <button
+            className="admin-products-add"
+            data-testid="product-add-button"
+            onClick={showAddModals}
+          >
             Agregar producto
           </button>
         </section>
-      </section>
+      </main>
       <Modal
         dialogClassName="custom-modal"
         show={showAddModal}

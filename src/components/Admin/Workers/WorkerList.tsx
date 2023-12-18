@@ -80,12 +80,12 @@ const WorkerList = () => {
   return (
     <section className="worker-list">
       <Header />
-      <section className="orderSection">
+      <nav className="orderSection">
         <Link to={"/admin/adminProducts"}>
           <button className="allOrdersButton">Productos</button>
         </Link>
-      </section>
-      <section className="worker-list-container">
+      </nav>
+      <main className="worker-list-container">
         <section className="worker-dashboard">
           <table className="worker-table">
             <caption className="worker-title">Trabajadores</caption>
@@ -159,7 +159,7 @@ const WorkerList = () => {
             Agregar trabajador
           </button>
         </section>
-      </section>
+      </main>
       <Modal
         dialogClassName="custom-modal"
         show={showAddModal}

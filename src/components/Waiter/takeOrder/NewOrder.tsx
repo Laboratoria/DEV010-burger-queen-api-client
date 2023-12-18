@@ -119,14 +119,14 @@ const NewOrder = () => {
   return (
     <section className="newOrder-Section">
       <Header />
-      <section className="orderSection">
+      <nav className="orderSection">
         <Link to={"/waiter/OrderList"}>
           <button className="allOrdersButton"> Ver todos los pedidos </button>
         </Link>
-      </section>
-      <section className="dashboardSection">
+      </nav>
+      <main className="dashboardSection">
         <section className="menuSection">
-          <section className="selectSection">
+          <article className="selectSection">
             <select
               data-testid="table"
               className="tableSelect"
@@ -152,14 +152,14 @@ const NewOrder = () => {
               value={clientName}
               onChange={(e) => setClientName(e.target.value)}
             />
-          </section>
+          </article>
           <ProductList
             onAddProduct={handleAddProduct}
             onSubtractProduct={handleSubtractProduct}
           />
         </section>
         <section className="orderInfoSection">
-          <section className="orderInfo-section">
+          <article className="orderInfo-section">
             <h3> Pedido </h3>
             <table className="table-order-waiter">
               <thead>
@@ -202,14 +202,14 @@ const NewOrder = () => {
                 )}
               </tbody>
             </table>
-          </section>
+          </article>
           <section className="orderButton-section">
             <button className="sendOrderButton" onClick={saveOrder}>
               Enviar pedido
             </button>
           </section>
         </section>
-      </section>
+      </main>
     </section>
   );
 };
