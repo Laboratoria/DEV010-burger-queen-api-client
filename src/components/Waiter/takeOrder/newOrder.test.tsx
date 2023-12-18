@@ -2,7 +2,7 @@ import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom';
 import NewOrder from './NewOrder';
 import Swal from 'sweetalert2';
-import { createOrder } from '../../services/request';
+import { createOrder } from '../../../services/request';
 import { MemoryRouter, useNavigate } from 'react-router-dom';
 
 // Crear un objeto simulado para localStorage

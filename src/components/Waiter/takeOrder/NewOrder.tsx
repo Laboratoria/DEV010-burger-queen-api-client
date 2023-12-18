@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import ProductList from "./ProductList";
 import { useState } from "react";
-import { createOrder } from "../../services/request";
-import { Product } from "../../types/Types";
+import { createOrder } from "../../../services/request";
+import { Product } from "../../../types/Types";
 import Swal from "sweetalert2";
-import Header from "../Header/Header";
+import Header from "../../Header/Header";
 
 const NewOrder = () => {
   //Estado de los productos seleccionados

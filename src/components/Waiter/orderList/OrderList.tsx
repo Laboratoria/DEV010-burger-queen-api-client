@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import Header from "../Header/Header";
+import Header from "../../Header/Header";
 import { useEffect, useState } from "react";
-import getAllOrders from "../../services/GetAllOrders";
-import { Orders } from "../../types/Types";
-import { updateFinalizedOrder } from "../../services/request";
+import getAllOrders from "../../../services/GetAllOrders";
+import { Orders } from "../../../types/Types";
+import { updateFinalizedOrder } from "../../../services/request";
 import Swal from "sweetalert2";
 
 //Componente para renderizar las órdenes en la vista del Mesero

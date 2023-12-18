@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Product } from "../../types/Types";
-import { getProducts } from "../../services/request";
-import iconoMenos from "../../assets/icono-menos.png";
-import iconoAgregar from "../../assets/icono-mas.png";
+import { Product } from "../../../types/Types";
+import { getProducts } from "../../../services/request";
+import iconoMenos from "../../../assets/icono-menos.png";
+import iconoAgregar from "../../../assets/icono-mas.png";
 
 //El componente ProductList recibe las props que manejan la adición y sustracción de los productos
 const ProductList = ({
