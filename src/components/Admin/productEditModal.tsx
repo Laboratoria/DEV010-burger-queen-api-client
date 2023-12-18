@@ -93,7 +93,7 @@ const ProductEditModal = ({
             type="number"
             placeholder="Precio"
             value={price}
-            onChange={(e) => setPrice(e.target.value)}
+            onChange={(e) => setPrice(Number(e.target.value))}
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -117,8 +117,8 @@ const ProductEditModal = ({
                onChange={(e) => setType(e.target.value)}
              >
                <option>Tipo</option>
-               <option value="Desayuno">Desayuno</option>
-               <option value="Almuerzo">Almuerzo</option>
+               <option value="Breakfast">Desayuno</option>
+               <option value="Lunch">Almuerzo</option>
             </Form.Select>
           </FormGroup>
         </Modal.Body>

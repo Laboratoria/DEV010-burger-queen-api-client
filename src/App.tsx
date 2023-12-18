@@ -9,6 +9,7 @@ import NewOrder from "./components/Waiter/NewOrder";
 import ChefOrders from "./components/Chef/ChefOrders";
 import OrderList from "./components/Waiter/OrderList";
 import WorkerList from "./components/Admin/WorkerList";
+import AdminProducts from "./components/Admin/AdminProducts";
 
 // Ruta protegida. Verifica si el rol del usuario almacenado en localStorage,
 // Está dentro de los permitidos para decidir que ruta tomar
@@ -49,6 +50,12 @@ function App() {
           path="/admin/workerList"
           element={
             <ProtectedRoute element={<WorkerList />} allowedRoles={["Admin"]} />
+          }
+        />
+                <Route
+          path="/admin/adminProducts"
+          element={
+            <ProtectedRoute element={<AdminProducts />} allowedRoles={["Admin"]} />
           }
         />
       </Routes>

@@ -7,6 +7,7 @@ import "../src/components/Chef/ChefOrders.css";
 import "../src/components/Waiter/OrderList.css";
 import "../src/components/Header/Header.css";
 import "../src/components/Admin/workerList.css";
+import "../src/components/Admin/adminProducts.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

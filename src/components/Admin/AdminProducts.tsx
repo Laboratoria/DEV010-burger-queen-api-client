@@ -8,6 +8,7 @@ import { Modal } from "react-bootstrap";
 import Swal from "sweetalert2";
 import ProductAddModal from "./productAddModal";
 import ProductEditModal from "./productEditModal";
+import { Link } from "react-router-dom";
 
 const AdminProducts = () => {
   const token = localStorage.getItem("token");
@@ -78,9 +79,15 @@ const AdminProducts = () => {
   };
 
   return (
-    <section className="worker-list">
+    <section className="admin-product-list">
       <Header />
-      <section className="worker-list-container">
+      <section className="orderSection">
+        <Link to={"/admin/workerList"}>
+          <button className="allOrdersButton">Trabajadores</button>
+        </Link>
+      </section>
+
+      <section className="admin-product-list-container">
         <section className="worker-dashboard">
           <table className="worker-table">
             <caption className="worker-title">Productos</caption>
@@ -112,8 +119,13 @@ const AdminProducts = () => {
                   <td>{product.id}</td>
                   <td>{product.name}</td>
                   <td>{product.price}</td>
-                  <td>{product.image}</td>
-                  <td>{product.type}</td>
+                  <td>
+                    <img src={product.image} className="imgButton" />
+                  </td>
+                  <td>
+                    {product.type === "Lunch" && "Almuerzo"}
+                    {product.type === "Breakfast" && "Desayuno"}
+                  </td>
                   <td>
                     <section className="tableButtons">
                       <button
@@ -145,7 +157,7 @@ const AdminProducts = () => {
           </table>
         </section>
         <section className="add-button-section">
-          <button className="worker-add" onClick={showAddModals}>
+          <button className="admin-products-add" onClick={showAddModals}>
             Agregar producto
           </button>
         </section>
