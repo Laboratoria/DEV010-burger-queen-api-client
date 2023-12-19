@@ -115,17 +115,17 @@ const AdminProducts = () => {
             <tbody>
               {products.map((product: Product) => (
                 <tr key={`tr-${product.id}`}>
-                  <td>{product.id}</td>
-                  <td>{product.name}</td>
-                  <td>{product.price}</td>
-                  <td>
+                  <td className="tdProducts">{product.id}</td>
+                  <td className="tdProducts">{product.name}</td>
+                  <td className="tdProducts">{product.price}</td>
+                  <td className="tdProducts">
                     <img src={product.image} className="imgButton" />
                   </td>
-                  <td>
+                  <td className="tdProducts">
                     {product.type === "Lunch" && "Almuerzo"}
                     {product.type === "Breakfast" && "Desayuno"}
                   </td>
-                  <td>
+                  <td className="tdProducts">
                     <section className="tableButtons">
                       <button
                         className="worker-edit"

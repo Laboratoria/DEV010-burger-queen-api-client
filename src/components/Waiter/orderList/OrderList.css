@@ -60,3 +60,21 @@
   padding: 10px;
   border-radius: 10px;
 }
+@media (max-width: 710px) {
+  .order-list {
+    height: 100vh;   
+   padding: 10px;  
+  }
+  .orders-table {
+    width: 95%;
+    margin: 10px;
+    font-size: 17px;
+  }
+  .orders-title {
+    font-size: 20px;
+  }
+  .tdClass{
+    font-size: 17px;
+  }
+
+}

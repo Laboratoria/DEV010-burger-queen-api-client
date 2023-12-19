@@ -30,12 +30,9 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route
-          path="/waiter"
-          element={
-            <ProtectedRoute element={<WaiterHome/>} allowedRoles={["Mesero"]} />
-          }
-        />
+
+        <Route path="/waiter" element={<WaiterHome />} />
+
         <Route
           path="/waiter/newOrder"
           element={

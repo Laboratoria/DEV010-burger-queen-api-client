@@ -16,30 +16,6 @@
   overflow-y: auto;
 }
 
-@media (min-width: 1000px) {
-  .orders-section {
-    grid-template-columns: auto auto auto auto;
-  }
-}
-
-@media (min-width: 1350px) {
-  .orders-section {
-    grid-template-columns: auto auto auto auto auto;
-  }
-}
-
-@media (min-width: 1500px) {
-  .orders-section {
-    grid-template-columns: auto auto auto auto auto auto;
-  }
-}
-
-@media (min-width: 1700px) {
-  .orders-section {
-    grid-template-columns: auto auto auto auto auto auto auto;
-  }
-}
-
 .orderCard-section {
   display: flex;
   flex-direction: column;
@@ -104,4 +80,32 @@
   text-align: center;
   font-size: 15px;
   color: var(--rojo);
+}
+
+@media (min-width: 1700px) {
+  .orders-section {
+    grid-template-columns: auto auto auto auto auto auto auto;
+  }
+}
+
+@media (min-width: 1500px) {
+  .orders-section {
+    grid-template-columns: auto auto auto auto auto auto;
+  }
+}
+@media (min-width: 1000px) {
+  .orders-section {
+    grid-template-columns: auto auto auto auto;
+  }
+}
+
+@media (min-width: 1350px) {
+  .orders-section {
+    grid-template-columns: auto auto auto auto auto;
+  }
+}
+@media (max-width: 710px) {
+  .orders-section {
+    grid-template-columns: auto;
+  }
 }

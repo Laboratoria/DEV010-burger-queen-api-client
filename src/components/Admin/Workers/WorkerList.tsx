@@ -111,11 +111,11 @@ const WorkerList = () => {
             <tbody>
               {workers.map((worker: Workers) => (
                 <tr key={`tr-${worker.id}`}>
-                  <td>{worker.id}</td>
-                  <td>{worker.name}</td>
-                  <td>{worker.email}</td>
-                  <td>{worker.role}</td>
-                  <td>
+                  <td className="worker-td">{worker.id}</td>
+                  <td className="worker-td">{worker.name}</td>
+                  <td className="worker-td">{worker.email}</td>
+                  <td className="worker-td">{worker.role}</td>
+                  <td className="worker-td">
                     <section className="tableButtons">
                       <button
                         className="worker-edit"

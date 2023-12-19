@@ -83,12 +83,12 @@ const OrderList = () => {
                 );
               })
               .map((order: Orders) => (
-                <tr key={`tr-${order.id}`}>
-                  <td>{order.id}</td>
-                  <td>{order.client}</td>
-                  <td>{order.table}</td>
-                  <td>{order.status}</td>
-                  <td>
+                <tr key={`tr-${order.id}`} >
+                  <td className="tdClass">{order.id}</td>
+                  <td className="tdClass">{order.client}</td>
+                  <td className="tdClass">{order.table}</td>
+                  <td className="tdClass">{order.status}</td>
+                  <td className="tdClass">
                     {order.status === "Por entregar" && (
                       <button
                         className="button-action"
