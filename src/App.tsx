@@ -11,7 +11,7 @@ import OrderList from "./components/Waiter/orderList/OrderList";
 import WorkerList from "./components/Admin/Workers/WorkerList";
 import AdminProducts from "./components/Admin/Products/AdminProducts";
 import AdminHome from "./components/Admin/AdminHome";
-import WaiterHome from "./components/Waiter/waiterHome";
+import WaiterHome from "./components/Waiter/WaiterHome.tsx";
 
 // Ruta protegida. Verifica si el rol del usuario almacenado en localStorage,
 // Está dentro de los permitidos para decidir que ruta tomar
