@@ -10,7 +10,7 @@
     background-image: url("../../assets/background.png");
     background-size: cover;
     margin: 0;
-    height: 964px;
+    height: 100vh;
     width: auto;
     padding: 30px;
     display: flex;

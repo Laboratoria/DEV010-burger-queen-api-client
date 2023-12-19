@@ -9,7 +9,7 @@ jest.mock("react-router-dom", () => ({
   useNavigate: jest.fn(),
 }));
 
-jest.mock("../../services/request", () => ({
+jest.mock("../../../services/request", () => ({
   getOrders: jest.fn(() =>
     Promise.resolve({
       ok: "ok",

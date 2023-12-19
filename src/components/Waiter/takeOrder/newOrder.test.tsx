@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import NewOrder from './NewOrder';
 import Swal from 'sweetalert2';
@@ -30,7 +30,7 @@ jest.mock('react-router-dom', () => ({
   useNavigate: jest.fn(),
 }));
 
-jest.mock('../../services/request', () => ({
+jest.mock('../../../services/request', () => ({
   getProducts: jest.fn(() => Promise.resolve(
     {
       ok: 'ok',
@@ -63,12 +63,12 @@ describe('NewOrder component', () => {
     expect(screen.getByText('Enviar pedido')).toBeInTheDocument();
   });
 
-  it.only('guarda el pedido cuando se hace clic en el botón Enviar pedido', async () => {
+  it('guarda el pedido cuando se hace clic en el botón Enviar pedido', async () => {
     render(<MemoryRouter><NewOrder /></MemoryRouter>);
     // Simula las entradas del usuario
     fireEvent.change(screen.getByTestId('table'), { target: { value: 'Mesa 1' } });
     fireEvent.change(screen.getByPlaceholderText('Nombre del cliente'), { target: { value: 'Maria' } });
-    await act(async () => {
+    await waitFor (async () => {
       fireEvent.click(screen.getByTestId('addProductButton')); 
        });
     fireEvent.click(screen.getByText('Enviar pedido'));
