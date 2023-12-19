@@ -242,5 +242,30 @@ option {
     justify-content: space-evenly;
   align-items: center;
   }
-  
+  .worker-modal-content {
+    width: 80%; /* Ajusta según sea necesario */
+  }
+  .btn-close {
+    width: 20px;
+    height: 20px;
+    background-size: 20px;
+    transform: translate(90px);
+  }
+  .input-modal {
+    width: 100%;
+  }
+  .form-select {
+    width: 110%;
+    border-radius: 10px;
+    border: 1px solid var(--marron);
+    margin: 8px 0;
+    padding: 7px;
+    position: relative;
+  }
+  .swal2-title {
+    font-size: 22px;
+  }
+  .swal2-popup{
+    width:90%;
+  }
 }
