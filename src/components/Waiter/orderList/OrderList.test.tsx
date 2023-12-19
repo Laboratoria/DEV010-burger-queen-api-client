@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import OrderList from "./OrderList";
-import { updateFinalizedOrder } from "../../services/request";
+import { updateFinalizedOrder } from "../../../services/request";
 import "@testing-library/jest-dom";
 import { MemoryRouter } from "react-router-dom";
 

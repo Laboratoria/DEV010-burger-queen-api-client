@@ -207,3 +207,37 @@ option {
   width: 140px;
   margin-top: 20px;
 }
+@media (max-width: 710px) {
+  .worker-list {
+    height: 100vh;
+    padding: 15px;
+  }
+  .worker-list-container {
+    height: 630px;
+    margin-top: 10px;
+  }
+  .worker-table {
+    font-size: 17px;
+  }
+  .worker-title {
+    font-size: 20px;
+  }
+  .worker-td{
+    font-size: 15px;
+ 
+  }
+  .imgButton {
+    width: 30px;
+    height: 30px;
+  }
+  .tableButtons {
+    padding: 0 5px;
+  }
+  .worker-add {
+    padding: 7px;
+    font-size: 16px;
+    width: 150px;
+    justify-content: space-evenly;
+  align-items: center;
+  }
+}

@@ -20,7 +20,7 @@ const Header = () => {
     navigate("/");
   };
   return (
-    <section className="headerSection">
+    <header className="headerSection">
       <img className="logo-img" id="logo-Header" src={Logo} />
       <section className="buttonHeader">
         <button id="profile-button" className="headerButton">
@@ -35,7 +35,7 @@ const Header = () => {
           <img className="button-img" id="logOutimg" src={LogOut} />
         </button>
       </section>
-    </section>
+    </header>
   );
 };
 

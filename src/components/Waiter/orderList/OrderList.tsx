@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import Header from "../Header/Header";
+import Header from "../../Header/Header";
 import { useEffect, useState } from "react";
-import getAllOrders from "../../services/GetAllOrders";
-import { Orders } from "../../types/Types";
-import { updateFinalizedOrder } from "../../services/request";
+import getAllOrders from "../../../services/GetAllOrders";
+import { Orders } from "../../../types/Types";
+import { updateFinalizedOrder } from "../../../services/request";
 import Swal from "sweetalert2";
 
 //Componente para renderizar las órdenes en la vista del Mesero
@@ -42,12 +42,12 @@ const OrderList = () => {
   return (
     <section className="order-list">
       <Header />
-      <section className="orderSection">
+      <nav className="orderSection">
         <Link to={"/waiter/newOrder"}>
           <button className="allOrdersButton"> Nuevo Pedido </button>
         </Link>
-      </section>
-      <section className="orders-dashboard">
+      </nav>
+      <main className="orders-dashboard">
         <table className="orders-table">
           <caption className="orders-title">Pedidos</caption>
           <thead>
@@ -74,7 +74,7 @@ const OrderList = () => {
               .sort((a, b) => {
                 const orderStatus: { [key: string]: number } = {
                   Pendiente: 1,
-                  'Por entregar': 2,
+                  "Por entregar": 2,
                   Entregado: 3,
                 };
                 return (
@@ -83,12 +83,12 @@ const OrderList = () => {
                 );
               })
               .map((order: Orders) => (
-                <tr key={`tr-${order.id}`}>
-                  <td>{order.id}</td>
-                  <td>{order.client}</td>
-                  <td>{order.table}</td>
-                  <td>{order.status}</td>
-                  <td>
+                <tr key={`tr-${order.id}`} >
+                  <td className="tdClass">{order.id}</td>
+                  <td className="tdClass">{order.client}</td>
+                  <td className="tdClass">{order.table}</td>
+                  <td className="tdClass">{order.status}</td>
+                  <td className="tdClass">
                     {order.status === "Por entregar" && (
                       <button
                         className="button-action"
@@ -104,7 +104,7 @@ const OrderList = () => {
               ))}
           </tbody>
         </table>
-      </section>
+      </main>
     </section>
   );
 };

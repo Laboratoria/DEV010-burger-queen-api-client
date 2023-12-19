@@ -15,7 +15,6 @@
     width: 25%;
   }
   
-
   .admin-product-list {
     background-image: url("../../../assets/background.png");
     background-size: cover;
@@ -52,4 +51,24 @@
     display: flex;
     flex-direction: row;
     margin-top: 10px;
+  }
+  @media (max-width: 710px) {
+    .admin-product-list {
+      height: 100vh;
+      width: auto;
+      padding: 15px;
+    }
+    .admin-products-add {
+      justify-content: center;
+    }
+    .worker-table{
+      font-size: 17px;
+      width: 95%;
+    }
+    .admin-product-list-container {
+   width: 100%;
+    }
+    .tdProducts{
+      font-size: 15px;
+    }
   }

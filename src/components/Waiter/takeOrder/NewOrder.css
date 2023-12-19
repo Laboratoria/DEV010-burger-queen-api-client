@@ -1,5 +1,5 @@
 .newOrder-Section {
-  background-image: url("../../assets/background.png");
+  background-image: url("../../../assets/background.png");
   background-size: cover;
   margin: 0;
   min-height: 100vh;
@@ -66,20 +66,6 @@
   margin-bottom: 20px;
 }
 
-@media (min-width: 1500px) {
-  .orderSection {
-    margin-right: 50px;
-    margin-bottom: 20px;
-  }
-}
-
-@media (min-width: 1000px) {
-  .orderSection {
-    margin-right: 30px;
-    margin-bottom: 20px;
-  }
-}
-
 .dashboardSection {
   display: flex;
   flex-direction: row;
@@ -91,23 +77,10 @@
   flex-direction: column;
   background-color: var(--blanco);
   width: 300px;
-  height: 750px; 
+  height: 750px;
   border: var(--marron) solid 1px;
   border-radius: 10px;
   padding: 10px;
-}
-
-@media (min-width: 1000px) {
-  .menuSection {
-    width: 400px;
-  }
-}
-
-@media (min-width: 1500px) {
-  .menuSection {
-    width: 600px;
-    height: 600px;
-  }
 }
 
 .selectSection {
@@ -168,12 +141,6 @@ option {
   height: 100%;
 }
 
-@media (min-width: 1500px) {
-  .cards {
-    grid-template-columns: auto auto auto auto;
-  }
-}
-
 .product-img {
   height: 80px;
   width: 80px;
@@ -207,22 +174,15 @@ option {
 }
 
 .foodSection {
-  overflow-y: auto; 
+  overflow-y: auto;
   height: 550px;
   overflow-x: hidden;
-}
-
-@media (min-width: 1500px) {
-  .foodSection {
-    height: 400px;
-    overflow-x: hidden;
-  }
 }
 
 .orderInfoSection {
   background-color: var(--amarillo);
   width: 350px;
-  height: 750px; 
+  height: 750px;
   border: var(--marron) solid 1px;
   border-radius: 10px;
   padding: 10px;
@@ -232,19 +192,6 @@ option {
   overflow-y: auto;
   justify-content: space-between;
   text-align: center;
-}
-
-@media (min-width: 1000px) {
-  .orderInfoSection {
-    width: 400px;
-  }
-}
-
-@media (min-width: 1500px) {
-  .orderInfoSection {
-    width: 600px;
-    height: 600px;
-  }
 }
 
 h3 {
@@ -258,11 +205,6 @@ table {
   font-size: 20px;
 }
 
-@media (min-width: 1500px) {
-  .table-order-waiter {
-    width: 550px;
-  }
-}
 .sendOrderButton {
   background-color: var(--rojo);
   font-size: 20px;
@@ -331,32 +273,32 @@ td {
 }
 
 .orderInfo-section {
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
 }
 
 body::-webkit-scrollbar {
-  width: 12px; 
+  width: 12px;
 }
 body::-webkit-scrollbar-track {
-  background: var(--blanco); 
+  background: var(--blanco);
 }
 body::-webkit-scrollbar-thumb {
-  background-color: var(--marron); 
-  border-radius: 20px; 
-  border: 3px solid var(--blanco); 
+  background-color: var(--marron);
+  border-radius: 20px;
+  border: 3px solid var(--blanco);
 }
 
 .foodSection::-webkit-scrollbar {
-  width: 12px; 
+  width: 12px;
 }
 
 .foodSection::-webkit-scrollbar-track {
-  background: var(--blanco); 
+  background: var(--blanco);
 }
 
 .foodSection::-webkit-scrollbar-thumb {
-  background-color: var(--marron); 
-  border-radius: 20px; 
+  background-color: var(--marron);
+  border-radius: 20px;
   border: 3px solid var(--blanco);
 }
 
@@ -365,11 +307,146 @@ body::-webkit-scrollbar-thumb {
 }
 
 .orderInfoSection::-webkit-scrollbar-track {
-  background: none; 
+  background: none;
 }
 
 .orderInfoSection::-webkit-scrollbar-thumb {
-  background-color: var(--marron); 
-  border-radius: 20px; 
-  border: 3px solid var(--amarillo); 
+  background-color: var(--marron);
+  border-radius: 20px;
+  border: 3px solid var(--amarillo);
+}
+
+@media (min-width: 1500px) {
+  .orderSection {
+    margin-right: 50px;
+    margin-bottom: 20px;
+  }
+  .table-order-waiter {
+    width: 550px;
+  }
+  .orderInfoSection {
+    width: 600px;
+    height: 600px;
+  }
+ 
+  .menuSection {
+    width: 600px;
+    height: 600px;
+  }
+  .cards {
+    grid-template-columns: auto auto auto auto;
+  }
+}
+
+@media (min-width: 1000px) {
+  .orderSection {
+    margin-right: 30px;
+    margin-bottom: 20px;
+  }
+  .orderInfoSection {
+    width: 400px;
+  }
+  .menuSection {
+    width: 400px;
+  }
+}
+
+@media (max-width: 710px){
+  .menuSection {
+    width: 40%;
+    height: 100%;
+    padding: 10px;
+    margin-right: 5px;
+  }
+  .tableSelect {
+    width: 90%;
+    margin: 10px 0 0;
+    font-size: 17px;
+  }
+  input{
+    width: 90%;
+    font-size: 17px;
+    margin-bottom: 10px;
+  }
+  .buttonMenuSection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  .menuButton {
+    padding: 10px 3px;
+    font-size: 17px;
+    width: 85%;
+    height: 100%;
+    margin: 4px 5px;
+  }
+  .foodSection {
+    height: 100%;
+    overflow-x: hidden;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: auto;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    height: 40vh
+  }
+  .allOrdersButton {
+       font-size: 18px;
+    margin-bottom: 5px;
+  }
+  .orderSection {
+    margin-bottom: 10px;
+  }
+  .product-img {
+    height: 60px;
+    width: 60px;
+  }
+  .product-name {
+    margin: 5px 0px 0px;
+    height: auto;
+  }
+  .orderInfoSection {
+    width: 50%;
+    height: 585px;
+    margin-left: 5px;
+    }
+    .orderInfo-section {
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+    h3 {
+      font-size: 20px;
+      margin: 10px 0 0 0;
+    }
+    .table-order-waiter {
+      width: 50%;
+      font-size: 17px;
+    }
+    .newOrder-Section {
+         padding: 15px 10px;
+    }
+    thead th:nth-child(1) {
+      width: 50%;
+    }
+    
+    thead th:nth-child(2) {
+      width: 20%;
+    }
+    
+    thead th:nth-child(3) {
+      width: 30%;
+    }
+    .table-td {
+      font-size: 15px;
+    }
+    .sendOrderButton {
+      font-size: 17px;
+    }
+    .dashboardSection {
+   margin: 20px 0;
+    }
 }

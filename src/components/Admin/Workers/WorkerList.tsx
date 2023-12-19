@@ -80,12 +80,12 @@ const WorkerList = () => {
   return (
     <section className="worker-list">
       <Header />
-      <section className="orderSection">
+      <nav className="orderSection">
         <Link to={"/admin/adminProducts"}>
           <button className="allOrdersButton">Productos</button>
         </Link>
-      </section>
-      <section className="worker-list-container">
+      </nav>
+      <main className="worker-list-container">
         <section className="worker-dashboard">
           <table className="worker-table">
             <caption className="worker-title">Trabajadores</caption>
@@ -111,11 +111,11 @@ const WorkerList = () => {
             <tbody>
               {workers.map((worker: Workers) => (
                 <tr key={`tr-${worker.id}`}>
-                  <td>{worker.id}</td>
-                  <td>{worker.name}</td>
-                  <td>{worker.email}</td>
-                  <td>{worker.role}</td>
-                  <td>
+                  <td className="worker-td">{worker.id}</td>
+                  <td className="worker-td">{worker.name}</td>
+                  <td className="worker-td">{worker.email}</td>
+                  <td className="worker-td">{worker.role}</td>
+                  <td className="worker-td">
                     <section className="tableButtons">
                       <button
                         className="worker-edit"
@@ -159,7 +159,7 @@ const WorkerList = () => {
             Agregar trabajador
           </button>
         </section>
-      </section>
+      </main>
       <Modal
         dialogClassName="custom-modal"
         show={showAddModal}

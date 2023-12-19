@@ -82,3 +82,15 @@ h1 {
   font-size: 15px;
   color: var(--rojo);
 }
+@media (max-width: 710px){
+  .login-container {
+    padding: 10px 50px 25px 50px;
+  }
+  .logo-img {
+    height: 170px;
+    width: 170px;
+  }
+  h1 {
+    font-size: 22px;
+  }
+}

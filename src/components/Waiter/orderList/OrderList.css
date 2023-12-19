@@ -1,5 +1,5 @@
 .order-list {
-  background-image: url("../../assets/background.png");
+  background-image: url("../../../assets/background.png");
   background-size: cover;
   margin: 0;
   height: 964px;
@@ -59,4 +59,22 @@
   border: none;
   padding: 10px;
   border-radius: 10px;
+}
+@media (max-width: 710px) {
+  .order-list {
+    height: 100vh;   
+   padding: 10px;  
+  }
+  .orders-table {
+    width: 95%;
+    margin: 10px;
+    font-size: 17px;
+  }
+  .orders-title {
+    font-size: 20px;
+  }
+  .tdClass{
+    font-size: 17px;
+  }
+
 }
