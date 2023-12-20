@@ -87,7 +87,6 @@ const AdminProducts = () => {
       </nav>
 
       <main className="admin-product-list-container">
-        <section className="worker-dashboard">
           <table className="worker-table">
             <caption className="worker-title">Productos</caption>
             <thead>
@@ -156,7 +155,6 @@ const AdminProducts = () => {
               ))}
             </tbody>
           </table>
-        </section>
         <section className="add-button-section">
           <button
             className="admin-products-add"
