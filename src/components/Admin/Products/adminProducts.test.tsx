@@ -6,13 +6,15 @@ import { MemoryRouter } from 'react-router-dom';
 //import Swal from 'sweetalert2';
 //import Swal from 'sweetalert2';
 
-// jest.mock("../productAddModal", () => {
+jest.mock("./productAddModal", () => ({
+  __esModule: true,
+  default: jest.fn(() => <div data-testid="product-add-modal" />),
+}));
 
-// })
-
-// jest.mock("../productEditModal", () => {
-    
-// })
+jest.mock("./productEditModal", () => ({
+  __esModule: true,
+  default: jest.fn(() => <div data-testid="product-edit-modal" />),
+}));
 
 jest.mock("react-router-dom", () => ({
     ...jest.requireActual("react-router-dom"),
@@ -62,36 +64,35 @@ describe('AdminProducts Component', () => {
 });
   });
 
-  it('displays the edit product modal when the edit button is clicked', async () => {
-    render(<MemoryRouter><AdminProducts /></MemoryRouter>);
-
-    await waitFor(() => {
-      expect(getProducts).toHaveBeenCalledTimes(1);
-    });
-
-  // Esperar a que el botón esté presente antes de hacer clic
-  const editButton = await screen.findByTestId('product-edit-button');
-  fireEvent.click(editButton);
-
-    await waitFor(() => {
-      expect(screen.getByText('Editar Producto')).toBeInTheDocument();
-    });
-  });
-
-  
   it('displays the add product modal when the add button is clicked', async () => {
     render(<MemoryRouter><AdminProducts /></MemoryRouter>);
-
+  
     await waitFor(() => {
       expect(getProducts).toHaveBeenCalledTimes(1);
     });
-
-  // Esperar a que el botón esté presente antes de hacer clic
-  const addButton = await screen.findByTestId('product-add-button');
-  fireEvent.click(addButton);
-
+  
+    // Esperar a que el botón esté presente antes de hacer clic
+    const addButton = await screen.findByTestId('product-add-button');
+    fireEvent.click(addButton);
+  
     await waitFor(() => {
-      expect(screen.getByText('Crear Producto')).toBeInTheDocument();
+      expect(screen.getByTestId('product-add-modal')).toBeInTheDocument();
+    });
+  });
+  
+  it('displays the edit product modal when the edit button is clicked', async () => {
+    render(<MemoryRouter><AdminProducts /></MemoryRouter>);
+  
+    await waitFor(() => {
+      expect(getProducts).toHaveBeenCalledTimes(1);
+    });
+  
+    // Esperar a que el botón esté presente antes de hacer clic
+    const editButton = await screen.findByTestId('product-edit-button');
+    fireEvent.click(editButton);
+  
+    await waitFor(() => {
+      expect(screen.getByTestId('product-edit-modal')).toBeInTheDocument();
     });
   });
   it('deletes the product when the delete button is clicked', async () => {
