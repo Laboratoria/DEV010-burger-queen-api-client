@@ -65,3 +65,9 @@ a {
         flex-direction: column;
     }
 }
+@media (min-width: 1000px){
+    .admin-home{
+        background-image: url("../../assets/background-responsive.png");
+       
+    }
+}

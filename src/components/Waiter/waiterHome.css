@@ -16,6 +16,11 @@
     display: flex;
     flex-direction: column;
 }
+@media (min-width: 1000px){
+    .waiter-home{
+        background-image: url("../../assets/background-responsive.png");
+    }
+}
 .waiterHomeImg{
     width: 55%;
     height: 55%;

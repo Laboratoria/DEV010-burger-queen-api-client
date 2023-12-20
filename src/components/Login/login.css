@@ -94,3 +94,9 @@ h1 {
     font-size: 22px;
   }
 }
+@media (min-width: 1000px){
+  .login-section {
+    background-image: url("../../assets/backgroundResponsive.png");
+    
+  }
+}

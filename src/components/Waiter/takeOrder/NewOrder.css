@@ -6,7 +6,11 @@
   width: auto;
   padding: 30px;
 }
-
+@media (min-width: 1000px){
+  .newOrder-Section{
+      background-image: url("../../../assets/background-responsive.png");
+  }
+}
 .headerSection {
   margin: 0;
   display: flex;

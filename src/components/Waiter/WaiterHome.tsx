@@ -11,12 +11,12 @@ const WaiterHome = () => {
           <Link to={"/waiter/newOrder"}>
             <button className="waiterHomeButton">
               <img src= {newOrder} alt="Nuevo pedido" className="waiterHomeImg"/>
-              Trabajadores</button>
+              Nuevo pedido</button>
           </Link>
           <Link to={"/waiter/orderList"}>
             <button className="waiterHomeButton">
             <img src= {allOrders} alt="Ordenes" className="waiterHomeImg"/>
-              Productos</button>
+              Ordenes</button>
           </Link>
       </main>
     </section>

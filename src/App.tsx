@@ -31,7 +31,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
 
-        <Route path="/waiter" element={<WaiterHome />} />
+        <Route
+          path="/waiter"
+          element={
+            <ProtectedRoute element={<WaiterHome />} allowedRoles={["Mesero"]} />
+          }
+        />
+    
 
         <Route
           path="/waiter/newOrder"
@@ -51,7 +57,14 @@ function App() {
             <ProtectedRoute element={<OrderList />} allowedRoles={["Mesero"]} />
           }
         />
-        <Route path="/admin" element={<AdminHome />} />
+       
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute element={<AdminHome />} allowedRoles={["Admin"]} />
+          }
+        />
+
         <Route
           path="/admin/workerList"
           element={

@@ -269,3 +269,8 @@ option {
     width:90%;
   }
 }
+@media (min-width: 1000px){
+  .worker-list {
+      background-image: url("../../../assets/background-responsive.png");     
+  }
+}

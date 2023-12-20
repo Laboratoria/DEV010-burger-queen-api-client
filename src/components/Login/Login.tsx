@@ -20,11 +20,11 @@ const Login = () => {
       localStorage.setItem("token", response.accessToken);
       localStorage.setItem("userRole", response.user.role);
       if (response.user.role === "Mesero") {
-        navigate("/waiter/newOrder");
+        navigate("/waiter");
       } else if (response.user.role === "Chef") {
         navigate("/chef/orders");
       } else if (response.user.role === "Admin") {
-        navigate("/admin/workerList");
+        navigate("/admin");
       }
     } else {
       setError(true);

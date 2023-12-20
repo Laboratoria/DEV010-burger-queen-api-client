@@ -25,7 +25,11 @@
     display: flex;
     flex-direction: column;
   }
-
+  @media (min-width: 1000px){
+    .admin-product-list {
+        background-image: url("../../../assets/background-responsive.png");     
+    }
+  }
   .admin-product-list-container {
     height: 750px;
     border: var(--marron) solid 1px;
