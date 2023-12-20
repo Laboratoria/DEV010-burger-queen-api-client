@@ -3,7 +3,7 @@
   }
   
   #product-th-2 {
-    width: 30%;
+    width: 35%;
   }
   #product-th-3 {
     width: 20%;
@@ -37,11 +37,11 @@
     padding: none;
     display: flex;
     background-color: var(--blanco);
-    
     flex-direction: column;
     overflow-y: auto;
     justify-content: space-between;
     text-align: center;
+    width: auto;
   }
 
   .admin-products-add {
@@ -69,7 +69,7 @@
     }
     .worker-table{
       font-size: 17px;
-      width: 95%;
+      width: 100%;
     }
     .admin-product-list-container {
    width: 100%;
