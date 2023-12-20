@@ -179,3 +179,49 @@ export const createWorker = async (user: object) => {
     }
   }
 
+  export const deleteProducts = async (productId: number) => {
+    const response = await fetch(`${url_}/products/${productId}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        "Content-Type": "application/json",
+      }
+    })
+    if (response.status == 200) {
+      return await response.json()
+    }
+  }
+  
+    
+  export const updateProduct = async (productId: number, productData: object) => {
+    const response = await fetch(`${url_}/products/${productId}`, {
+      method: 'PATCH',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(productData),
+    })
+  
+    if (response.status == 200) {
+      return await response.json()
+    }
+  }
+  
+  export const createProduct = async (productData: object) => {
+    const response = await fetch(`${url_}/products`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(productData),
+    });
+  
+    if (response.status === 201) {
+      return await response.json();
+    } else {
+      throw new Error('No se pudo crear el producto');
+    }
+  };
+

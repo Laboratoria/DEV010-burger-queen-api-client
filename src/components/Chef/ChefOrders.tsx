@@ -88,7 +88,7 @@ const ChefOrders: React.FC = () => {
   return (
     <section className="chef-section">
       <Header />
-      <section className="orders-section">
+      <main className="orders-section">
         {orders
           .sort((a, b) => {
             const orderStatus: { [key: string]: number } = {
@@ -102,7 +102,7 @@ const ChefOrders: React.FC = () => {
             );
           })
           .map((order: Orders) => (
-            <section className="orderCard-section" key={order.id}>
+            <article className="orderCard-section" key={order.id}>
               <section className="table-section">
                 <table className="table" key={`table-${order.id}`}>
                   <caption className="order-table">{order.table}</caption>
@@ -145,9 +145,9 @@ const ChefOrders: React.FC = () => {
                   </p>
                 )}
               </section>
-            </section>
+            </article>
           ))}
-      </section>
+      </main>
     </section>
   );
 };

@@ -1,4 +1,32 @@
-<1.0.3> - <2023-12-13>
+<1.0.5> - <2023-12-20>
+
+
+## Sprint learnings
+
+Bootstrap
+
+## Added
+
+Modales para trabajadores y productos
+
+Vista productos en admin 
+
+Nuevas rutas 
+
+Vistas home para waiter y admin
+
+Diseño responsivo para moviles
+
+Test unitarios historia 5 y 6
+
+## Changed
+
+Estilos en algunas vistas
+
+Modularización
+
+
+<1.0.4> - <2023-12-13>
 
 
 ## Sprint learnings
@@ -24,7 +52,7 @@ manifest.json
 Estilos en algunas vistas
 
 
-<1.0.2> - <2023-12-06>
+<1.0.3> - <2023-12-06>
 
 
 ## Sprint learnings

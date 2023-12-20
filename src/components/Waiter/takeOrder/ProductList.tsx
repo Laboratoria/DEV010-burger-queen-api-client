@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Product } from "../../types/Types";
-import { getProducts } from "../../services/request";
-import iconoMenos from "../../assets/icono-menos.png";
-import iconoAgregar from "../../assets/icono-mas.png";
+import { Product } from "../../../types/Types";
+import { getProducts } from "../../../services/request";
+import iconoMenos from "../../../assets/icono-menos.png";
+import iconoAgregar from "../../../assets/icono-mas.png";
 
 //El componente ProductList recibe las props que manejan la adición y sustracción de los productos
 const ProductList = ({
@@ -42,7 +42,7 @@ const ProductList = ({
   }, [token]);
 
   return (
-    <section>
+    <main>
       <section className="buttonMenuSection">
         <button
           className={
@@ -66,7 +66,7 @@ const ProductList = ({
         </button>
       </section>
       <section className="foodSection">
-        <section className="cards">
+        <article className="cards">
           {products
             .filter((product) =>
               menuSelection === "Breakfast"
@@ -78,7 +78,7 @@ const ProductList = ({
               //Cada producto va a tener su contenedor con su key única que será el id del producto, para identificar cada elemento de la lista
               <section className="product-box" key={product.id}>
                 <img className="product-img" src={`${product.image}`} />
-                <section className="product-text">
+                <article className="product-text">
                   <p className="product-name">{product.name}</p>
                   <p className="product-price">${product.price}</p>
                   {/*Acá agregamos los botones para añadir o sustraer cada producto */}
@@ -100,12 +100,12 @@ const ProductList = ({
                       <img className="icons" src={iconoAgregar} />
                     </button>
                   </section>
-                </section>
+                </article>
               </section>
             ))}
-        </section>
+        </article>
       </section>
-    </section>
+    </main>
   );
 };
 

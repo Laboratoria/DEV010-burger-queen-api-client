@@ -20,11 +20,11 @@ const Login = () => {
       localStorage.setItem("token", response.accessToken);
       localStorage.setItem("userRole", response.user.role);
       if (response.user.role === "Mesero") {
-        navigate("/waiter/newOrder");
+        navigate("/waiter");
       } else if (response.user.role === "Chef") {
         navigate("/chef/orders");
       } else if (response.user.role === "Admin") {
-        navigate("/admin/workerList");
+        navigate("/admin");
       }
     } else {
       setError(true);
@@ -48,7 +48,7 @@ const Login = () => {
 
   return (
     <section className="login-section">
-      <section className="login-container">
+      <main className="login-container">
         <img className="logo-img" src={Logo} />
         <h1>Bienvenido/a</h1>
         <form>
@@ -69,7 +69,7 @@ const Login = () => {
             Ingresar
           </button>
         </form>
-      </section>
+      </main>
     </section>
   );
 };

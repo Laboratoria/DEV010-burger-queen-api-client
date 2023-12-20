@@ -1,15 +1,18 @@
 import { useState, FormEvent } from "react";
 import { Button, Form, FormGroup, Modal } from "react-bootstrap";
-import { createWorker, getWorkers } from "../../services/request";
+import { createWorker, getWorkers } from "../../../services/request";
 import Swal from "sweetalert2";
-import { Workers } from "../../types/Types";
+import { Workers } from "../../../types/Types";
 
 interface WorkerAddModalProps {
   setWorkers: React.Dispatch<React.SetStateAction<Workers[]>>;
   onHide: () => void;
 }
 
-const WorkerAddModal: React.FC<WorkerAddModalProps> = ({ setWorkers, onHide }) => {
+const WorkerAddModal: React.FC<WorkerAddModalProps> = ({
+  setWorkers,
+  onHide,
+}) => {
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
   const [email, setEmail] = useState("");
@@ -25,8 +28,15 @@ const WorkerAddModal: React.FC<WorkerAddModalProps> = ({ setWorkers, onHide }) =
     e.preventDefault();
 
     try {
-      if (dataUser.name === "" || dataUser.email === "" || dataUser.role === "") {
-        Swal.fire({ text: "Todos los campos son obligatorios", icon: "warning" });
+      if (
+        dataUser.name === "" ||
+        dataUser.email === "" ||
+        dataUser.role === ""
+      ) {
+        Swal.fire({
+          text: "Todos los campos son obligatorios",
+          icon: "warning",
+        });
         return;
       }
 
@@ -46,48 +56,48 @@ const WorkerAddModal: React.FC<WorkerAddModalProps> = ({ setWorkers, onHide }) =
   };
 
   return (
-    <div className="bg-dark text-white">
-      <Form onSubmit={saveWorker}>
-        <Modal.Header closeButton>
-          <Modal.Title>Usuarios</Modal.Title>
+    <div className="worker-modal-container">
+      <Form onSubmit={saveWorker} className="worker-modal-content">
+        <Modal.Header className="modalHeader" closeButton>
+          <Modal.Title className="modal-title">Crear Usuario</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form.Group className="mb-3">
-            <Form.Label>Nombre</Form.Label>
+          <Form.Group className="form-group">
             <Form.Control
+              className="input-modal"
               type="text"
-              placeholder=""
+              placeholder="Nombre"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
           </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label>Email</Form.Label>
+          <Form.Group className="form-group">
             <Form.Control
+              className="input-modal"
               type="email"
-              placeholder=""
+              placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
-          <FormGroup>
-            <Form.Label>Puesto</Form.Label>
+          <FormGroup className="form-group">
             <Form.Select
+              className="form-select"
               aria-label="Select de tipos"
               name="role"
               value={role}
               onChange={(e) => setRole(e.target.value)}
             >
-              <option>Tipo </option>
-              <option value="chef">Chef</option>
-              <option value="administrador">Administrador</option>
-              <option value="mesero">Mesero</option>
+              <option>Rol</option>
+              <option value="Chef">Chef</option>
+              <option value="Admin">Admin</option>
+              <option value="Mesero">Mesero</option>
             </Form.Select>
           </FormGroup>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="success" type="submit">
-            Crear usuario
+            Guardar cambios
           </Button>
         </Modal.Footer>
       </Form>

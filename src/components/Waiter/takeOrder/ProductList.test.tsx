@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import ProductList from "./ProductList";
 
-jest.mock("../../services/request", () => ({
+jest.mock("../../../services/request", () => ({
   getProducts: jest.fn(),
 }));
 

@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import ProductList from "./ProductList";
 import { useState } from "react";
-import { createOrder } from "../../services/request";
-import { Product } from "../../types/Types";
+import { createOrder } from "../../../services/request";
+import { Product } from "../../../types/Types";
 import Swal from "sweetalert2";
-import Header from "../Header/Header";
+import Header from "../../Header/Header";
 
 const NewOrder = () => {
   //Estado de los productos seleccionados
@@ -119,14 +119,14 @@ const NewOrder = () => {
   return (
     <section className="newOrder-Section">
       <Header />
-      <section className="orderSection">
+      <nav className="orderSection">
         <Link to={"/waiter/OrderList"}>
           <button className="allOrdersButton"> Ver todos los pedidos </button>
         </Link>
-      </section>
-      <section className="dashboardSection">
+      </nav>
+      <main className="dashboardSection">
         <section className="menuSection">
-          <section className="selectSection">
+          <article className="selectSection">
             <select
               data-testid="table"
               className="tableSelect"
@@ -152,14 +152,14 @@ const NewOrder = () => {
               value={clientName}
               onChange={(e) => setClientName(e.target.value)}
             />
-          </section>
+          </article>
           <ProductList
             onAddProduct={handleAddProduct}
             onSubtractProduct={handleSubtractProduct}
           />
         </section>
         <section className="orderInfoSection">
-          <section className="orderInfo-section">
+          <article className="orderInfo-section">
             <h3> Pedido </h3>
             <table className="table-order-waiter">
               <thead>
@@ -172,15 +172,15 @@ const NewOrder = () => {
               <tbody>
                 {selectedProducts.map((product) => (
                   <tr key={product.id} data-testid="products-table">
-                    <td data-testid="product-name">{product.name}</td>
-                    <td data-testid="product-qty">{product.qty}</td>
-                    <td data-testid="product-price">$ {product.pricetotal}</td>
+                    <td data-testid="product-name" className="table-td">{product.name}</td>
+                    <td data-testid="product-qty" className="table-td">{product.qty}</td>
+                    <td data-testid="product-price" className="table-td">$ {product.pricetotal}</td>
                   </tr>
                 ))}
                 {dataOrder.products.length > 0 && (
                   <tr id="total">
-                    <td>Total</td>
-                    <td>
+                    <td className="table-td">Total</td>
+                    <td className="table-td">
                       {" "}
                       {selectedProducts.length === 0
                         ? "0"
@@ -189,7 +189,7 @@ const NewOrder = () => {
                             0
                           )}{" "}
                     </td>
-                    <td>
+                    <td className="table-td">
                       ${" "}
                       {selectedProducts.length === 0
                         ? "0"
@@ -202,14 +202,14 @@ const NewOrder = () => {
                 )}
               </tbody>
             </table>
-          </section>
+          </article>
           <section className="orderButton-section">
             <button className="sendOrderButton" onClick={saveOrder}>
               Enviar pedido
             </button>
           </section>
         </section>
-      </section>
+      </main>
     </section>
   );
 };
